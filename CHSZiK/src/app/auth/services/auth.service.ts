@@ -18,19 +18,34 @@ export class AuthService {
     return localStorage.getItem('token');
   }
   //проверка авторизации
+  // isLoggedIn() {
+  //   return this.getToken() !== null;
+  // }
+  // importToken = localStorage.getItem('token');
+
   isLoggedIn() {
-    return this.getToken() !== null;
+    if (!this.getToken() !== null) {
+      this.http.get('http://192.168.0.117:8080/api/check_token').subscribe({
+        next: () => {
+          return this.getToken() !== null;
+        },
+        error: () => {
+          return this.getToken() == null;
+        },
+      });
+    }
+    return this.getToken() == null;
   }
   //делается post запрос по API с логином и паролем
   login(login: string, password: string) {
     this.http
-      .post('http://localhost:5000/api/authenticate', {
-        email: login,
+      .post('http://192.168.0.117:8080/api/user', {
+        login: login,
         password: password,
       })
       .subscribe({
         next: (res: any) => {
-          this.setToken(res.token);
+          this.setToken(res['remember_token']);
           this.router.navigate(['/main']);
         },
         error: (err) => {

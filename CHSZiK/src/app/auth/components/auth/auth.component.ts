@@ -24,5 +24,9 @@ export class AuthComponent implements OnInit {
       login: new FormControl(''),
       password: new FormControl(''),
     });
+
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['main']);
+    }
   }
 }
