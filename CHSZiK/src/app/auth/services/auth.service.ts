@@ -18,24 +18,42 @@ export class AuthService {
     return localStorage.getItem('token');
   }
   //проверка авторизации
-  // isLoggedIn() {
-  //   return this.getToken() !== null;
-  // }
-  // importToken = localStorage.getItem('token');
-
   isLoggedIn() {
-    if (!this.getToken() !== null) {
+    if (this.getToken() !== null) {
+      return true;
+    }
+    return false;
+  }
+  // importToken = localStorage.getItem('token');
+  ///////////////////////////
+  isLoggedInn() {
+    if (this.getToken() !== null) {
       this.http.get('http://192.168.0.117:8080/api/check_token').subscribe({
         next: () => {
-          return this.getToken() !== null;
+          // return this.getToken() !== null;
+          console.log('true');
+          return true;
         },
-        error: () => {
-          return this.getToken() == null;
+        error: (err) => {
+          // return this.getToken() == null;
+          console.log('falseeee', err);
+          return false;
+        },
+        complete: () => {
+          console.log('TRUE');
         },
       });
     }
-    return this.getToken() == null;
+    console.log('ПРошёл иф');
+    return false;
   }
+  ////////////////////////
+  // isLoggedIn() {
+  //   if (this.getToken() !== null) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
   //делается post запрос по API с логином и паролем
   login(login: string, password: string) {
     this.http

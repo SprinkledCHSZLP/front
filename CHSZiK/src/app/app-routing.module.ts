@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/components/auth/auth.component';
 import { MainComponent } from './main/components/main/main.component';
 import { ListOfEquipmentComponent } from './main/pages/list-of-equipment/components/list-of-equipment/list-of-equipment.component';
-import { AuthGuard } from './guards/auth.guard';
+import { FromInAuthGuard } from './guards/from-in-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -15,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'main/list-of-equipment',
-    canActivate: [AuthGuard],
+    canActivate: [FromInAuthGuard],
+    canDeactivate: [FromInAuthGuard],
     component: ListOfEquipmentComponent,
   },
 ];
