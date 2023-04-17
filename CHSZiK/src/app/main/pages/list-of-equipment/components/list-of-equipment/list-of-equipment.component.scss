@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 1440px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(164, 147, 67, 0.5);
+  border-radius: 25px;
+}
+
+.item-list {
+  padding-top: 20px;
+  width: 1400px;
+  margin: 0 auto;
+}
+
+.item {
+  background-color: white;
+}

@@ -12,6 +12,7 @@ import { ListOfEquipmentComponent } from './main/pages/list-of-equipment/compone
 import { TokenInterceptor } from './interseptors/token.interceptor';
 import { ErrorInterceptor } from './interseptors/error.interseptor';
 import { HeaderComponent } from './main/pages/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HeaderComponent } from './main/pages/header/header.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {
