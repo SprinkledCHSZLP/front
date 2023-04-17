@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+button img {
+  height: 70px;
+  width: 70px;
+}
+
+.logo {
+  width: 166px;
+  height: 70px;
+}
+
+.wrapper {
+  margin-right: 40px;
+  margin-left: 40px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav-item {
+  margin-right: 20px;
+  margin-left: 20px;
+}

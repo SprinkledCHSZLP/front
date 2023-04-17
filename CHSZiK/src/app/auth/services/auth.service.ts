@@ -24,6 +24,9 @@ export class AuthService {
     }
     return false;
   }
+  deleteToken() {
+    return localStorage.clear();
+  }
   // importToken = localStorage.getItem('token');
   ///////////////////////////
   isLoggedInn() {

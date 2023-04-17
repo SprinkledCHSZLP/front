@@ -25,29 +25,29 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.authService.isLoggedIn() == true) {
-    //   this.router.navigate(['main']);
-    // }
-
     if (this.authService.isLoggedIn() == true) {
-      this.http.get('http://192.168.0.117:8080/api/check_token').subscribe({
-        next: () => {
-          // return this.getToken() !== null;
-          this.router.navigate(['main']);
-          console.log('true');
-          return true;
-        },
-        error: (err) => {
-          // return this.getToken() == null;
-          console.log('falseeee', err);
-          return false;
-        },
-        complete: () => {
-          console.log('TRUE');
-        },
-      });
+      this.router.navigate(['main']);
     }
-
+    ///////////////////////////////////////
+    // if (this.authService.isLoggedIn() == true) {
+    //   this.http.get('http://192.168.0.117:8080/api/check_token').subscribe({
+    //     next: () => {
+    //       // return this.getToken() !== null;
+    //       this.router.navigate(['main']);
+    //       console.log('true');
+    //       return true;
+    //     },
+    //     error: (err) => {
+    //       // return this.getToken() == null;
+    //       console.log('falseeee', err);
+    //       return false;
+    //     },
+    //     complete: () => {
+    //       console.log('TRUE');
+    //     },
+    //   });
+    // }
+    ////////////////////////////////////////
     this.authForm = new FormGroup({
       login: new FormControl(''),
       password: new FormControl(''),

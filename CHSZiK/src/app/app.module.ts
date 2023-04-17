@@ -9,11 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/components/main/main.component';
 import { WorkPlansComponent } from './main/pages/work-plans/components/work-plans/work-plans.component';
 import { ListOfEquipmentComponent } from './main/pages/list-of-equipment/components/list-of-equipment/list-of-equipment.component';
-import { TokenInterceptor } from './interseptors/in-server.service';
-import { ErrorInterceptor } from './interseptors/from-server.service';
+import { TokenInterceptor } from './interseptors/token.interceptor';
+import { ErrorInterceptor } from './interseptors/error.interseptor';
+import { HeaderComponent } from './main/pages/header/header.component';
 
 @NgModule({
   declarations: [
+    HeaderComponent,
     AppComponent,
     AuthComponent,
     MainComponent,
@@ -30,6 +32,11 @@ import { ErrorInterceptor } from './interseptors/from-server.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
   ],
