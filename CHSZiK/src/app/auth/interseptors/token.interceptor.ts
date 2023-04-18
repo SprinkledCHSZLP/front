@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpRequest,
 } from '@angular/common/http';
-import { AuthService } from '../auth/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 // @Injectable()

@@ -6,24 +6,16 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/components/auth/auth.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MainComponent } from './main/components/main/main.component';
-import { WorkPlansComponent } from './main/pages/work-plans/components/work-plans/work-plans.component';
-import { TokenInterceptor } from './interseptors/token.interceptor';
-import { ErrorInterceptor } from './interseptors/error.interseptor';
+import { TokenInterceptor } from './auth/interseptors/token.interceptor';
+import { ErrorInterceptor } from './error-handler/interseptors/error.interseptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListOfEquipmentComponent } from './main/pages/list-of-equipment/list-of-equipment.component';
-import { HeaderComponent } from './main/pages/header/header.component';
-import { AddingEquipmentComponent } from './main/pages/list-of-equipment/components/adding-equipment/adding-equipment.component';
+import {AuthModule} from "./auth/auth.module";
+;
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    MainComponent,
-    WorkPlansComponent,
-    ListOfEquipmentComponent,
-    HeaderComponent,
-    AddingEquipmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +23,7 @@ import { AddingEquipmentComponent } from './main/pages/list-of-equipment/compone
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    AuthModule
   ],
   providers: [
     {

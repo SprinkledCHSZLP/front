@@ -9,6 +9,8 @@ import { Observable, of, throwError } from 'rxjs';
 export class AuthService {
   constructor(private router: Router, private http: HttpClient) {}
 
+  //ТУТ БУДЕТ ЮЗЕР ГЕТ КАРРЕНТ
+
   //установка токена в память
   setToken(token: string) {
     localStorage.setItem('token', token);

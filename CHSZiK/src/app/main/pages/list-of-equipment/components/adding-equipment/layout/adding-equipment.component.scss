@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.adding-img-model {
+  width: 650px;
+  height: 850px;
+  border: 1px solid black;
+}
+.adding-component {
+  width: 650px;
+  background-color: rgba(164, 147, 67, 0.5);
+  border-radius: 25px;
+}
+
+.content {
+  margin-top: 10px;
+}
