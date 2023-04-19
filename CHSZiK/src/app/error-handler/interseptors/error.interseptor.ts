@@ -18,9 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           console.log('ошибка 401 Интерсептор работает');
-          //   this.authService.deleteToken();
           this.authService.deleteToken();
-          this.router.navigate(['auth']);
+          this.router.navigate(['']);
         } else if (error.status === 404) {
           // handle not found error
         } else {

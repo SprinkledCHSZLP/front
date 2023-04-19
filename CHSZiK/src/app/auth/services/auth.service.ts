@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, of, throwError } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+  }
 
   //ТУТ БУДЕТ ЮЗЕР ГЕТ КАРРЕНТ
 
@@ -15,10 +15,12 @@ export class AuthService {
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
+
   //получение токена
   getToken() {
     return localStorage.getItem('token');
   }
+
   //проверка авторизации
   isLoggedIn() {
     if (this.getToken() !== null) {
@@ -26,9 +28,11 @@ export class AuthService {
     }
     return false;
   }
+
   deleteToken() {
     return localStorage.clear();
   }
+
   // importToken = localStorage.getItem('token');
   ///////////////////////////
   isLoggedInn() {
@@ -52,6 +56,7 @@ export class AuthService {
     console.log('ПРошёл иф');
     return false;
   }
+
   ////////////////////////
   // isLoggedIn() {
   //   if (this.getToken() !== null) {
@@ -69,7 +74,7 @@ export class AuthService {
       .subscribe({
         next: (res: any) => {
           this.setToken(res['remember_token']);
-          this.router.navigate(['/main']);
+          this.router.navigate(['/list-of-equipment']);
         },
         error: (err) => {
           console.log('Опс, ошибка', err);

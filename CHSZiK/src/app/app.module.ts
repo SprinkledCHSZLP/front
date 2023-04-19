@@ -3,27 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/components/auth/auth.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TokenInterceptor } from './auth/interseptors/token.interceptor';
-import { ErrorInterceptor } from './error-handler/interseptors/error.interseptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AuthModule} from "./auth/auth.module";
+import {SignInModule} from "./sign-in/sign-in.module";
+import {TokenInterceptor} from "./auth/interseptors/token.interceptor";
+import {ErrorInterceptor} from "./error-handler/interseptors/error.interseptor";
 ;
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
   ],
   imports: [
+    SignInModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AuthModule
   ],
   providers: [
     {

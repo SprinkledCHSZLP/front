@@ -1,1 +1,23 @@
-<p>sign-in works!</p>
+<div class="container">
+  <div class="logo">
+    <img src="../../../assets/img/logo.png" alt="logo"/>
+  </div>
+  <div class="title">Авторизация</div>
+  <button class="authorization-button">Войти<Br/>по штрих-коду</button>
+  <span class="text">Или</span>
+  <form [formGroup]="authForm" (ngSubmit)="submitAuth()">
+    <input
+      formControlName="login"
+      type="login"
+      class="authorization-input"
+      placeholder="Введите логин"
+    />
+    <input
+      formControlName="password"
+      type="password"
+      class="authorization-input"
+      placeholder="Введите пароль"
+    />
+    <button class="authorization-button" type="submit">Вход</button>
+  </form>
+</div>
