@@ -21,12 +21,26 @@ button img {
   justify-content: space-between;
   align-items: center;
 }
+.nav-item :hover{
+  background-color: gray;
+}
 
 .nav {
   display: flex;
+  font-size: 16px;
 }
 
 .nav-item {
   margin-right: 20px;
   margin-left: 20px;
+}
+
+.profil button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  width: 70px;
+  height: 70px;
 }

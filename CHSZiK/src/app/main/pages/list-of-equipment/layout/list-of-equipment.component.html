@@ -1,11 +1,22 @@
 <div>
   <div class="wrapper">
-    <div class="header">
-      <p>Оборудование</p>
+    <div class="head">
+      <div class="header">Оборудование</div>
       <div class="search">
-        <input type="text" placeholder="Поиск" />
+        <input type="text" placeholder="Поиск"/>
       </div>
-      <button (click)="submitAddingEquipment()">Добавить модель оборудования</button>
+      <button class="btn-adding-equipment" (click)="submitAddingEquipment()">Добавить модель оборудования</button>
+    </div>
+    <div class="container">
+      <div class="item-list">
+        <div *ngIf="loading" class="loading">Loading...</div>
+        <app-list-of-equipment-models *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
+        <app-list-of-equipment-models *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
+        <app-list-of-equipment-models *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
+        <app-list-of-equipment-models *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
+        <app-list-of-equipment-models *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
+
+      </div>
     </div>
   </div>
 </div>

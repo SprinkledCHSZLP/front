@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SignInModule} from "./sign-in/sign-in.module";
 import {TokenInterceptor} from "./auth/interseptors/token.interceptor";
 import {ErrorInterceptor} from "./error-handler/interseptors/error.interseptor";
-;
 
 @NgModule({
   declarations: [
