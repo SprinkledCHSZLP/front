@@ -15,18 +15,19 @@ export class ListOfEquipmentComponent implements OnInit {
   }
 
   models: IModel[] = []
-  loading = false
+  loading = true
 
   submitAddingEquipment() {
-    this.route.navigate(['adding-equipment'])
+    this.route.navigate(['adding-equipment', '0'])
   }
 
   ngOnInit(): void {
-    this.loading = true
-    this.listOfEquipmentService.getAllModels().subscribe((models:any) => {
+    this.listOfEquipmentService.getAllModels().subscribe((models) => {
       console.log(models)
-      this.models = models['data']
-      this.loading = false
+      if (models) {
+        this.models = models.data
+        this.loading = false
+      }
     })
   }
 }

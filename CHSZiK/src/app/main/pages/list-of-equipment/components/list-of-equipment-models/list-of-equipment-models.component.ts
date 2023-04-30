@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import {IModel} from "../../../../../models/models-equipment";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -9,5 +10,12 @@ import {IModel} from "../../../../../models/models-equipment";
 })
 export class ListOfEquipmentModelsComponent {
 
+  constructor(private router: Router) {
+  }
+
   @Input() models: IModel
+
+  openSettings() {
+    this.router.navigate(['adding-equipment', this.models.id])
+  }
 }
