@@ -37,11 +37,12 @@ import {ListOfEquipmentModelsComponent} from "./components/list-of-equipment-mod
 import {
   MaintenanceSheetEditingComponent
 } from "./components/adding-equipment/components/setting-component/components/maintenance-sheet-editing/maintenance-sheet-editing.component";
+import {ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   declarations: [AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent],
   exports: [
     ListOfEquipmentModelsComponent
   ],
-  imports: [CommonModule, ListOfEquipmentRoutingModule]
+    imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule]
 })
 export class ListOfEquipmentModule {}

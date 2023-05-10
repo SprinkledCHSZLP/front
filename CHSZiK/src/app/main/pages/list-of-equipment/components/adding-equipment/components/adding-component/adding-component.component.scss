@@ -47,18 +47,19 @@
   justify-content: space-around;
 }
 .number-component {
-  background-color: #d9d9d9;
-  width: 50px;
-  height: 50px;
+  font-size: 16px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 25px;
+  text-align: center;
 }
 
 .btn-save-component {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -67,8 +68,8 @@
   background-color: #E3B800;
 
   .img-apply {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
   }
 }
 

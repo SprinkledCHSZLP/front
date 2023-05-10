@@ -1,22 +1,23 @@
 <div>
-  <div class="wrapper">
+  <div [formGroup]="addingForm" class="wrapper">
     <div class="setting-component">
-      <div class="number-component">№</div>
+<!--      <div class="number-component">№</div>-->
+      <input formControlName="position" class="number-component" type="text">
       <div class="name-component">
         <p>Название</p>
-        <input type="text" class="input-name-component"/>
+        <input formControlName="name" type="text" class="input-name-component" placeholder="Введите название"/>
       </div>
-      <button class="btn-save-component" type="button">
+      <button class="btn-save-component" type="submit" (click)="saveComponent()">
         <img class="img-apply" src="../../../../../../../../assets/img/apply.png">
       </button>
     </div>
     <div class="setting-component__checkboxs">
       <div class="checkbox">
-        <input type="checkbox" checked/>
-        <label for="">Разбить на состовляющие</label>
+        <input type="checkbox" formControlName="constituents"/>
+        <label for="">Разбить на составляющие</label>
       </div>
       <div class="checkbox">
-        <input type="checkbox" checked/>
+        <input type="checkbox" formControlName="service"/>
         <label for="">Включить обслуживание</label>
       </div>
     </div>

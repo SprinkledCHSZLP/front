@@ -1,8 +1,9 @@
-<div (click)="openSettings()" class="item">
+<div class="item">
   <div class="image-model-equipment">
-    <img [src]="models.image_plan_reference" alt="">
+    <img [src]="models.imagePlanReference" alt="">
   </div>
   <div class="name-model-equipment">
-    <span>Название: {{models.equipment_name}} </span>
+    <span>Название: {{models.equipmentName}} </span>
   </div>
+  <button (click)="openSettings()" class="setting" >Редактировать</button>
 </div>

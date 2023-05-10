@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/list-of-equipment', pathMatch: 'full'},
   {path: 'list-of-equipment', component: ListOfEquipmentComponent},
   {path: 'adding-equipment/:id', component: AddingEquipmentComponent},
-  {path: 'maintenance-sheet-editing', component: MaintenanceSheetEditingComponent}
+  {path: 'maintenance-sheet-editing/:id', component: MaintenanceSheetEditingComponent}
 
 ];
 

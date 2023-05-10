@@ -1,17 +1,17 @@
 <div>
   <div class="wrapper">
     <div class="setting-component">
-      <div class="number-component">№</div>
+      <div class="number-component">{{part.positionOnPlan}}</div>
       <div class="name-component">
-        <p>Название</p>
+        <p>{{part.equipmentName}}</p>
       </div>
     </div>
     <div class="setting-component__btn">
-      <div class="btn">
-        <button>Добавить состовляющие</button>
+      <div *ngIf="part.haveEquipment" class="btn">
+        <button>Добавить составляющие</button>
       </div>
-      <div class="btn">
-        <button>Настроить обслуживание</button>
+      <div *ngIf="part.service" class="btn">
+        <button (click)="submitMainTenanceSheetEditing()">Настроить обслуживание</button>
       </div>
     </div>
   </div>

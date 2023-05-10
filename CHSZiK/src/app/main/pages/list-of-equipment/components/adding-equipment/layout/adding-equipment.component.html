@@ -1,25 +1,24 @@
 <div>
   <div class="wrapper">
     <div class="head">
-      <button class="btn-back">Назад <img class="img-back" src="../../../../../../../assets/img/back.png"></button>
+      <button class="btn-back" (click)="btnBack()">Назад <img class="img-back" src="../../../../../../../assets/img/back.png"></button>
       <div class="search">
         <input type="text" placeholder="Название оборудования" />
       </div>
     </div>
     <div class="container">
       <div class="adding-img-model">
-<!--        <button class="adding-img-model__btn">Добавить схему</button>-->
         <input type="file">
       </div>
       <div class="adding-component">
         <div class="adding-component__content">
-          <app-setting-component></app-setting-component>
+          <app-setting-component *ngFor="let part of part" [part]="part"></app-setting-component>
           <app-adding-component></app-adding-component>
         </div>
       </div>
     </div>
     <div class="save">
-      <button class="save__btn" (click)="submitMainTenanceSheetEditing" >Сохранить</button>
+      <button class="save__btn">Сохранить</button>
     </div>
   </div>
 </div>
