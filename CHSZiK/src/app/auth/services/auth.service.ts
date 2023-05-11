@@ -56,7 +56,6 @@ export class AuthService {
     console.log('ПРошёл иф');
     return false;
   }
-
   ////////////////////////
   // isLoggedIn() {
   //   if (this.getToken() !== null) {
@@ -67,7 +66,7 @@ export class AuthService {
   //делается post запрос по API с логином и паролем
   login(login: string, password: string) {
     this.http
-      .post('http://192.168.43.248:8080/api/user', {
+      .post('http://192.168.0.117:8080/api/user', {
         login: login,
         password: password,
       })

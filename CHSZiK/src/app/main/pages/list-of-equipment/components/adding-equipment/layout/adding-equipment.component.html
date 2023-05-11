@@ -13,7 +13,7 @@
       <div class="adding-component">
         <div class="adding-component__content">
           <app-setting-component *ngFor="let part of part" [part]="part"></app-setting-component>
-          <app-adding-component></app-adding-component>
+          <app-adding-component (send)="addingComponent($event)"></app-adding-component>
         </div>
       </div>
     </div>

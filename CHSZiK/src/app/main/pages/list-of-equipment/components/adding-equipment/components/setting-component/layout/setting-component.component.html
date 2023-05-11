@@ -1,13 +1,13 @@
 <div>
   <div class="wrapper">
     <div class="setting-component">
-      <div class="number-component">{{part.positionOnPlan}}</div>
+      <div class="number-component">{{part.position_on_plan}}</div>
       <div class="name-component">
-        <p>{{part.equipmentName}}</p>
+        <p>{{part.equipment_name}}</p>
       </div>
     </div>
     <div class="setting-component__btn">
-      <div *ngIf="part.haveEquipment" class="btn">
+      <div *ngIf="part.have_equipment" class="btn">
         <button>Добавить составляющие</button>
       </div>
       <div *ngIf="part.service" class="btn">

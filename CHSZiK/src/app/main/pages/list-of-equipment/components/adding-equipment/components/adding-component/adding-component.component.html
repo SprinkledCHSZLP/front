@@ -1,11 +1,10 @@
 <div>
   <div [formGroup]="addingForm" class="wrapper">
     <div class="setting-component">
-<!--      <div class="number-component">№</div>-->
-      <input formControlName="position" class="number-component" type="text">
+      <input formControlName="position_on_plan" class="number-component" type="text">
       <div class="name-component">
         <p>Название</p>
-        <input formControlName="name" type="text" class="input-name-component" placeholder="Введите название"/>
+        <input formControlName="equipment_name" type="text" class="input-name-component" placeholder="Введите название"/>
       </div>
       <button class="btn-save-component" type="submit" (click)="saveComponent()">
         <img class="img-apply" src="../../../../../../../../assets/img/apply.png">
@@ -13,7 +12,7 @@
     </div>
     <div class="setting-component__checkboxs">
       <div class="checkbox">
-        <input type="checkbox" formControlName="constituents"/>
+        <input type="checkbox" formControlName="have_equipment"/>
         <label for="">Разбить на составляющие</label>
       </div>
       <div class="checkbox">

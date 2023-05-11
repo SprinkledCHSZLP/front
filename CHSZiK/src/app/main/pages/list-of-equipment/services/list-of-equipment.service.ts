@@ -17,51 +17,52 @@ export class ListOfEquipmentService {
   models: IModel[] = [
     {
       id: 1,
-      equipmentName: "Залупа",
-      imagePlanReference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
+      equipment_name: "Залупа",
+      image_plan_reference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
     },
     {
       id: 2,
-      equipmentName: "Залупа",
-      imagePlanReference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
+      equipment_name: "Залупа",
+      image_plan_reference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
     },
     {
       id: 3,
-      equipmentName: "Залупа",
-      imagePlanReference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
+      equipment_name: "Залупа",
+      image_plan_reference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
     },
     {
       id: 4,
-      equipmentName: "Залупа",
-      imagePlanReference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
+      equipment_name: "Залупа",
+      image_plan_reference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
     },
     {
       id: 5,
-      equipmentName: "Залупа",
-      imagePlanReference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
+      equipment_name: "Залупа",
+      image_plan_reference: "https://avatars.mds.yandex.net/i?id=6ee2742bc0d7d147a1b1454f175e52a3470c4091-8497871-images-thumbs&n=13"
     },
   ]
 
   part: IPart[] = [
     {
       id: 1,
-      positionOnPlan: '1',
-      equipmentName: 'Комплектующая которая разбивается1',
-      haveEquipment: true,
-      service: false
+      position_on_plan: '1',
+      equipment_name: 'Комплектующая которая разбивается1',
+      have_equipment: true,
+      service: false,
+      parent_equipment_id: 1
     },
     {
       id: 2,
-      positionOnPlan: '2',
-      equipmentName: 'Комплектующая которая разбивается2',
-      haveEquipment: false,
+      position_on_plan: '2',
+      equipment_name: 'Комплектующая которая разбивается2',
+      have_equipment: false,
       service: true
     },
     {
       id: 3,
-      positionOnPlan: '3',
-      equipmentName: 'Комплектующая которая разбивается3',
-      haveEquipment: true,
+      position_on_plan: '3',
+      equipment_name: 'Комплектующая которая разбивается3',
+      have_equipment: true,
       service: true
     }
   ]
