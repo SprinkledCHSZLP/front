@@ -6,6 +6,7 @@ import {map, Observable, of} from "rxjs";
 import {IModel} from "../../../../models/models-equipment";
 import {ResponseDataModels, ResponseDataPart} from "../../../../models/response";
 import {IPart} from "../../../../models/part-equipment";
+import {AddingEquipmentComponent} from "../components/adding-equipment/layout/adding-equipment.component";
 
 @Injectable({
   providedIn: 'root',
@@ -68,12 +69,18 @@ export class ListOfEquipmentService {
   ]
 
   getAllModels(): Observable<ResponseDataModels> {
-    return of({data: this.models})
+    // return of({data: this.models})
 
-     // return this.http.get<ResponseData>('http://192.168.43.248:8080/api/equipment')
+     return this.http.get<ResponseDataModels>('http://192.168.0.117:8080/api/equipment')
   }
 
-  getAllPart(): Observable<ResponseDataPart> {
-    return  of ({data: this.part})
+  // getAllPart(): Observable<ResponseDataPart> {
+  //   return  of ({data: this.part})
+  // }
+
+
+  getAllPart(urlId:string): Observable<ResponseDataPart> {
+    return  this.http.get<ResponseDataPart>('http://192.168.0.117:8080/api/equipment_child?parent_equipment_id=' + urlId)
   }
+
 }

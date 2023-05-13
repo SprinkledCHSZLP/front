@@ -49,7 +49,7 @@ export class AddingEquipmentComponent implements OnInit {
   ngOnInit() {
     this.getIdParent()
 
-    this.listOfEquipmentService.getAllPart().subscribe((part) => {
+    this.listOfEquipmentService.getAllPart(this.parent_equipment_id).subscribe((part) => {
       console.log(part)
       if (part) {
         this.part = part.data

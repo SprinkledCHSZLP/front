@@ -13,6 +13,12 @@ export class SettingComponentComponent{
 
   constructor(private router: Router) {
   }
+
+  openSettings() {
+    this.router.navigate(['adding-equipment', this.part.id])
+    console.log('айди = ' + this.part.id)
+  }
+
   submitMainTenanceSheetEditing() {
     this.router.navigate(['maintenance-sheet-editing', '0'])
   }

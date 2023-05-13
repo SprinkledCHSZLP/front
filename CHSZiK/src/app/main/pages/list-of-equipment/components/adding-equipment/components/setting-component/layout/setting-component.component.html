@@ -8,7 +8,7 @@
     </div>
     <div class="setting-component__btn">
       <div *ngIf="part.have_equipment" class="btn">
-        <button>Добавить составляющие</button>
+        <button (click)="openSettings()">Добавить составляющие</button>
       </div>
       <div *ngIf="part.service" class="btn">
         <button (click)="submitMainTenanceSheetEditing()">Настроить обслуживание</button>

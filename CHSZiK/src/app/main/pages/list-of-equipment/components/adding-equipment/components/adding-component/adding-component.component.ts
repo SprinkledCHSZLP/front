@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {IPart} from "../../../../../../../models/part-equipment";
+import {ListOfEquipmentService} from "../../../../services/list-of-equipment.service";
 
 @Component({
   selector: 'app-adding-component',
@@ -12,9 +13,9 @@ import {IPart} from "../../../../../../../models/part-equipment";
 export class AddingComponentComponent implements OnInit {
   addingForm!: FormGroup
 
-  constructor(private router: Router,
-              private http: HttpClient) {
+  constructor() {
   }
+
 
   @Output() send: EventEmitter<IPart> = new EventEmitter<IPart>()
 
@@ -37,6 +38,7 @@ export class AddingComponentComponent implements OnInit {
       have_equipment: new FormControl(true || false),
       service: new FormControl(true || false),
     });
+
   }
 
 }

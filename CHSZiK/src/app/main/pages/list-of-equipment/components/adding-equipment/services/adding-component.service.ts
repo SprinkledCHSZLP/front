@@ -17,6 +17,7 @@ export class AddingComponentService {
     ).subscribe({
       complete: () => {
         console.log('всё чётко')
+        location.reload();
 
       },
       error: (err) => {
