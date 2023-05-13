@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {IPart} from "../../../../../../../../models/part-equipment";
 
 @Component({
@@ -11,7 +11,7 @@ export class SettingComponentComponent{
 
   @Input() part: IPart
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   openSettings() {

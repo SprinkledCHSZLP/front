@@ -13,16 +13,7 @@ export class AddingComponentService {
   }
 
   addingComponent(component: IPart) {
-    this.http.post('http://192.168.0.117:8080/api/add_equipment_child', component
-    ).subscribe({
-      complete: () => {
-        console.log('всё чётко')
-        location.reload();
-
-      },
-      error: (err) => {
-        console.log('Отказ')
-      }
-    })
+    return this.http.post('http://192.168.0.117:8080/api/add_equipment_child', component
+    )
   }
 }

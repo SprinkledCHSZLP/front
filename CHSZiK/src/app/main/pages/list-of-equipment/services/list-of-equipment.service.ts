@@ -7,12 +7,13 @@ import {IModel} from "../../../../models/models-equipment";
 import {ResponseDataModels, ResponseDataPart} from "../../../../models/response";
 import {IPart} from "../../../../models/part-equipment";
 import {AddingEquipmentComponent} from "../components/adding-equipment/layout/adding-equipment.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ListOfEquipmentService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
   }
 
   models: IModel[] = [
@@ -74,12 +75,16 @@ export class ListOfEquipmentService {
      return this.http.get<ResponseDataModels>('http://192.168.0.117:8080/api/equipment')
   }
 
+  getAllModel(id:number): Observable<ResponseDataModels> {
+
+    return this.http.get<ResponseDataModels>('http://192.168.0.117:8080/api/equipment')
+  }
+
   // getAllPart(): Observable<ResponseDataPart> {
   //   return  of ({data: this.part})
   // }
 
-
-  getAllPart(urlId:string): Observable<ResponseDataPart> {
+  getAllPart(urlId:any): Observable<ResponseDataPart> {
     return  this.http.get<ResponseDataPart>('http://192.168.0.117:8080/api/equipment_child?parent_equipment_id=' + urlId)
   }
 
