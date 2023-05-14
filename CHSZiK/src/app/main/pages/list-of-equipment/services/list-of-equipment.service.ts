@@ -7,13 +7,13 @@ import {IModel} from "../../../../models/models-equipment";
 import {ResponseDataModels, ResponseDataParentPart, ResponseDataPart} from "../../../../models/response";
 import {IPart} from "../../../../models/part-equipment";
 import {AddingEquipmentComponent} from "../components/adding-equipment/layout/adding-equipment.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ListOfEquipmentService {
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
   models: IModel[] = [
@@ -68,21 +68,22 @@ export class ListOfEquipmentService {
       service: true
     }
   ]
-  getParentModel(): Observable<ResponseDataModels> {
-    return this.http.get<ResponseDataModels>('')
-  }
 
   getParentPart(urlId: number): Observable<ResponseDataParentPart> {
     return this.http.get<ResponseDataParentPart>('http://192.168.0.117:8080/api/equipment_data?parent_equipment_id=' + urlId)
   }
 
-  addingNewParentModel(equipment_name: string, image_plan_reference: string) {
-    this.http.post('', {
+  addingNewParentModel(equipment_name: string, image: string) {
+    this.http.post('http://192.168.0.117:8080/api/add_equipment', {
       equipment_name: equipment_name,
-      image_plan_reference: image_plan_reference
+      image: image
     }).subscribe({
-      next: () => {
-        console.log()
+      next: (res: any) => {
+        this.router.navigate(['adding-equipment/' + res])
+        console.log('Успешно' + res)
+      },
+      error: (err) => {
+        console.log('не успешно' + err)
       }
     })
   }
