@@ -2,10 +2,13 @@
   <div class="wrapper">
     <div class="head">
       <button class="btn-back" (click)="btnBack()">Назад <img class="img-back" src="../../../../../../../assets/img/back.png"></button>
-      <div class="head__name">
-        <input type="text" placeholder="Название оборудования" />
-        <p></p>
+      <div *ngIf="parent.equipment_name" >
+        <p class="head__name">{{parent.equipment_name}}</p>
         <button>Редактировать</button>
+      </div>
+      <div *ngIf="parent.equipment_name == null">
+        <input class="head__name input" type="text" placeholder="Название" />
+        <button>Сохранить</button>
       </div>
     </div>
     <div class="container">

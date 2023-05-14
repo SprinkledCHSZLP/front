@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http';
 import {map, Observable, of} from "rxjs";
 import {IModel} from "../../../../models/models-equipment";
-import {ResponseDataModels, ResponseDataPart} from "../../../../models/response";
+import {ResponseDataModels, ResponseDataParentPart, ResponseDataPart} from "../../../../models/response";
 import {IPart} from "../../../../models/part-equipment";
 import {AddingEquipmentComponent} from "../components/adding-equipment/layout/adding-equipment.component";
 import {ActivatedRoute} from "@angular/router";
@@ -68,6 +68,24 @@ export class ListOfEquipmentService {
       service: true
     }
   ]
+  getParentModel(): Observable<ResponseDataModels> {
+    return this.http.get<ResponseDataModels>('')
+  }
+
+  getParentPart(urlId: number): Observable<ResponseDataParentPart> {
+    return this.http.get<ResponseDataParentPart>('http://192.168.0.117:8080/api/equipment_data?parent_equipment_id=' + urlId)
+  }
+
+  addingNewParentModel(equipment_name: string, image_plan_reference: string) {
+    this.http.post('', {
+      equipment_name: equipment_name,
+      image_plan_reference: image_plan_reference
+    }).subscribe({
+      next: () => {
+        console.log()
+      }
+    })
+  }
 
   getAllModels(): Observable<ResponseDataModels> {
     // return of({data: this.models})
@@ -75,17 +93,12 @@ export class ListOfEquipmentService {
      return this.http.get<ResponseDataModels>('http://192.168.0.117:8080/api/equipment')
   }
 
-  getAllModel(id:number): Observable<ResponseDataModels> {
-
-    return this.http.get<ResponseDataModels>('http://192.168.0.117:8080/api/equipment')
-  }
-
   // getAllPart(): Observable<ResponseDataPart> {
   //   return  of ({data: this.part})
   // }
 
-  getAllPart(urlId:any): Observable<ResponseDataPart> {
-    return  this.http.get<ResponseDataPart>('http://192.168.0.117:8080/api/equipment_child?parent_equipment_id=' + urlId)
+  getAllPart(urlId:number): Observable<ResponseDataPart> {
+    return this.http.get<ResponseDataPart>('http://192.168.0.117:8080/api/equipment_child?parent_equipment_id=' + urlId)
   }
 
 }
