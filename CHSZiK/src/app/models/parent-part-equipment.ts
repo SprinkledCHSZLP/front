@@ -6,6 +6,6 @@ export interface IParentPart {
 
 export interface IAddParentPart {
   id?: number
-  image: string,
+  image?: File,
   equipment_name: string,
 }

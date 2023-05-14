@@ -20,7 +20,7 @@ export class SettingComponentComponent{
   }
 
   submitMainTenanceSheetEditing() {
-    this.router.navigate(['maintenance-sheet-editing', '0'])
+    this.router.navigate(['maintenance-sheet-editing', this.part.id])
   }
 
 }

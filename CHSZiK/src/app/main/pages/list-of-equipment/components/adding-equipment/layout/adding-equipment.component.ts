@@ -27,6 +27,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   parent: IParentPart
   parent_equipment_id: number
   isNew: boolean = true
+  image: File
 
 
 
@@ -34,23 +35,25 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     window.history.back()
   }
 
-  btnAddingNewModel() {
+  /*btnAddingNewModel() {
     this.listOfEquipmentService.addingNewParentModel(
       this.addingNewModelForm.get('equipment_name')?.value,
       this.addingNewModelForm.get('image')?.value
     )
-  }
+  } */
 
   saveNewModel() {
     let component: IAddParentPart = {
       equipment_name: this.addingNewModelForm.get('equipment_name')?.value,
-      image: this.addingNewModelForm.get('image')?.value
+      image: this.image
     }
-    this.btnAddingNewModel1(component)
+    console.log('отправлено на серв' + this.image.type)
+    this.btnAddingNewModel(component)
   }
 
-  btnAddingNewModel1(component: IAddParentPart) {
-    this.listOfEquipmentService.addingNewParentModel1({
+  btnAddingNewModel(component: IAddParentPart) {
+    console.log('компонент' + component.image?.webkitRelativePath)
+    this.listOfEquipmentService.addingNewParentModel({
       ...component
     }).subscribe({
       next: (res: any) => {
@@ -90,6 +93,13 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 //редактирование
   }
 
+  onFileUpload(event: any) {
+    const file = event.target.files[0]
+    this.image = file
+    console.log('загрузка', this.image)
+
+  }
+
   ifNotIsNew() {
     this.sub$.add(
       this.route.params.subscribe(params => {
@@ -105,10 +115,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.addingNewModelForm = new FormGroup({
       equipment_name: new FormControl(''),
-      image: new FormControl('')
     })
 
     this.route.params.subscribe(params => {

@@ -2,21 +2,22 @@
   <div class="wrapper" *ngIf="parent || isNew">
     <div class="head">
       <button class="btn-back" (click)="btnBack()">Назад <img class="img-back" src="../../../../../../../assets/img/back.png"></button>
-      <div *ngIf="!isNew" >
+      <div *ngIf="!isNew" class="head-name">
         <p class="head__name">{{parent?.equipment_name}}</p>
-        <button (click)="addingParentPart()">Редактировать</button>
+        <button class="head__name-change" (click)="addingParentPart()"> <img class="img-change" src="../../../../../../../assets/img/change.png"> </button>
       </div>
       <div [formGroup]="addingNewModelForm">
         <input *ngIf="isNew" formControlName="equipment_name" class="head__name input" type="text" placeholder="Название" />
-        <button *ngIf="!isNew">Сохранить</button>
+<!--        <button *ngIf="isNew">Сохранить</button>-->
       </div>
     </div>
     <div class="container">
-      <div class="adding-img-model">
-        <input *ngIf="parent?.image_plan_reference == null" type="file">
-        <input *ngIf="isNew" type="file">
-        <img *ngIf="parent?.image_plan_reference != null" class="img-model" [src]="parent.image_plan_reference" alt="">
-        <button *ngIf="parent?.image_plan_reference != null" >Редактировать</button>
+      <div class="model-img">
+        <div [formGroup]="addingNewModelForm" class="adding-img-model">
+          <input *ngIf="parent?.image_plan_reference == null" (change)="onFileUpload($event)" type="file">
+          <img *ngIf="parent?.image_plan_reference != null" class="img-model" [src]="parent.image_plan_reference" alt="">
+        </div>
+        <button class="btn__img-change" *ngIf="parent?.image_plan_reference != null" >Редактировать <img class="img-change" src="../../../../../../../assets/img/change.png"></button>
       </div>
       <div class="adding-component">
         <div class="adding-component__content">

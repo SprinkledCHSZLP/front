@@ -74,7 +74,7 @@ export class ListOfEquipmentService {
     return this.http.get<ResponseDataParentPart>('http://192.168.0.117:8080/api/equipment_data?parent_equipment_id=' + urlId)
   }
 
-  addingNewParentModel(equipment_name: string, image: string) {
+  /*addingNewParentModel(equipment_name: string, image: string) {
     this.http.post('http://192.168.0.117:8080/api/add_equipment', {
       equipment_name: equipment_name,
       image: image
@@ -87,8 +87,8 @@ export class ListOfEquipmentService {
         console.log('не успешно' + err)
       }
     })
-  }
-  addingNewParentModel1(component: IAddParentPart) {
+  } */
+  addingNewParentModel(component: IAddParentPart) {
     return this.http.post('http://192.168.0.117:8080/api/add_equipment', component)
   }
 
