@@ -8,6 +8,7 @@ import {ResponseDataModels, ResponseDataParentPart, ResponseDataPart} from "../.
 import {IPart} from "../../../../models/part-equipment";
 import {AddingEquipmentComponent} from "../components/adding-equipment/layout/adding-equipment.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {IAddParentPart} from "../../../../models/parent-part-equipment";
 
 @Injectable({
   providedIn: 'root',
@@ -86,6 +87,9 @@ export class ListOfEquipmentService {
         console.log('не успешно' + err)
       }
     })
+  }
+  addingNewParentModel1(component: IAddParentPart) {
+    return this.http.post('http://192.168.0.117:8080/api/add_equipment', component)
   }
 
   getAllModels(): Observable<ResponseDataModels> {

@@ -1,11 +1,11 @@
-import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {IPart} from "../../../../../../models/part-equipment";
 import {ListOfEquipmentService} from "../../../services/list-of-equipment.service";
 import {HttpClient} from "@angular/common/http";
 import {AddingComponentService} from "../services/adding-component.service";
 import {Subscription} from "rxjs";
-import {IParentPart} from "../../../../../../models/parent-part-equipment";
+import {IParentPart, IAddParentPart} from "../../../../../../models/parent-part-equipment";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -28,6 +28,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   parent_equipment_id: number
   isNew: boolean = true
 
+
+
   btnBack() {
     window.history.back()
   }
@@ -37,6 +39,25 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       this.addingNewModelForm.get('equipment_name')?.value,
       this.addingNewModelForm.get('image')?.value
     )
+  }
+
+  saveNewModel() {
+    let component: IAddParentPart = {
+      equipment_name: this.addingNewModelForm.get('equipment_name')?.value,
+      image: this.addingNewModelForm.get('image')?.value
+    }
+    this.btnAddingNewModel1(component)
+  }
+
+  btnAddingNewModel1(component: IAddParentPart) {
+    this.listOfEquipmentService.addingNewParentModel1({
+      ...component
+    }).subscribe({
+      next: (res: any) => {
+        this.router.navigate(['adding-equipment/' + res])
+        this.ifNotIsNew()
+      }
+    })
   }
 
   getAllPart() {
@@ -58,7 +79,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   addingComponent(component: IPart) {
-
     this.addingComponentService.addingComponent({
       ...component, parent_equipment_id: this.parent_equipment_id
     }).subscribe(() => {
@@ -74,8 +94,12 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.sub$.add(
       this.route.params.subscribe(params => {
         this.parent_equipment_id = params['id']
-        this.getAllPart()
-        this.getParentPart()
+        if(this.parent_equipment_id != 0) {
+          this.getAllPart()
+          this.getParentPart()
+        }
+        // this.getAllPart()
+        // this.getParentPart()
       })
     )
   }
