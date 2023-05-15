@@ -2,12 +2,12 @@
   <div class="wrapper" *ngIf="parent || isNew">
     <div class="head">
       <button class="btn-back" (click)="btnBack()">Назад <img class="img-back" src="../../../../../../../assets/img/back.png"></button>
-      <div *ngIf="!isNew" class="head-name">
+      <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent?.equipment_name}}</p>
-        <button class="head__name-change" (click)="addingParentPart()"> <img class="img-change" src="../../../../../../../assets/img/change.png"> </button>
+        <button class="head__name-change" (click)="btnUpdateHeadName()"> <img class="img-change" src="../../../../../../../assets/img/change.png"> </button>
       </div>
       <div [formGroup]="addingNewModelForm">
-        <input *ngIf="isNew" formControlName="equipment_name" class="head__name input" type="text" placeholder="Название" />
+        <input *ngIf="isNew || updateName == true" formControlName="equipment_name" class="head__name input" type="text" placeholder="Название" />
       </div>
     </div>
     <div class="container">

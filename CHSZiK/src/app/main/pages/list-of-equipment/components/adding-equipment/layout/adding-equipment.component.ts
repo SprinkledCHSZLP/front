@@ -19,6 +19,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService) {
   }
+
   @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
   sub$: Subscription = new Subscription()
@@ -26,8 +27,9 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   parent: IParentPart
   parent_equipment_id: number
   isNew: boolean = true
+  updateName: boolean = false
+  updateImage: boolean = false
   image: File
-
 
 
   btnBack() {
@@ -36,26 +38,42 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
   btnUpdateImage() {
     this.inputRef.nativeElement.click()
+    this.updateImage = true
   }
 
   saveNewModel() {
-    if(this.isNew) {
+    if (this.isNew) {
       this.listOfEquipmentService.create(
         this.addingNewModelForm.get('equipment_name')?.value,
         this.image
-      ).subscribe( {
+      ).subscribe({
         next: (res: any) => {
           this.router.navigate(['adding-equipment/' + res])
+          console.log('сработал create')
           this.ifNotIsNew()
         }
       })
     }
-    if(this.isNew == false) {
+    if (this.isNew == false && this.updateImage) {
       this.listOfEquipmentService.createImage(
         this.parent_equipment_id,
         this.image
-      ).subscribe( {
-        next: (res: any) => {
+      ).subscribe({
+        next: () => {
+          console.log('сработал createImage')
+          this.updateImage = false
+          this.ifNotIsNew()
+        }
+      })
+    }
+    if (this.updateName) {
+      this.listOfEquipmentService.updateName(
+        this.parent_equipment_id,
+        this.addingNewModelForm.get('equipment_name')?.value
+      ).subscribe({
+        next: () => {
+          this.updateName = false
+          console.log('сработал updateName')
           this.ifNotIsNew()
         }
       })
@@ -86,11 +104,12 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     })
   }
 
-  addingParentPart() {
-//редактирование
+  btnUpdateHeadName() {
+    this.updateName = true
   }
 
   onFileUpload(event: any) {
+    this.updateImage = true
     const file = event.target.files[0]
     this.image = file
 
@@ -100,7 +119,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.sub$.add(
       this.route.params.subscribe(params => {
         this.parent_equipment_id = params['id']
-        if(this.parent_equipment_id != 0) {
+        if (this.parent_equipment_id != 0) {
           this.getAllPart()
           this.getParentPart()
         }
@@ -120,7 +139,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       }
     })
 
-    if(this.isNew == false) {
+    if (this.isNew == false) {
       this.ifNotIsNew()
     }
   }

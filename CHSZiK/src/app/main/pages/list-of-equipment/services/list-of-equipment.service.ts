@@ -100,6 +100,14 @@ export class ListOfEquipmentService {
     return this.http.post('http://192.168.0.117:8080/api/change_image', fd)
   }
 
+  updateName(id: any, equipment_name: string) {
+    const fd = new FormData()
+    fd.append('id', id)
+    fd.append('equipment_name', equipment_name)
+
+    return this.http.post('http://192.168.0.117:8080/api/change_name', fd)
+  }
+
   getAllModels(): Observable<ResponseDataModels> {
     // return of({data: this.models})
 
