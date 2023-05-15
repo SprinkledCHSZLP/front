@@ -21,7 +21,7 @@ export class ListOfEquipmentComponent implements OnInit {
     this.route.navigate(['adding-equipment', '0'])
   }
 
-  ngOnInit(): void {
+  getAllModels() {
     this.listOfEquipmentService.getAllModels().subscribe((models) => {
       console.log(models)
       if (models) {
@@ -29,5 +29,15 @@ export class ListOfEquipmentComponent implements OnInit {
         this.loading = false
       }
     })
+  }
+
+  getModels(id: number) {
+    this.listOfEquipmentService.deleteModel(id).subscribe(() => {
+      this.getAllModels()
+    })
+  }
+
+  ngOnInit(): void {
+    this.getAllModels()
   }
 }

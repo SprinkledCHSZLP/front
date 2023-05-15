@@ -122,4 +122,8 @@ export class ListOfEquipmentService {
     return this.http.get<ResponseDataPart>('http://192.168.0.117:8080/api/equipment_child?parent_equipment_id=' + urlId)
   }
 
+  deleteModel(id: any) {
+    return this.http.delete('http://192.168.0.117:8080/api/delete_equipment?id=' + id)
+  }
+
 }

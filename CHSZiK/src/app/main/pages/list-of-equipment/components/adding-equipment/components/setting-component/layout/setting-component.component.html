@@ -33,11 +33,7 @@
       </div>
     </div>
 
-    <div *ngIf="isUpgrade" (click)="btnDeleteComponent()" class="btn-delete-component">
-      Удалить составляющую
-    </div>
-
-
+    <button *ngIf="isUpgrade" (click)="btnDeleteComponent()" class="btn-delete__component">Удалить составляющую</button>
 
     <div *ngIf="!isUpgrade" class="open-setting-component__btn">
       <div *ngIf="part.have_equipment" class="btn">

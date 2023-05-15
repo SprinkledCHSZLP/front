@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {IPart} from "../../../../../../../../models/part-equipment";
 import {FormControl, FormGroup} from "@angular/forms";
+import {AddingComponentService} from "../../../services/adding-component.service";
+import {AddingEquipmentComponent} from "../../../layout/adding-equipment.component";
 
 @Component({
   selector: 'app-setting-component',
@@ -15,11 +17,20 @@ export class SettingComponentComponent implements OnInit{
   isUpgrade: boolean = false
   @Input() part: IPart
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent) {
   }
 
   btnDeleteComponent() {
-    
+    this.addingComponentService.deleteComponent(this.part.id).subscribe( {
+      next: (res: any) => {
+        console.log('Удаление прошло успешно')
+        this.addingEquipmentComponent.getAllPart()
+      },
+      error: (err) => {
+        console.log('ХУЙ ТЕБЕ' + err)
+      }
+    })
+    console.log('АЙДИ удаления' + this.part.id)
   }
 
   openUpgradeComponent() {

@@ -5,5 +5,8 @@
   <div class="name-model-equipment">
     <span>Название: {{models.equipment_name}} </span>
   </div>
-  <button (click)="openSettings()" class="setting" >Редактировать</button>
+  <div class="btn">
+    <button (click)="openSettings()" class="setting">Редактировать</button>
+    <button (click)="deleteModel()" class="setting">Удалить</button>
+  </div>
 </div>

@@ -19,6 +19,9 @@ export class AddingComponentService {
 
   upgradeComponent(upgradeComponent: IPart) {
     return this.http.post('http://192.168.0.117:8080/api/save_changes', upgradeComponent)
+  }
 
+  deleteComponent(id: any) {
+    return this.http.delete('http://192.168.0.117:8080/api/delete_equipment?id=' + id)
   }
 }

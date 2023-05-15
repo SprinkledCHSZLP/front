@@ -42,10 +42,10 @@
 .wrapper {
   background-color: white;
   width: 610px;
-  height: 115px;
   margin: 0 auto;
   border-radius: 5px;
   margin-bottom: 10px;
+  padding-bottom: 14px;
 }
 
 .name-component {
@@ -83,6 +83,21 @@
 
 
 //
+
+.btn-delete__component {
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 8px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
+}
 
 .number-component__update {
   font-size: 16px;

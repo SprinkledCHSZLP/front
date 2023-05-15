@@ -1,6 +1,7 @@
-import { Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IModel} from "../../../../../models/models-equipment";
 import {Router} from "@angular/router";
+import {ListOfEquipmentService} from "../../services/list-of-equipment.service";
 
 
 @Component({
@@ -10,12 +11,18 @@ import {Router} from "@angular/router";
 })
 export class ListOfEquipmentModelsComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private listOfEquipmentService: ListOfEquipmentService) {
   }
+
+  @Output() send: EventEmitter<number> = new EventEmitter<number>()
 
   @Input() models: IModel
 
   openSettings() {
     this.router.navigate(['adding-equipment', this.models.id])
+  }
+
+  deleteModel() {
+    this.send.emit(this.models.id)
   }
 }

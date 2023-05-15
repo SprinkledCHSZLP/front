@@ -10,7 +10,7 @@
     <div class="container">
       <div class="item-list">
         <div *ngIf="loading" class="loading">Loading...</div>
-        <app-list-of-equipment-models *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
+        <app-list-of-equipment-models (send)="getModels($event)" *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
       </div>
     </div>
   </div>

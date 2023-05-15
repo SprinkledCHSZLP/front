@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   width: 320px;
-  height: 380px;
+  //height: 380px;
   background-color: #FFFFFF;
   border-radius: 5px;
 
@@ -22,9 +22,19 @@
   margin-top: 10px;
 }
 
+.btn {
+  width: 320px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .setting {
+  border-radius: 5px;
+  font-size: 16px;
   margin-top: 5px;
   margin-bottom: 5px;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
 }
 
 .name-model-equipment {
