@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {IPart} from "../../../../../../models/part-equipment";
 import {ListOfEquipmentService} from "../../../services/list-of-equipment.service";
@@ -19,9 +19,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService) {
   }
-
+  @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
-
   sub$: Subscription = new Subscription()
   part: IPart[] = []
   parent: IParentPart
@@ -35,39 +34,38 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     window.history.back()
   }
 
-  /*btnAddingNewModel() {
-    this.listOfEquipmentService.addingNewParentModel(
-      this.addingNewModelForm.get('equipment_name')?.value,
-      this.addingNewModelForm.get('image')?.value
-    )
-  } */
-
-  saveNewModel() {
-    let component: IAddParentPart = {
-      equipment_name: this.addingNewModelForm.get('equipment_name')?.value,
-      image: this.image
-    }
-    console.log('отправлено на серв' + this.image.type)
-    this.btnAddingNewModel(component)
+  btnUpdateImage() {
+    this.inputRef.nativeElement.click()
   }
 
-  btnAddingNewModel(component: IAddParentPart) {
-    console.log('компонент' + component.image?.webkitRelativePath)
-    this.listOfEquipmentService.addingNewParentModel({
-      ...component
-    }).subscribe({
-      next: (res: any) => {
-        this.router.navigate(['adding-equipment/' + res])
-        this.ifNotIsNew()
-      }
-    })
+  saveNewModel() {
+    if(this.isNew) {
+      this.listOfEquipmentService.create(
+        this.addingNewModelForm.get('equipment_name')?.value,
+        this.image
+      ).subscribe( {
+        next: (res: any) => {
+          this.router.navigate(['adding-equipment/' + res])
+          this.ifNotIsNew()
+        }
+      })
+    }
+    if(this.isNew == false) {
+      this.listOfEquipmentService.createImage(
+        this.parent_equipment_id,
+        this.image
+      ).subscribe( {
+        next: (res: any) => {
+          this.ifNotIsNew()
+        }
+      })
+    }
   }
 
   getAllPart() {
     this.listOfEquipmentService.getAllPart(this.parent_equipment_id).subscribe((part) => {
       if (part) {
         this.part = part.data
-        console.log("Сработал getAllPart " + this.part)
       }
     })
   }
@@ -76,7 +74,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.listOfEquipmentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
-        console.log("Сработал getParentPartt " + this.parent)
       }
     })
   }
@@ -96,7 +93,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   onFileUpload(event: any) {
     const file = event.target.files[0]
     this.image = file
-    console.log('загрузка', this.image)
 
   }
 
@@ -108,8 +104,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
           this.getAllPart()
           this.getParentPart()
         }
-        // this.getAllPart()
-        // this.getParentPart()
       })
     )
   }

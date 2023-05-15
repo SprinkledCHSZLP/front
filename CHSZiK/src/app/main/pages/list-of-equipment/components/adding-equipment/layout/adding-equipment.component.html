@@ -8,16 +8,15 @@
       </div>
       <div [formGroup]="addingNewModelForm">
         <input *ngIf="isNew" formControlName="equipment_name" class="head__name input" type="text" placeholder="Название" />
-<!--        <button *ngIf="isNew">Сохранить</button>-->
       </div>
     </div>
     <div class="container">
       <div class="model-img">
         <div [formGroup]="addingNewModelForm" class="adding-img-model">
-          <input *ngIf="parent?.image_plan_reference == null" (change)="onFileUpload($event)" type="file">
+          <input [class.active]="parent?.image_plan_reference" #input (change)="onFileUpload($event)" type="file">
           <img *ngIf="parent?.image_plan_reference != null" class="img-model" [src]="parent.image_plan_reference" alt="">
         </div>
-        <button class="btn__img-change" *ngIf="parent?.image_plan_reference != null" >Редактировать <img class="img-change" src="../../../../../../../assets/img/change.png"></button>
+        <button (click)="btnUpdateImage()" class="btn__img-change" *ngIf="parent?.image_plan_reference != null" >Редактировать <img class="img-change" src="../../../../../../../assets/img/change.png"></button>
       </div>
       <div class="adding-component">
         <div class="adding-component__content">

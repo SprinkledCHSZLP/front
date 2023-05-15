@@ -74,22 +74,30 @@ export class ListOfEquipmentService {
     return this.http.get<ResponseDataParentPart>('http://192.168.0.117:8080/api/equipment_data?parent_equipment_id=' + urlId)
   }
 
-  /*addingNewParentModel(equipment_name: string, image: string) {
-    this.http.post('http://192.168.0.117:8080/api/add_equipment', {
-      equipment_name: equipment_name,
-      image: image
-    }).subscribe({
-      next: (res: any) => {
-        this.router.navigate(['adding-equipment/' + res])
-        console.log('Успешно' + res)
-      },
-      error: (err) => {
-        console.log('не успешно' + err)
-      }
-    })
-  } */
   addingNewParentModel(component: IAddParentPart) {
     return this.http.post('http://192.168.0.117:8080/api/add_equipment', component)
+  }
+
+  create(equipment_name: string, image?: File) {
+    const fd = new FormData()
+
+    if(image) {
+      fd.append('image', image)
+    }
+    fd.append('equipment_name', equipment_name)
+
+    return this.http.post('http://192.168.0.117:8080/api/add_equipment', fd)
+  }
+
+  createImage(id: any, image: File) {
+    const fd = new FormData()
+
+    if (image) {
+      fd.append('image', image)
+    }
+    fd.append('id', id)
+
+    return this.http.post('http://192.168.0.117:8080/api/change_image', fd)
   }
 
   getAllModels(): Observable<ResponseDataModels> {

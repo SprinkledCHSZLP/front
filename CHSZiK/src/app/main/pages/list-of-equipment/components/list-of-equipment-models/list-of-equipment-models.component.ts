@@ -17,6 +17,5 @@ export class ListOfEquipmentModelsComponent {
 
   openSettings() {
     this.router.navigate(['adding-equipment', this.models.id])
-    console.log('айди = ' + this.models.id)
   }
 }

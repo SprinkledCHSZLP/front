@@ -14,7 +14,7 @@ export class WrapperComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('http://192.168.0.117:8080/api/check_token').subscribe({
       next: () => {
-        console.log('EEEE')
+        console.log('Токен верный')
       }
     })
   }

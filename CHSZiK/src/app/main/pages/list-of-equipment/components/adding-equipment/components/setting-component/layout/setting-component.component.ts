@@ -16,7 +16,6 @@ export class SettingComponentComponent{
 
   openSettings() {
     this.router.navigate(['adding-equipment', this.part.id])
-    console.log('айди = ' + this.part.id)
   }
 
   submitMainTenanceSheetEditing() {
