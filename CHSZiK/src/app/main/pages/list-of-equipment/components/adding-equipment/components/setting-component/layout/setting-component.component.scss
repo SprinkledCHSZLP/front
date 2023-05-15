@@ -10,12 +10,13 @@
   justify-content: space-around;
 }
 
-.setting-component__btn {
+.open-setting-component__btn {
   margin-top: 8px;
   display: flex;
   justify-content: space-around;
 }
-.btn button{
+
+.btn button {
   background-color: #d9d9d9;
   width: 270px;
   height: 30px;
@@ -27,6 +28,17 @@
   border: none;
 }
 
+.setting-component__btn {
+  border: none;
+  background-color: white;
+
+}
+
+.setting-component__img {
+  height: 40px;
+  width: 40px;
+}
+
 .wrapper {
   background-color: white;
   width: 610px;
@@ -35,6 +47,7 @@
   border-radius: 5px;
   margin-bottom: 10px;
 }
+
 .name-component {
   display: flex;
   background-color: #d9d9d9;
@@ -44,6 +57,7 @@
   height: 50px;
   justify-content: space-around;
 }
+
 .number-component {
   background-color: #d9d9d9;
   width: 50px;
@@ -65,4 +79,72 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+//
+
+.number-component__update {
+  font-size: 16px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  text-align: center;
+  justify-content: center;
+}
+
+.name-component__update {
+  display: flex;
+  background-color: #d9d9d9;
+  border-radius: 25px;
+  align-items: center;
+  width: 480px;
+  height: 50px;
+  justify-content: space-around;
+}
+
+.input-name-component__update {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.btn-save-component__update {
+  width: 45px;
+  height: 45px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
+
+  .img-apply {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.upgrade-setting-component__checkboxs {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.upgrade-checkbox {
+  background-color: #d9d9d9;
+  width: 270px;
+  height: 30px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.upgrade-checkbox input {
+  height: 20px;
+  width: 20px;
 }

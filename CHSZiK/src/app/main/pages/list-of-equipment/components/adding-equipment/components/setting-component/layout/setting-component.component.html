@@ -1,12 +1,45 @@
 <div>
   <div class="wrapper">
-    <div class="setting-component">
+
+    <div [formGroup]="upgradeComponentForm" *ngIf="isUpgrade" class="setting-component">
+      <input formControlName="position_on_plan" class="number-component__update" type="text">
+      <div class="name-component__update">
+        <p>Название</p>
+        <input formControlName="equipment_name" type="text" class="input-name-component__update" placeholder="Введите название"/>
+      </div>
+      <button (click)="upgradeComponent()" class="btn-save-component__update" type="submit">
+        <img class="img-apply" src="../../../../../../../../assets/img/apply.png">
+      </button>
+    </div>
+
+
+    <div *ngIf="!isUpgrade" class="setting-component">
       <div class="number-component">{{part.position_on_plan}}</div>
       <div class="name-component">
         <p>{{part.equipment_name}}</p>
       </div>
+      <button (click)="openUpgradeComponent()" class="setting-component__btn"> <img class="setting-component__img" src="../../../../../../../../../assets/img/change.png" alt=""> </button>
     </div>
-    <div class="setting-component__btn">
+
+
+    <div [formGroup]="upgradeComponentForm" *ngIf="isUpgrade" class="upgrade-setting-component__checkboxs">
+      <div class="upgrade-checkbox">
+        <input type="checkbox" formControlName="have_equipment"/>
+        <label for="">Разбить на составляющие</label>
+      </div>
+      <div class="upgrade-checkbox">
+        <input type="checkbox" formControlName="service"/>
+        <label for="">Включить обслуживание</label>
+      </div>
+    </div>
+
+    <div *ngIf="isUpgrade" (click)="btnDeleteComponent()" class="btn-delete-component">
+      Удалить составляющую
+    </div>
+
+
+
+    <div *ngIf="!isUpgrade" class="open-setting-component__btn">
       <div *ngIf="part.have_equipment" class="btn">
         <button (click)="openSettings()">Добавить составляющие</button>
       </div>
@@ -15,4 +48,5 @@
       </div>
     </div>
   </div>
+
 </div>

@@ -16,4 +16,9 @@ export class AddingComponentService {
     return this.http.post('http://192.168.0.117:8080/api/add_equipment_child', component
     )
   }
+
+  upgradeComponent(upgradeComponent: IPart) {
+    return this.http.post('http://192.168.0.117:8080/api/save_changes', upgradeComponent)
+
+  }
 }

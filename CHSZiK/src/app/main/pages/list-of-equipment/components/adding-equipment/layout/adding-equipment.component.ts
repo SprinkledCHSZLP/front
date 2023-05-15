@@ -104,6 +104,14 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     })
   }
 
+  upgradeComponent(upgradeComponent: IPart) {
+    this.addingComponentService.upgradeComponent({
+      ...upgradeComponent
+    }).subscribe(() => {
+      this.getAllPart()
+    })
+  }
+
   btnUpdateHeadName() {
     this.updateName = true
   }

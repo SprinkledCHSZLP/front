@@ -11,14 +11,13 @@ import {ListOfEquipmentService} from "../../../../services/list-of-equipment.ser
   styleUrls: ['./adding-component.component.scss']
 })
 export class AddingComponentComponent implements OnInit {
+
   addingForm!: FormGroup
 
   constructor() {
   }
 
-
   @Output() send: EventEmitter<IPart> = new EventEmitter<IPart>()
-
 
   saveComponent() {
     let component: IPart = {
@@ -29,7 +28,6 @@ export class AddingComponentComponent implements OnInit {
     }
     this.send.emit(component)
   }
-
 
   ngOnInit(): void {
     this.addingForm = new FormGroup({
