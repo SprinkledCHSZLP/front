@@ -13,15 +13,15 @@ export class AddingComponentService {
   }
 
   addingComponent(component: IPart) {
-    return this.http.post('http://192.168.0.117:8080/api/add_equipment_child', component
+    return this.http.post('http://195.161.68.107:8000/api/add_equipment_child', component
     )
   }
 
   upgradeComponent(upgradeComponent: IPart) {
-    return this.http.post('http://192.168.0.117:8080/api/save_changes', upgradeComponent)
+    return this.http.post('http://195.161.68.107:8000/api/save_changes', upgradeComponent)
   }
 
   deleteComponent(id: any) {
-    return this.http.delete('http://192.168.0.117:8080/api/delete_equipment?id=' + id)
+    return this.http.delete('http://195.161.68.107:8000/api/delete_equipment?id=' + id)
   }
 }
