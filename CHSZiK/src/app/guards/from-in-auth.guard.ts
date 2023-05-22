@@ -24,7 +24,7 @@ export class FromInAuthGuard implements CanActivate, CanDeactivate<unknown> {
     | boolean
     | UrlTree {
     if (this.authService.isLoggedIn() == false) {
-      // this.ruoter.navigate(['auth']);
+      this.ruoter.navigate(['']);
       return false;
     }
     return true;

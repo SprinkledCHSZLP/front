@@ -1,6 +1,11 @@
 <div class="item">
   <div class="image-model-equipment">
-    <img [src]="models.image_plan_reference" alt="">
+    <img [src]="models.image_plan_reference" alt="" *ngIf="pdfStrModel != true">
+    <div class="container" *ngIf="pdfStrModel">
+      <pdf-viewer [src]="models.image_plan_reference"
+                  [original-size]="false"
+      ></pdf-viewer>
+    </div>
   </div>
   <div class="name-model-equipment">
     <span>Название: {{models.equipment_name}} </span>

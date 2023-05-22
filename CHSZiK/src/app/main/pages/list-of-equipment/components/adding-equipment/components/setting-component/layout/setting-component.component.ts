@@ -20,32 +20,33 @@ export class SettingComponentComponent implements OnInit{
   constructor(private router: Router, private route: ActivatedRoute, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent) {
   }
 
-  btnDeleteComponent() {
-    this.addingComponentService.deleteComponent(this.part.id).subscribe( {
+  btnDeletePart() {
+    this.addingComponentService.deletePart(this.part.id).subscribe( {
       next: (res: any) => {
         console.log('Удаление прошло успешно')
         this.addingEquipmentComponent.getAllPart()
       },
       error: (err) => {
-        console.log('ХУЙ ТЕБЕ' + err)
+        console.log('Не удалено' + err)
       }
     })
     console.log('АЙДИ удаления' + this.part.id)
   }
 
-  openUpgradeComponent() {
+  openUpgradePart() {
     this.isUpgrade = true
   }
 
-  upgradeComponent() {
-    let upgradeComponent: IPart = {
+  upgradePart() {
+    let component: IPart = {
       id: this.part.id,
       position_on_plan: this.upgradeComponentForm.get('position_on_plan')?.value,
       equipment_name: this.upgradeComponentForm.get('equipment_name')?.value,
       have_equipment: this.upgradeComponentForm.get('have_equipment')?.value,
       service: this.upgradeComponentForm.get('service')?.value,
     }
-    this.send.emit(upgradeComponent)
+    this.send.emit(component)
+    console.log('Компонент ' + component.service)
     this.isUpgrade = false
   }
 
@@ -62,7 +63,7 @@ export class SettingComponentComponent implements OnInit{
       position_on_plan: new FormControl(''),
       equipment_name: new FormControl(''),
       have_equipment: new FormControl(true || false),
-      service: new FormControl(true || false),
+      service: new FormControl(true || false)
     })
   }
 

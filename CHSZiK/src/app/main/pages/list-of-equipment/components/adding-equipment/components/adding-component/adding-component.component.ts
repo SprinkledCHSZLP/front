@@ -30,6 +30,7 @@ export class AddingComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.addingForm = new FormGroup({
       position_on_plan: new FormControl(''),
       equipment_name: new FormControl(''),

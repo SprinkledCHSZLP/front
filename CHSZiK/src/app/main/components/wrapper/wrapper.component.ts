@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {CHECKTOKEN_URL} from "../../../conf/conf";
 
 @Component({
   selector: 'app-wrapper',
@@ -12,7 +13,7 @@ export class WrapperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('http://195.161.68.107:8000/api/check_token').subscribe({
+    this.http.get(CHECKTOKEN_URL).subscribe({
       next: () => {
         console.log('Токен верный')
       }

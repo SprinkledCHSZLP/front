@@ -2,12 +2,12 @@
   <div class="wrapper">
 
     <div [formGroup]="upgradeComponentForm" *ngIf="isUpgrade" class="setting-component">
-      <input formControlName="position_on_plan" class="number-component__update" type="text">
+      <input formControlName="position_on_plan" [(ngModel)]="part.position_on_plan" class="number-component__update" type="text">
       <div class="name-component__update">
         <p>Название</p>
-        <input formControlName="equipment_name" type="text" class="input-name-component__update" placeholder="Введите название"/>
+        <input formControlName="equipment_name" [(ngModel)]="part.equipment_name" type="text" class="input-name-component__update" placeholder="Введите название"/>
       </div>
-      <button (click)="upgradeComponent()" class="btn-save-component__update" type="submit">
+      <button (click)="upgradePart()" class="btn-save-component__update" type="submit">
         <img class="img-apply" src="../../../../../../../../assets/img/apply.png">
       </button>
     </div>
@@ -18,22 +18,22 @@
       <div class="name-component">
         <p>{{part.equipment_name}}</p>
       </div>
-      <button (click)="openUpgradeComponent()" class="setting-component__btn"> <img class="setting-component__img" src="../../../../../../../../../assets/img/change.png" alt=""> </button>
+      <button (click)="openUpgradePart()" class="setting-component__btn"> <img class="setting-component__img" src="../../../../../../../../../assets/img/change.png" alt=""> </button>
     </div>
 
 
     <div [formGroup]="upgradeComponentForm" *ngIf="isUpgrade" class="upgrade-setting-component__checkboxs">
       <div class="upgrade-checkbox">
-        <input type="checkbox" formControlName="have_equipment"/>
+        <input type="checkbox" formControlName="have_equipment" [(ngModel)]="part.have_equipment"/>
         <label for="">Разбить на составляющие</label>
       </div>
       <div class="upgrade-checkbox">
-        <input type="checkbox" formControlName="service"/>
+        <input type="checkbox" formControlName="service" [(ngModel)]="part.service"/>
         <label for="">Включить обслуживание</label>
       </div>
     </div>
 
-    <button *ngIf="isUpgrade" (click)="btnDeleteComponent()" class="btn-delete__component">Удалить составляющую</button>
+    <button *ngIf="isUpgrade" (click)="btnDeletePart()" class="btn-delete__component">Удалить составляющую</button>
 
     <div *ngIf="!isUpgrade" class="open-setting-component__btn">
       <div *ngIf="part.have_equipment" class="btn">

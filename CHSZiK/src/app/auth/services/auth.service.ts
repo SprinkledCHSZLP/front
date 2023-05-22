@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {CHECKTOKEN_URL, USER_URL} from "../../conf/conf";
 
 @Injectable({
   providedIn: 'root',
@@ -11,17 +12,14 @@ export class AuthService {
 
   //ТУТ БУДЕТ ЮЗЕР ГЕТ КАРРЕНТ
 
-  //установка токена в память
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  //получение токена
   getToken() {
     return localStorage.getItem('token');
   }
 
-  //проверка авторизации
   isLoggedIn() {
     if (this.getToken() !== null) {
       return true;
@@ -37,7 +35,7 @@ export class AuthService {
   ///////////////////////////
   isLoggedInn() {
     if (this.getToken() !== null) {
-      this.http.get('http://195.161.68.107:8000/api/check_token').subscribe({
+      this.http.get(CHECKTOKEN_URL).subscribe({
         next: () => {
           // return this.getToken() !== null;
           console.log('true');
@@ -55,17 +53,10 @@ export class AuthService {
     }
     return false;
   }
-  ////////////////////////
-  // isLoggedIn() {
-  //   if (this.getToken() !== null) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-  //делается post запрос по API с логином и паролем
+
   login(login: string, password: string) {
     this.http
-      .post('http://195.161.68.107:8000/api/user', {
+      .post(USER_URL, {
         login: login,
         password: password,
       })

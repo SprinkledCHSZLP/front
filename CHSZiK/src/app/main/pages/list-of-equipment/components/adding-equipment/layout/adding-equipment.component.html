@@ -1,27 +1,45 @@
 <div>
   <div class="wrapper" *ngIf="parent || isNew">
     <div class="head">
-      <button class="btn-back" (click)="btnBack()">Назад <img class="img-back" src="../../../../../../../assets/img/back.png"></button>
+      <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
+                                                              src="../../../../../../../assets/img/back.png"></button>
       <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent?.equipment_name}}</p>
-        <button class="head__name-change" (click)="btnUpdateHeadName()"> <img class="img-change" src="../../../../../../../assets/img/change.png"> </button>
+        <button class="head__name-change" (click)="btnUpgradeHeadName()"><img class="img-change"
+                                                                             src="../../../../../../../assets/img/change.png">
+        </button>
       </div>
       <div [formGroup]="addingNewModelForm">
-        <input *ngIf="isNew || updateName == true" formControlName="equipment_name" class="head__name input" type="text" placeholder="Название" />
+        <input *ngIf="isNew || updateName == true" formControlName="equipment_name" class="head__name input" type="text"
+               placeholder="Название" [(ngModel)]="parent.equipment_name"/>
       </div>
     </div>
     <div class="container">
       <div class="model-img">
-        <div [formGroup]="addingNewModelForm" class="adding-img-model">
+        <div class="adding-img-model">
           <input [class.active]="parent?.image_plan_reference" #input (change)="onFileUpload($event)" type="file">
-          <img *ngIf="parent?.image_plan_reference != null" class="img-model" [src]="parent.image_plan_reference" alt="">
+          <img *ngIf="parent?.image_plan_reference != null && pdfStr != true" class="img-model" [src]="parent.image_plan_reference" alt="">
+          <div class="pfd-container" *ngIf="parent?.image_plan_reference != null && pdfStr">
+<!--            <ngx-extended-pdf-viewer-->
+<!--              [src]="parent.image_plan_reference"-->
+<!--              [height]="'95%'"-->
+<!--              [useBrowserLocale]="true"-->
+<!--              [textLayer]="true"-->
+<!--              [showHandToolButton]="true">-->
+<!--            </ngx-extended-pdf-viewer>-->
+            <pdf-viewer [src]="parent.image_plan_reference"
+                        [original-size]="false"
+            ></pdf-viewer>
+          </div>
         </div>
-        <button (click)="btnUpdateImage()" class="btn__img-change" *ngIf="parent?.image_plan_reference != null" >Редактировать <img class="img-change" src="../../../../../../../assets/img/change.png"></button>
+        <button (click)="btnUpdateImage()" class="btn__img-change" *ngIf="parent?.image_plan_reference != null">
+          Редактировать <img class="img-change" src="../../../../../../../assets/img/change.png"></button>
       </div>
       <div class="adding-component">
         <div class="adding-component__content">
-          <app-setting-component (send)="upgradeComponent($event)" *ngFor="let part of part" [part]="part"></app-setting-component>
-          <app-adding-component (send)="addingComponent($event)"></app-adding-component>
+          <app-setting-component (send)="upgradePart($event)" *ngFor="let part of part"
+                                 [part]="part"></app-setting-component>
+          <app-adding-component (send)="addingPart($event)"></app-adding-component>
         </div>
       </div>
     </div>

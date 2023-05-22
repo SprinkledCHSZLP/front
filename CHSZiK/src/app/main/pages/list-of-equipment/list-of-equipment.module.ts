@@ -22,11 +22,13 @@ import {
 })
 export class ListOfEquipmentModule {}
  */
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {ListOfEquipmentRoutingModule} from "./list-of-equipment-routing.module";
 import {AddingEquipmentComponent} from "./components/adding-equipment/layout/adding-equipment.component";
-
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {FormsModule} from '@angular/forms';
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 import {
   SettingComponentComponent
 } from "./components/adding-equipment/components/setting-component/layout/setting-component.component";
@@ -38,11 +40,13 @@ import {
   MaintenanceSheetEditingComponent
 } from "./components/adding-equipment/components/setting-component/components/maintenance-sheet-editing/maintenance-sheet-editing.component";
 import {ReactiveFormsModule} from "@angular/forms";
+
 @NgModule({
   declarations: [AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent],
   exports: [
     ListOfEquipmentModelsComponent
   ],
-    imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule]
+  imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule, PdfViewerModule, FormsModule, NgxExtendedPdfViewerModule]
 })
-export class ListOfEquipmentModule {}
+export class ListOfEquipmentModule {
+}

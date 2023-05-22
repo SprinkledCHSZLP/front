@@ -19,7 +19,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService) {
   }
-
+  pdfSource: any
   @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
   sub$: Subscription = new Subscription()
@@ -30,6 +30,10 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   updateName: boolean = false
   updateImage: boolean = false
   image: File
+  parentFile: File
+
+  pdfStr: boolean
+  searchString = '.pdf'
 
 
   btnBack() {
@@ -43,7 +47,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
   saveNewModel() {
     if (this.isNew) {
-      this.listOfEquipmentService.create(
+      this.addingComponentService.createNewParentPart(
         this.addingNewModelForm.get('equipment_name')?.value,
         this.image
       ).subscribe({
@@ -55,7 +59,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       })
     }
     if (this.isNew == false && this.updateImage) {
-      this.listOfEquipmentService.createImage(
+      this.addingComponentService.upgradeImage(
         this.parent_equipment_id,
         this.image
       ).subscribe({
@@ -67,7 +71,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       })
     }
     if (this.updateName) {
-      this.listOfEquipmentService.updateName(
+      this.addingComponentService.updateName(
         this.parent_equipment_id,
         this.addingNewModelForm.get('equipment_name')?.value
       ).subscribe({
@@ -81,38 +85,42 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   getAllPart() {
-    this.listOfEquipmentService.getAllPart(this.parent_equipment_id).subscribe((part) => {
+    this.addingComponentService.getAllPart(this.parent_equipment_id).subscribe((part) => {
       if (part) {
         this.part = part.data
       }
     })
   }
-
   getParentPart() {
-    this.listOfEquipmentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
+    this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
+        if (this.parent.image_plan_reference) {
+          this.pdfStr = this.parent.image_plan_reference.includes(this.searchString)
+        }
+
       }
     })
   }
 
-  addingComponent(component: IPart) {
-    this.addingComponentService.addingComponent({
+  addingPart(component: IPart) {
+    this.addingComponentService.addingPart({
       ...component, parent_equipment_id: this.parent_equipment_id
     }).subscribe(() => {
       this.getAllPart()
     })
   }
 
-  upgradeComponent(upgradeComponent: IPart) {
-    this.addingComponentService.upgradeComponent({
-      ...upgradeComponent
+  upgradePart(component: IPart) {
+    this.addingComponentService.upgradePart({
+      ...component
     }).subscribe(() => {
+      console.log('компонент2 ' + component.service)
       this.getAllPart()
     })
   }
 
-  btnUpdateHeadName() {
+  btnUpgradeHeadName() {
     this.updateName = true
   }
 
@@ -130,6 +138,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
         if (this.parent_equipment_id != 0) {
           this.getAllPart()
           this.getParentPart()
+          // this.getFilePart()
         }
       })
     )
