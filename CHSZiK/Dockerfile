@@ -2,6 +2,7 @@ FROM node:18.10-alpine as build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
+RUN npm install ng2-pdf-viewer
 COPY . .
 RUN npm run build
 
