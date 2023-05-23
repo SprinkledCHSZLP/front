@@ -1,6 +1,6 @@
 {
   "/storage": {
-    "target": "http://195.161.68.107:8000/",
+    "target": "http://195.161.68.107:8000",
     "secure": false,
     "pathRewrite": {
       "^/storage": "/storage"
