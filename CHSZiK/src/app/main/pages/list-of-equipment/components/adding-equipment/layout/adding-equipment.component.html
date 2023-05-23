@@ -6,7 +6,7 @@
       <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent?.equipment_name}}</p>
         <button class="head__name-change" (click)="btnUpgradeHeadName()"><img class="img-change"
-                                                                             src="../../../../../../../assets/img/change.png">
+                                                                              src="../../../../../../../assets/img/change.png">
         </button>
       </div>
       <div [formGroup]="addingNewModelForm">
@@ -18,15 +18,16 @@
       <div class="model-img">
         <div class="adding-img-model">
           <input [class.active]="parent?.image_plan_reference" #input (change)="onFileUpload($event)" type="file">
-          <img *ngIf="parent?.image_plan_reference != null && pdfStr != true" class="img-model" [src]="parent.image_plan_reference" alt="">
+          <img *ngIf="parent?.image_plan_reference != null && pdfStr != true" class="img-model"
+               [src]="parent.image_plan_reference" alt="">
           <div class="pfd-container" *ngIf="parent?.image_plan_reference != null && pdfStr">
-<!--            <ngx-extended-pdf-viewer-->
-<!--              [src]="parent.image_plan_reference"-->
-<!--              [height]="'95%'"-->
-<!--              [useBrowserLocale]="true"-->
-<!--              [textLayer]="true"-->
-<!--              [showHandToolButton]="true">-->
-<!--            </ngx-extended-pdf-viewer>-->
+            <!--            <ngx-extended-pdf-viewer-->
+            <!--              [src]="parent.image_plan_reference"-->
+            <!--              [height]="'95%'"-->
+            <!--              [useBrowserLocale]="true"-->
+            <!--              [textLayer]="true"-->
+            <!--              [showHandToolButton]="true">-->
+            <!--            </ngx-extended-pdf-viewer>-->
             <pdf-viewer [src]="parent.image_plan_reference"
                         [original-size]="false"
             ></pdf-viewer>

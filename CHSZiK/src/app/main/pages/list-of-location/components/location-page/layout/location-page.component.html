@@ -1,0 +1,22 @@
+<div>
+  <div class="wrapper">
+    <div class="head">
+      <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
+                                                              src="./assets/img/back.png"></button>
+      <div class="head__header">{{parentLocation.location_name}}</div>
+      <div class="head__btns">
+        <button class="head__btn">Удалить локацию</button>
+        <button (click)="openLocation()" class="head__btn">Разбить локацию</button>
+        <button class="head__btn">Добавить оборудование</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="item-list">
+        <!--        <div *ngIf="loading" class="loading">Loading...</div>-->
+        <div class="item-list__item">
+          <div class="item-list__item-name">Название: 9090909009 9090909009 9090909009 9090909009</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
