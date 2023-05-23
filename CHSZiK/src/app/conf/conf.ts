@@ -1,4 +1,4 @@
-export const BASE_URL = ''
+export const BASE_URL = '/'
 
 export const CHECKTOKEN_URL = BASE_URL + 'api/check_token'
 export const USER_URL = BASE_URL + 'api/user'
