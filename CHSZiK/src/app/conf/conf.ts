@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://195.161.68.107:8000/'
+export const BASE_URL = 'http://195.161.68.107/'
 
 export const CHECKTOKEN_URL = BASE_URL + 'api/check_token'
 export const USER_URL = BASE_URL + 'api/user'
