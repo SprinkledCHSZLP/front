@@ -96,6 +96,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       if (parent) {
         this.parent = parent.data
         if (this.parent.image_plan_reference) {
+          this.addingNewModelForm.patchValue(this.parent)
           this.pdfStr = this.parent.image_plan_reference.includes(this.searchString)
         }
 
