@@ -1,6 +1,6 @@
 {
   "/storage": {
-    "target": "http://195.161.68.107:8000",
+    "target": "http://192.168.0.117:8080/",
     "secure": false,
     "pathRewrite": {
       "^/storage": "/storage"
@@ -9,7 +9,7 @@
     "ws": true
   },
   "/api": {
-    "target": "http://195.161.68.107:8000",
+    "target": "http://192.168.0.117:8080/",
     "secure": false,
     "pathRewrite": {
       "^/api": "/api"

@@ -3,11 +3,10 @@
     <div class="head">
       <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
                                                               src="./assets/img/back.png"></button>
-      <div class="head__header">{{parentLocation.location_name}}</div>
+      <div class="head__header">{{parentLocation?.name_location}}</div>
       <div class="head__btns">
-        <button class="head__btn">Удалить локацию</button>
         <button (click)="openLocation()" class="head__btn">Разбить локацию</button>
-        <button class="head__btn">Добавить оборудование</button>
+        <button (click)="openModalWindowAddingModel()" class="head__btn">Добавить оборудование</button>
       </div>
     </div>
     <div class="container">
@@ -19,4 +18,5 @@
       </div>
     </div>
   </div>
+  <app-modal-window-adding-model *ngIf="openModalWindow" (send)="btnCloseModal($event)"></app-modal-window-adding-model>
 </div>

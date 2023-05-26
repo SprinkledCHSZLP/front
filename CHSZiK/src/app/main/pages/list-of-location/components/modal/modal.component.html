@@ -3,11 +3,11 @@
 <div class="container">
   <div class="content">
     <button class="content__button-close" (click)="btnCloseModal()"><img class="content__img-close" src="../../../../../../assets/img/close.png" alt=""></button>
-    <div class="content__name">
+    <div class="content__name" [formGroup]="addingNewLocation">
       <p>Название </p>
-      <input [formGroup]="addingNewLocation" formControlName="location_name" class="content__input" type="text" placeholder="Введите название">
+      <input formControlName="name_location" class="content__input" type="text" placeholder="Введите название">
     </div>
-    <button class="content__button">Сохранить</button>
+    <button (click)="saveNewLocation()" class="content__button">Сохранить</button>
   </div>
 </div>
 

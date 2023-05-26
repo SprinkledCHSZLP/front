@@ -19,6 +19,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService) {
   }
+
   pdfSource: any
   @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
@@ -91,6 +92,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       }
     })
   }
+
   getParentPart() {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
@@ -116,7 +118,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.upgradePart({
       ...component
     }).subscribe(() => {
-      console.log('компонент2 ' + component.service)
       this.getAllPart()
     })
   }

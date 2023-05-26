@@ -46,7 +46,6 @@ export class SettingComponentComponent implements OnInit{
       service: this.upgradeComponentForm.get('service')?.value,
     }
     this.send.emit(component)
-    console.log('Компонент ' + component.service)
     this.isUpgrade = false
   }
 

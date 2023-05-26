@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ListOfLocationService} from "../../../services/list-of-location.service";
 import {ILocation} from "../../../../../../models/location";
 
@@ -10,26 +10,49 @@ import {ILocation} from "../../../../../../models/location";
 })
 export class LocationPageComponent implements OnInit {
 
-  constructor(private router: Router, private listOfLocationService: ListOfLocationService) {
+  constructor(private router: Router, private listOfLocationService: ListOfLocationService, private route: ActivatedRoute) {
   }
-
+  parent_location_id: number
   parentLocation: ILocation
 
-  getParentLocation() {
-    this.listOfLocationService.getParantLocation().subscribe((parentLocation) => {
-      this.parentLocation = parentLocation.data
-    })
-  }
+  @Output() openModalWindow: boolean = false
+
+
+  @Input() parentLoc: ILocation
 
   btnBack() {
     window.history.back()
   }
-  openLocation() {
-    this.router.navigate(['list-of-location', this.parentLocation.id])
+
+  openModalWindowAddingModel() {
+    this.openModalWindow = true
+
   }
 
+  btnCloseModal(status: boolean) {
+    this.openModalWindow = false
+  }
+
+  openLocation() {
+    this.listOfLocationService.splitLocation({
+      id: this.parent_location_id
+    }
+    ).subscribe(() => {
+      this.router.navigate(['list-of-location', this.parentLocation.id])
+    })
+  }
+  getParentLocation() {
+    this.listOfLocationService.getParentLocation(this.parent_location_id).subscribe((parentLocation) => {
+      if(parentLocation) {
+        this.parentLocation = parentLocation.data
+      }
+    })
+  }
   // loading = true
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.parent_location_id = params['id']
+    })
     this.getParentLocation()
 
   }
