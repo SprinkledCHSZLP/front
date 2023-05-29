@@ -11,19 +11,6 @@
     </div>
     <div class="container">
       <div class="item-list">
-        <!--        <div *ngIf="loading" class="loading">Loading...</div>-->
-<!--        <div class="item-list__item" *ngFor="let positionModel of positionModel">-->
-<!--          <img class="item-list__image-model" [src]="positionModel?.image" alt="">-->
-<!--          <div class="item-list__item-name">-->
-<!--            <div>-->
-<!--              Название: {{positionModel.equipment_name}}-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              Позиция: {{positionModel.position}}-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <button class="item-list__item-delete" (click)="deletePositionModel(positionModel.id)">Удалить</button>-->
-<!--        </div>-->
         <app-location-page-item *ngFor="let position of positionModel" [position]="position"></app-location-page-item>
       </div>
     </div>

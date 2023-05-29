@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IModel} from "../../../../../models/models-equipment";
 import {Router} from "@angular/router";
 import {ListOfEquipmentService} from "../../services/list-of-equipment.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ModalPositionComponent} from "../modal-position/modal-position.component";
 
 
 @Component({
@@ -11,7 +13,7 @@ import {ListOfEquipmentService} from "../../services/list-of-equipment.service";
 })
 export class ListOfEquipmentModelsComponent implements OnInit{
 
-  constructor(private router: Router, private listOfEquipmentService: ListOfEquipmentService) {
+  constructor(private router: Router, private listOfEquipmentService: ListOfEquipmentService, private dialog: MatDialog) {
   }
 
   pdfStrModel: boolean
@@ -27,7 +29,7 @@ export class ListOfEquipmentModelsComponent implements OnInit{
   }
 
   openPositionModal() {
-
+    this.dialog.open(ModalPositionComponent, {data: {modelsId:this.models.id} })
   }
 
   deleteModel() {
@@ -41,3 +43,4 @@ export class ListOfEquipmentModelsComponent implements OnInit{
 
   }
 }
+

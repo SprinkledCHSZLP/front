@@ -4,9 +4,7 @@ import {ListOfEquipmentService} from "../../../../../list-of-equipment/services/
 import {IModel} from "../../../../../../../models/models-equipment";
 import {ListOfLocationService} from "../../../../services/list-of-location.service";
 import {IPosition} from "../../../../../../../models/position";
-import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
-import {ILocation} from "../../../../../../../models/location";
-import {LocationPageComponent} from "../../layout/location-page.component";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 interface IPositionData {
   locationId: string
@@ -38,6 +36,10 @@ export class ModalWindowAddingModelComponent implements OnInit {
         this.modelsArr = modelsArr.data
       }
     })
+  }
+
+  back() {
+    this.isModels = true
   }
 
 
