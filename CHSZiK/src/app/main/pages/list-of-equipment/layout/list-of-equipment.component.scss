@@ -39,7 +39,21 @@
   border-radius: 25px;
   border: 3px solid #A49343;
   background-color: #E3B800;
+  transition: 0.15s linear;
 }
+
+button:hover {
+  font-size: 17px;
+  transition: 0.15s linear;
+  background: #A49343;
+  border: 3px solid #E3B800;
+}
+button:active {
+  font-size: 16px;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
+}
+
 .container {
   margin-top: 15px;
   width: 1440px;

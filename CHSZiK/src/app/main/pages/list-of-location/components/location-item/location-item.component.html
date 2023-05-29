@@ -2,7 +2,7 @@
   <div class="item-list__item" *ngIf="location.id && location.have_child_location != null">
     <div class="flex">
       <div (click)="openLocaton(location.id, location.have_child_location)" *ngIf="!isChange" class="item-list__item-name">{{location.name_location}}</div>
-      <button *ngIf="!isChange" (click)="openChange()" class="item-list__button-change"><img class="item-list__img" src="assets/img/change.png" alt=""></button>
+      <img *ngIf="!isChange" (click)="openChange()" class="item-list__img-change" src="assets/img/change.png" alt="">
     </div>
 
     <div class="flex" [formGroup]="changeLocationForm">

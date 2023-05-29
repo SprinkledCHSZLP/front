@@ -26,6 +26,10 @@ export class ListOfEquipmentModelsComponent implements OnInit{
     this.router.navigate(['adding-equipment', this.models.id])
   }
 
+  openPositionModal() {
+
+  }
+
   deleteModel() {
     this.send.emit(this.models.id)
   }

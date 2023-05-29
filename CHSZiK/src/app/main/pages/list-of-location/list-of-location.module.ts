@@ -8,9 +8,6 @@ import {LocationItemComponent} from "./components/location-item/location-item.co
 import {
   ModalWindowAddingModelComponent
 } from "./components/location-page/components/modal-window-adding-model/modal-window-adding-model.component";
-import {
-  ModalWindowAddingPositionComponent
-} from "./components/location-page/components/modal-window-adding-position/modal-window-adding-position.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {
@@ -21,7 +18,7 @@ import {
 
 
 @NgModule({
-  declarations: [ModalComponent, LocationPageItemComponent, LocationPageComponent, LocationItemComponent, ModalWindowAddingModelComponent, ModalWindowAddingPositionComponent],
+  declarations: [ModalComponent, LocationPageItemComponent, LocationPageComponent, LocationItemComponent, ModalWindowAddingModelComponent],
   exports: [
     ModalComponent,
     LocationItemComponent

@@ -46,7 +46,7 @@ span {
   font-size: 32px;
   line-height: 39px;
 
-  box-shadow: 0px 0px 2px 2px #a49343;
+  transition: 0.15s linear;
 }
 
 .authorization-input {
@@ -76,4 +76,15 @@ span {
   -moz-transition: 0.2s;
   -ms-transition: 0.2s;
   -o-transition: 0.2s;
+}
+button:hover {
+  font-size: 33px;
+  transition: 0.15s linear;
+  background: #A49343;
+  border: 3px solid #E3B800;
+}
+button:active {
+  font-size: 32px;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
 }

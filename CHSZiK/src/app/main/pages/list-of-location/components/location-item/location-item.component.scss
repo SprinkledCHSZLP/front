@@ -30,12 +30,28 @@
     border: 3px solid #A49343;
     background-color: #E3B800;
     display: flex;
+    font-size: 16px;
     align-items: center;
     justify-content: center;
     width: 150px;
     height: 30px;
-    border-radius: 5px  ;
+    border-radius: 5px;
     margin-bottom: 5px;
+  }
+
+  button {
+    transition: 0.15s linear;
+  }
+  button:hover {
+    font-size: 17px;
+    transition: 0.15s linear;
+    background: #A49343;
+    border: 3px solid #E3B800;
+  }
+  button:active {
+    font-size: 16px;
+    border: 3px solid #A49343;
+    background-color: #E3B800;
   }
 
   .item-list__button-apply {
@@ -55,20 +71,11 @@
     }
   }
 
-  .item-list__button-change {
+  .item-list__img-change {
+    cursor: pointer;
     margin-left: 5px;
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: white;
-
-    .item-list__img {
-      width: 40px;
-      height: 40px;
-    }
   }
 
   .item-list__item-name {
@@ -89,4 +96,19 @@
 .flex {
   display: flex;
   align-items: center;
+
+  button {
+    transition: 0.15s linear;
+  }
+  button:hover {
+    transition: 0.15s linear;
+    background: #A49343;
+    border: 3px solid #E3B800;
+  }
+  button:active {
+    border: 3px solid #A49343;
+    background-color: #E3B800;
+  }
 }
+
+

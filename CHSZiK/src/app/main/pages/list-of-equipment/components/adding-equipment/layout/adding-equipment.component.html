@@ -5,9 +5,10 @@
                                                               src="../../../../../../../assets/img/back.png"></button>
       <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent?.equipment_name}}</p>
-        <button class="head__name-change" (click)="btnUpgradeHeadName()"><img class="img-change"
-                                                                              src="../../../../../../../assets/img/change.png">
-        </button>
+        <img class="img-change"
+             (click)="btnUpgradeHeadName()"
+             src="../../../../../../../assets/img/change.png">
+
       </div>
       <div [formGroup]="addingNewModelForm">
         <input *ngIf="isNew || updateName == true" formControlName="equipment_name" class="head__name input" type="text"

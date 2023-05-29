@@ -64,3 +64,15 @@ pdf-viewer {
   border-radius: 5px;
   border: 1px solid black;
 }
+button {
+  transition: 0.15s linear;
+}
+button:hover {
+  transition: 0.15s linear;
+  background: #A49343;
+  border: 3px solid #E3B800;
+}
+button:active {
+  border: 3px solid #A49343;
+  background-color: #E3B800;
+}
