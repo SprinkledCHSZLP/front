@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="content">
+    <div class="content__control-btn">
+      <div></div>
+      <button class="content__button-control"
+              (click)="btnCloseModal()"><img class="content__img-control"
+                                             src="../../../../../../assets/img/close.png"
+                                             alt=""></button>
+    </div>
+
+    <ng-container>
+      <ng-container *ngTemplateOutlet="position"></ng-container>
+    </ng-container>
+
+  </div>
+</div>
+
+
+<ng-template #position>
+  <p>Позиции</p>
+  <div class="item-list" *ngFor="let position of positionsArr">
+    <div class="item-list__flex">
+      <div class="item-list__item">{{position.position}}</div>
+      <img *ngIf="position.group_id" (click)="deletePosition(position.group_id)" class="item-list__img-delete"
+           src="../../../../../../../../assets/img/delete.png" alt="">
+    </div>
+  </div>
+  <form [formGroup]="addingPositionForm" class="item-list__create">
+    <input formControlName="position" class="item-list__input" type="text" placeholder="название">
+    <button (click)="addingNewPosition()"
+            [disabled]="addingPositionForm.invalid" class="item-list__button"><img class="item-list__img"
+                                                                                   src="../../../../../../../../assets/img/apply.png"
+                                                                                   alt=""></button>
+  </form>
+</ng-template>
+
+
+

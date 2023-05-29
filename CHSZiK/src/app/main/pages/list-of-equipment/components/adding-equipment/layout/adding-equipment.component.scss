@@ -18,6 +18,8 @@
 }
 
 .img-change {
+  cursor: pointer;
+  margin-left: 5px;
   width: 40px;
   height: 40px;
 }
@@ -92,6 +94,19 @@ input.active {
   background-color: #E3B800;
   border-radius: 25px;
   justify-self: start;
+  transition: 0.15s linear;
+}
+
+button:hover {
+  font-size: 17px;
+  transition: 0.15s linear;
+  background: #A49343;
+  border: 3px solid #E3B800;
+}
+button:active {
+  font-size: 16px;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
 }
 
 .img-model {
@@ -113,25 +128,25 @@ input.active {
 .head__name {
   font-size: 32px;
   text-align: center;
-  width: 460px;
-  height: 40px;
   border-radius: 5px;
   margin: 0 auto;
   background-color: #d9d9d9;
 }
-.head__name {
-  justify-self: center;
+.input {
+  width: 460px;
+  height: 40px;
 }
 
-.head__name-change {
-  border: none;
-  margin-left: 5px;
-  background-color: white;
-}
+//.head__name-change {
+//  border: none;
+//  margin-left: 5px;
+//  background-color: white;
+//}
 
 .head-name {
-  align-items: center;
+  align-items: stretch;
   display: flex;
+  justify-self: center;
 }
 
 .input {

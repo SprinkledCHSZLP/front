@@ -1,0 +1,18 @@
+<div>
+  <div class="wrapper">
+    <div class="head">
+      <div class="head__header" *ngIf="isMainList">Локации</div>
+      <button *ngIf="isMainList == false" class="btn-back" (click)="btnBack()">Назад <img class="img-back"
+                                                              src="./assets/img/back.png"></button>
+      <div class="head__header" *ngIf="isMainList == false">{{parentLocation?.name_location}}</div>
+      <button class="head__btn-adding" (click)="btnOpenModal()">Добавить</button>
+
+    </div>
+    <div class="container">
+      <div class="item-list">
+        <app-location-item *ngFor="let location of location" [location]="location"></app-location-item>
+      </div>
+    </div>
+  </div>
+  <app-modal *ngIf="addingNewLocation" (addSend)="addingLocation($event)" (send)="btnCloseModal($event)"></app-modal>
+</div>

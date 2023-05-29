@@ -14,27 +14,24 @@
   grid-template-columns: 33% 33% 33%;
   justify-content: center;
   align-items: center;
-
 }
-.header {
+.head__header {
   font-size: 32px;
-
 }
 
-.search input{
+.head__search input{
   font-size: 16px;
   text-align: center;
   width: 460px;
   height: 40px;
   border-radius: 5px;
 }
-.search {
+.head__search {
   justify-self: center;
-
 }
 
 
-.btn-adding-equipment {
+.head__btn-adding{
   justify-self: end;
   font-size: 16px;
   height: 50px;
@@ -42,7 +39,21 @@
   border-radius: 25px;
   border: 3px solid #A49343;
   background-color: #E3B800;
+  transition: 0.15s linear;
 }
+
+button:hover {
+  font-size: 17px;
+  transition: 0.15s linear;
+  background: #A49343;
+  border: 3px solid #E3B800;
+}
+button:active {
+  font-size: 16px;
+  border: 3px solid #A49343;
+  background-color: #E3B800;
+}
+
 .container {
   margin-top: 15px;
   width: 1440px;
@@ -68,4 +79,5 @@
     margin: 0 auto;
   }
 }
+
 

@@ -63,7 +63,7 @@ export class AuthService {
       .subscribe({
         next: (res: any) => {
           this.setToken(res['remember_token']);
-          this.router.navigate(['/list-of-equipment']);
+          this.router.navigate(['/list-of-location/0']);
         },
         error: (err) => {
           console.log('Опс, ошибка', err);

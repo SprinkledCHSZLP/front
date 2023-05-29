@@ -1,7 +1,8 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {ListOfEquipmentService} from "../services/list-of-equipment.service";
 import {IModel} from "../../../../models/models-equipment";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -9,11 +10,12 @@ import {IModel} from "../../../../models/models-equipment";
   templateUrl: './list-of-equipment.component.html',
   styleUrls: ['./list-of-equipment.component.scss'],
 })
-export class ListOfEquipmentComponent implements OnInit {
+export class ListOfEquipmentComponent implements OnInit, OnDestroy {
 
   constructor(private route: Router, private listOfEquipmentService: ListOfEquipmentService) {
   }
 
+  sub$: Subscription = new Subscription()
   models: IModel[] = []
   loading = true
 
@@ -22,13 +24,14 @@ export class ListOfEquipmentComponent implements OnInit {
   }
 
   getAllModels() {
-    this.listOfEquipmentService.getAllModels().subscribe((models) => {
+    this.sub$.add(this.listOfEquipmentService.getAllModels().subscribe((models) => {
       console.log(models)
       if (models) {
         this.models = models.data
         this.loading = false
       }
-    })
+    }))
+
   }
 
   getModels(id: number) {
@@ -39,5 +42,9 @@ export class ListOfEquipmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllModels()
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe()
   }
 }

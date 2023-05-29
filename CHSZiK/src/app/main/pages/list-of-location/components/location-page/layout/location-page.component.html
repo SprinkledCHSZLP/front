@@ -1,0 +1,19 @@
+<div>
+  <div class="wrapper">
+    <div class="head">
+      <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
+                                                              src="./assets/img/back.png"></button>
+      <div class="head__header">{{parentLocation?.name_location}}</div>
+      <div class="head__btns">
+        <button (click)="openLocation()" class="head__btn">Разбить локацию</button>
+        <button class="head__btn" (click)="openModalWindowAddingModel()">Добавить оборудование</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="item-list">
+        <app-location-page-item *ngFor="let position of positionModel" [position]="position"></app-location-page-item>
+      </div>
+    </div>
+  </div>
+  <app-modal-window-adding-model *ngIf="openModalWindow"></app-modal-window-adding-model>
+</div>

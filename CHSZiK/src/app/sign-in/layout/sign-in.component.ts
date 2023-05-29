@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
       this.http.get(CHECKTOKEN_URL).subscribe({
         next: () => {
           // return this.getToken() !== null;
-          this.router.navigate(['list-of-equipment']);
+          this.router.navigate(['list-of-location/0']);
           return true;
         },
         error: (err) => {

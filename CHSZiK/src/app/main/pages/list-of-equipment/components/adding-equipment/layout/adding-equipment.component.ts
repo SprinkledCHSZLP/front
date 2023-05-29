@@ -1,11 +1,11 @@
-import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {IPart} from "../../../../../../models/part-equipment";
 import {ListOfEquipmentService} from "../../../services/list-of-equipment.service";
 import {HttpClient} from "@angular/common/http";
 import {AddingComponentService} from "../services/adding-component.service";
 import {Subscription} from "rxjs";
-import {IParentPart, IAddParentPart} from "../../../../../../models/parent-part-equipment";
+import {IParentPart} from "../../../../../../models/parent-part-equipment";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -19,6 +19,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService) {
   }
+
   pdfSource: any
   @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
@@ -91,14 +92,15 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       }
     })
   }
+
   getParentPart() {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
+        this.addingNewModelForm.patchValue(this.parent)
         if (this.parent.image_plan_reference) {
           this.pdfStr = this.parent.image_plan_reference.includes(this.searchString)
         }
-
       }
     })
   }
@@ -115,7 +117,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.upgradePart({
       ...component
     }).subscribe(() => {
-      console.log('компонент2 ' + component.service)
       this.getAllPart()
     })
   }

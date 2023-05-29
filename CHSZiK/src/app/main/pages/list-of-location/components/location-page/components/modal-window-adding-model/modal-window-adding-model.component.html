@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="content">
+    <div class="content__control-btn">
+      <button (click)="back()" class="content__button-control" *ngIf="!isModels"><img class="content__img-control" src="../../../../../../assets/img/back.png" alt=""></button>
+      <div *ngIf="isModels"></div>
+      <button class="content__button-control"
+              (click)="btnCloseModal()"><img class="content__img-control"
+                                             src="../../../../../../assets/img/close.png"
+                                             alt=""></button>
+    </div>
+
+    <ng-container *ngIf="isModels; else position">
+      <ng-container *ngTemplateOutlet="models"></ng-container>
+    </ng-container>
+
+  </div>
+</div>
+
+
+<ng-template #position>
+  <p>Позиции</p>
+  <div class="item-list" *ngFor="let position of positionsArr">
+    <div class="item-list__flex">
+      <div class="item-list__item">{{position.position}}</div>
+      <button (click)="addPositionInLocation(position.id)" class="item-list__button"><img class="item-list__img"
+                                                                                          src="../../../../../../../../assets/img/add.png"
+                                                                                          alt=""></button>
+    </div>
+  </div>
+  <form [formGroup]="addingPositionForm" class="item-list__create">
+    <input formControlName="position" class="item-list__input" type="text" placeholder="название">
+    <button (click)="addingNewPosition()"
+            [disabled]="addingPositionForm.invalid" class="item-list__button"><img class="item-list__img"
+                                                                                   src="../../../../../../../../assets/img/apply.png"
+                                                                                   alt=""></button>
+  </form>
+</ng-template>
+
+
+<ng-template #models>
+  <p>Модели</p>
+  <div class="item-list" *ngFor="let model of modelsArr">
+    <div (click)="openPositionsOfModel(model.id)" class="item-list__item">{{model.equipment_name}}</div>
+  </div>
+</ng-template>
+
+
