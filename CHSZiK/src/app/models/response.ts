@@ -2,6 +2,7 @@ import {IModel} from "./models-equipment";
 import {IPart} from "./part-equipment";
 import {IParentPart} from "./parent-part-equipment";
 import {ILocation} from "./location";
+import {IPosition} from "./position";
 
 export interface ResponseDataModels {
   data: IModel[]
@@ -21,4 +22,8 @@ export interface ResponseDataLocation {
 
 export interface ResponseDataParentLocation {
   data: ILocation
+}
+
+export interface ResponseDataPosition {
+  data: IPosition[]
 }

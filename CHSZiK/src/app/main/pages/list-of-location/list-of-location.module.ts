@@ -11,15 +11,22 @@ import {
 import {
   ModalWindowAddingPositionComponent
 } from "./components/location-page/components/modal-window-adding-position/modal-window-adding-position.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import {
+  LocationPageItemComponent
+} from "./components/location-page/components/location-page-item/location-page-item.component";
+
+
 
 
 @NgModule({
-  declarations: [ModalComponent, LocationPageComponent, LocationItemComponent, ModalWindowAddingModelComponent, ModalWindowAddingPositionComponent],
+  declarations: [ModalComponent, LocationPageItemComponent, LocationPageComponent, LocationItemComponent, ModalWindowAddingModelComponent, ModalWindowAddingPositionComponent],
   exports: [
     ModalComponent,
     LocationItemComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, ListOfLocationRoutingModule, FormsModule]
+  imports: [CommonModule, ReactiveFormsModule, ListOfLocationRoutingModule, FormsModule, MatDialogModule, PdfViewerModule]
 })
 export class ListOfLocationModule {
 }

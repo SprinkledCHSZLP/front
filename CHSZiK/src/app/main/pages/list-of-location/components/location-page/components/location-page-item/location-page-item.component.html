@@ -1,0 +1,17 @@
+<div class="item">
+  <div class="image-model-equipment">
+    <img [src]="position.image" alt="" *ngIf="pdfStrModel != true">
+    <div class="container" *ngIf="pdfStrModel">
+      <pdf-viewer [src]="position.image"
+                  [original-size]="false"
+      ></pdf-viewer>
+    </div>
+  </div>
+  <div class="name-model-equipment">
+    <span>Название: {{position.equipment_name}} </span>
+    <span>Позиция: {{position.position}} </span>
+  </div>
+  <div class="btn">
+    <button class="setting" (click)="btnDelete(position.id)" >Удалить</button>
+  </div>
+</div>
