@@ -72,6 +72,7 @@ export class ModalWindowAddingModelComponent implements OnInit {
     this.isModels = false
   }
 
+
   addPositionInLocation(positionId: number){
     let component: {id: number, locations_id: string} = {
       id: positionId,

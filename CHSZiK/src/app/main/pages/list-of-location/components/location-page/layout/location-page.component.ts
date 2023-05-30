@@ -17,6 +17,7 @@ export class LocationPageComponent implements OnInit {
 
   constructor(private router: Router, private listOfLocationService: ListOfLocationService, private route: ActivatedRoute, private dialog: MatDialog) {
   }
+
   parent_location_id: number
   parentLocation: ILocation
   positionModel: IPosition[] = []
@@ -36,7 +37,7 @@ export class LocationPageComponent implements OnInit {
 
   getPositionModels() {
     this.listOfLocationService.getPositionModels(this.parent_location_id).subscribe((positionModels) => {
-      if(positionModels) {
+      if (positionModels) {
         this.positionModel = positionModels.data
       }
     })
@@ -44,7 +45,7 @@ export class LocationPageComponent implements OnInit {
 
   openModalWindowAddingModel() {
     // this.openModalWindow = true
-    this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId:this.parent_location_id} });
+    this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}});
   }
 
   btnCloseModal(status: boolean) {
@@ -53,19 +54,21 @@ export class LocationPageComponent implements OnInit {
 
   openLocation() {
     this.listOfLocationService.splitLocation({
-      id: this.parent_location_id
-    }
+        id: this.parent_location_id
+      }
     ).subscribe(() => {
       this.router.navigate(['list-of-location', this.parentLocation.id])
     })
   }
+
   getParentLocation() {
     this.listOfLocationService.getParentLocation(this.parent_location_id).subscribe((parentLocation) => {
-      if(parentLocation) {
+      if (parentLocation) {
         this.parentLocation = parentLocation.data
       }
     })
   }
+
   // loading = true
   ngOnInit(): void {
     this.route.params.subscribe(params => {
