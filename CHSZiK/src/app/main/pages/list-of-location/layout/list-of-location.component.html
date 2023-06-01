@@ -4,7 +4,7 @@
       <div class="head__header" *ngIf="isMainList">Локации</div>
       <button *ngIf="isMainList == false" class="btn-back" (click)="btnBack()">Назад <img class="img-back"
                                                               src="./assets/img/back.png"></button>
-      <div class="head__header" *ngIf="isMainList == false">{{parentLocation?.name_location}}</div>
+      <div class="head__header" *ngIf="isMainList == false && parentLocation">{{parentLocation.name_location}}</div>
       <button class="head__btn-adding" (click)="btnOpenModal()">Добавить</button>
 
     </div>

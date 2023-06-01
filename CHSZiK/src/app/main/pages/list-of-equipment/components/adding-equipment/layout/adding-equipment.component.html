@@ -4,7 +4,7 @@
       <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
                                                               src="../../../../../../../assets/img/back.png"></button>
       <div *ngIf="!isNew && updateName == false" class="head-name">
-        <p class="head__name">{{parent?.equipment_name}}</p>
+        <p class="head__name">{{parent.equipment_name}}</p>
         <img class="img-change"
              (click)="btnUpgradeHeadName()"
              src="../../../../../../../assets/img/change.png">
@@ -18,16 +18,16 @@
     <div class="container">
       <div class="model-img">
         <div class="adding-img-model">
-          <input [class.active]="parent?.image_plan_reference" #input (change)="onFileUpload($event)" type="file">
-          <img *ngIf="parent?.image_plan_reference != null && pdfStr != true" class="img-model"
+          <input [class.active]="isParentImagePlanReference" #input (change)="onFileUpload($event)" type="file">
+          <img *ngIf="isParentImagePlanReference && pdfStr != true" class="img-model"
                [src]="parent.image_plan_reference" alt="">
-          <div class="pfd-container" *ngIf="parent?.image_plan_reference != null && pdfStr">
+          <div class="pfd-container" *ngIf="isParentImagePlanReference && pdfStr">
             <pdf-viewer [src]="parent.image_plan_reference"
                         [original-size]="false"
             ></pdf-viewer>
           </div>
         </div>
-        <button (click)="btnUpdateImage()" class="btn__img-change" *ngIf="parent?.image_plan_reference != null">
+        <button (click)="btnUpdateImage()" class="btn__img-change" *ngIf="isParentImagePlanReference">
           Редактировать <img class="img-change" src="../../../../../../../assets/img/change.png"></button>
       </div>
       <div class="adding-component">

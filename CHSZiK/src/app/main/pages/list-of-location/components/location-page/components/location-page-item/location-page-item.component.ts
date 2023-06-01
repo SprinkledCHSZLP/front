@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ListOfLocationService} from "../../../../services/list-of-location.service";
 import {IPosition} from "../../../../../../../models/position";
 import {LocationPageComponent} from "../../layout/location-page.component";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {LocationPageComponent} from "../../layout/location-page.component";
 })
 export class LocationPageItemComponent implements OnInit{
 
-  constructor(private router: Router, private listOfLocationService: ListOfLocationService, private locationPageComponent: LocationPageComponent) {
+  constructor(private router: Router, private listOfLocationService: ListOfLocationService, private locationPageComponent: LocationPageComponent, private toastrService: ToastrService) {
   }
 
   pdfStrModel: boolean
@@ -26,6 +27,7 @@ export class LocationPageItemComponent implements OnInit{
   btnDelete(id: number) {
     this.listOfLocationService.deletePositionModel(id).subscribe(() => {
       this.locationPageComponent.getPositionModels()
+      this.toastrService.success('Позиция удалена')
     })
   }
 

@@ -27,6 +27,10 @@ export class AddingComponentComponent implements OnInit {
       service: this.addingForm.get('service')?.value,
     }
     this.send.emit(component)
+    this.addingForm.get('equipment_name')?.reset()
+    this.addingForm.get('position_on_plan')?.reset()
+    this.addingForm.get('have_equipment')?.reset(false)
+    this.addingForm.get('service')?.reset(false)
   }
 
   ngOnInit(): void {
@@ -34,8 +38,8 @@ export class AddingComponentComponent implements OnInit {
     this.addingForm = new FormGroup({
       position_on_plan: new FormControl(''),
       equipment_name: new FormControl(''),
-      have_equipment: new FormControl(true || false),
-      service: new FormControl(true || false),
+      have_equipment: new FormControl(false),
+      service: new FormControl(false),
     });
 
   }

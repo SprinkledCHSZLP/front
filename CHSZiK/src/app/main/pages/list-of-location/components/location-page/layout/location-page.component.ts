@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ListOfLocationService} from "../../../services/list-of-location.service";
 import {ILocation} from "../../../../../../models/location";
@@ -7,16 +7,21 @@ import {
   ModalWindowAddingModelComponent
 } from "../components/modal-window-adding-model/modal-window-adding-model.component";
 import {IPosition} from "../../../../../../models/position";
+import {Subscription} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-location-page',
   templateUrl: './location-page.component.html',
   styleUrls: ['./location-page.component.scss'],
 })
-export class LocationPageComponent implements OnInit {
+export class LocationPageComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private listOfLocationService: ListOfLocationService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private router: Router, private listOfLocationService: ListOfLocationService, private route: ActivatedRoute, private dialog: MatDialog, private toastrService: ToastrService) {
   }
+
+  sub$: Subscription = new Subscription()
+
   parent_location_id: number
   parentLocation: ILocation
   positionModel: IPosition[] = []
@@ -28,6 +33,15 @@ export class LocationPageComponent implements OnInit {
     window.history.back()
   }
 
+  // test3(component: {id: number, locations_id: string}) {
+  //   console.log('asdasdsadsadsad' + component)
+  //   this.listOfLocationService.addPositionInLocation({...component}).subscribe(() => {
+  //     this.getPositionModels()
+  //     console.log('ВЫПОЛНЯЕТСЯ ДОБАВЛЕНИЕ')
+  //   })
+  // }
+
+
   deletePositionModel(id: number) {
     this.listOfLocationService.deletePositionModel(id).subscribe(() => {
       this.getPositionModels()
@@ -36,7 +50,7 @@ export class LocationPageComponent implements OnInit {
 
   getPositionModels() {
     this.listOfLocationService.getPositionModels(this.parent_location_id).subscribe((positionModels) => {
-      if(positionModels) {
+      if (positionModels) {
         this.positionModel = positionModels.data
       }
     })
@@ -44,7 +58,9 @@ export class LocationPageComponent implements OnInit {
 
   openModalWindowAddingModel() {
     // this.openModalWindow = true
-    this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId:this.parent_location_id} });
+    this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}}).componentInstance.sendAdd.subscribe((component) => {
+      console.log(component)
+    });
   }
 
   btnCloseModal(status: boolean) {
@@ -53,27 +69,38 @@ export class LocationPageComponent implements OnInit {
 
   openLocation() {
     this.listOfLocationService.splitLocation({
-      id: this.parent_location_id
-    }
+        id: this.parent_location_id
+      }
     ).subscribe(() => {
       this.router.navigate(['list-of-location', this.parentLocation.id])
     })
   }
+
   getParentLocation() {
     this.listOfLocationService.getParentLocation(this.parent_location_id).subscribe((parentLocation) => {
-      if(parentLocation) {
+      if (parentLocation) {
         this.parentLocation = parentLocation.data
       }
     })
   }
+
   // loading = true
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parent_location_id = params['id']
     })
 
+    this.sub$.add(this.listOfLocationService.update$.subscribe(() => {
+      console.log()
+      this.getPositionModels()
+    }))
+
     this.getParentLocation()
 
     this.getPositionModels()
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe()
   }
 }

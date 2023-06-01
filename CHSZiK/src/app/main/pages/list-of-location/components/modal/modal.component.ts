@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ILocation} from "../../../../../models/location";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-modal',
@@ -8,7 +9,7 @@ import {ILocation} from "../../../../../models/location";
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  constructor() {
+  constructor(private toastrService: ToastrService) {
   }
   addingNewLocation!: FormGroup;
 
@@ -24,7 +25,7 @@ export class ModalComponent implements OnInit {
       name_location: this.addingNewLocation.get('name_location')?.value
     }
     this.addSend.emit(component)
-
+    this.addingNewLocation.reset()
   }
 
   ngOnInit(): void {

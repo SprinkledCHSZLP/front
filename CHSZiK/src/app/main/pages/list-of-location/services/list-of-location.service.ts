@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {
   HttpClient,
 } from '@angular/common/http';
-import {Observable, of} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseDataLocation, ResponseDataParentLocation, ResponseDataPosition} from "../../../../models/response";
 import {ILocation} from "../../../../models/location";
@@ -21,6 +21,8 @@ import {IPosition} from "../../../../models/position";
 export class ListOfLocationService {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
+
+  update$: Subject<null> = new Subject<null>()
 
   getAllLocation(urlId: number): Observable<ResponseDataLocation> {
     return this.http.get<ResponseDataLocation>(ALLLOCATION_URL + urlId)

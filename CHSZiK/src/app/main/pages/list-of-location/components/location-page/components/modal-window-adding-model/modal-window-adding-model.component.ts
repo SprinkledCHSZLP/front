@@ -5,6 +5,12 @@ import {IModel} from "../../../../../../../models/models-equipment";
 import {ListOfLocationService} from "../../../../services/list-of-location.service";
 import {IPosition} from "../../../../../../../models/position";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {
+  AddingComponentService
+} from "../../../../../list-of-equipment/components/adding-equipment/services/adding-component.service";
+import {ILocation} from "../../../../../../../models/location";
+import {ToastrService} from "ngx-toastr";
 
 interface IPositionData {
   locationId: string
@@ -18,16 +24,21 @@ interface IPositionData {
 
 
 export class ModalWindowAddingModelComponent implements OnInit {
-  constructor(private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalWindowAddingModelComponent>, @Inject(MAT_DIALOG_DATA) public data: IPositionData) {
+  constructor(private addingComponentService: AddingComponentService, private router: Router, private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalWindowAddingModelComponent>, @Inject(MAT_DIALOG_DATA) public data: IPositionData, private toastrService: ToastrService) {
   }
 
-  equipment_id: number
   modelsArr: IModel[] = []
   positionsArr: IPosition[] = []
+
+  equipment_id: number
   isModels: boolean = true
   locationId: number
 
   addingPositionForm!: FormGroup;
+  addingModelForm!: FormGroup;
+
+  @Output() sendAdd: EventEmitter<{id: number, locations_id: string}> = new EventEmitter<{id: number, locations_id: string}>()
+
 
   getAllModels() {
     this.listOfEquipmentService.getAllModels().subscribe((modelsArr) => {
@@ -42,7 +53,6 @@ export class ModalWindowAddingModelComponent implements OnInit {
     this.isModels = true
   }
 
-
   btnCloseModal() {
    this.dialogRef.close()
   }
@@ -56,10 +66,11 @@ export class ModalWindowAddingModelComponent implements OnInit {
       this.listOfLocationService.getPosition(this.equipment_id).subscribe((positionsArr) => {
         if(positionsArr) {
           this.positionsArr = positionsArr.data
+          this.toastrService.success('Позиция создана')
+          this.addingPositionForm.reset()
         }
       })
     })
-
   }
 
   openPositionsOfModel(modelId: number) {
@@ -77,12 +88,35 @@ export class ModalWindowAddingModelComponent implements OnInit {
       id: positionId,
       locations_id: this.data.locationId
     }
+    this.sendAdd.emit(component)
     this.listOfLocationService.addPositionInLocation(component).subscribe(() => {
       this.openPositionsOfModel(this.equipment_id)
+      this.listOfLocationService.update$.next(null)
+      this.toastrService.success('Позиция добавлена')
+    })
+  }
+
+  openAddingEquipment(equipmentId: number) {
+    this.router.navigate(['adding-equipment/' + equipmentId])
+    this.dialogRef.close()
+  }
+
+  addingNewModel() {
+    this.addingComponentService.createNewParentPart(
+      this.addingModelForm.get('equipment_name')?.value
+    ).subscribe({
+      next: (res: any) => {
+        this.router.navigate(['adding-equipment/' + res])
+        this.toastrService.success('Новая модель добавлена, вы были направлены в конструктор модели')
+        this.dialogRef.close()
+      }
     })
   }
 
   ngOnInit(): void {
+    this.addingModelForm = new FormGroup({
+      equipment_name: new FormControl('', [Validators.required])
+    })
 
     this.addingPositionForm = new FormGroup({
       position: new FormControl('', [Validators.required])

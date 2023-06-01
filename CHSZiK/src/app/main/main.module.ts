@@ -8,9 +8,10 @@ import {ListOfEquipmentModule} from "./pages/list-of-equipment/list-of-equipment
 import {ReactiveFormsModule} from "@angular/forms";
 import {ListOfLocationComponent} from "./pages/list-of-location/layout/list-of-location.component";
 import {ListOfLocationModule} from "./pages/list-of-location/list-of-location.module";
+import {GlobalErrorComponent} from "./components/global-error/global-error.component";
 
 @NgModule({
-  declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent],
+  declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, GlobalErrorComponent],
   imports: [CommonModule, MainRoutingModule, ListOfEquipmentModule, ReactiveFormsModule, ListOfLocationModule]
 })
 export class MainModule {
