@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ListOfEquipmentService} from "../services/list-of-equipment.service";
 import {IModel} from "../../../../models/models-equipment";
 import {Subscription} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Subscription} from "rxjs";
 })
 export class ListOfEquipmentComponent implements OnInit, OnDestroy {
 
-  constructor(private route: Router, private listOfEquipmentService: ListOfEquipmentService) {
+  constructor(private route: Router, private listOfEquipmentService: ListOfEquipmentService, private toastrService: ToastrService) {
   }
 
   sub$: Subscription = new Subscription()
@@ -36,6 +37,7 @@ export class ListOfEquipmentComponent implements OnInit, OnDestroy {
 
   getModels(id: number) {
     this.listOfEquipmentService.deleteModel(id).subscribe(() => {
+      this.toastrService.success('Модель удалена')
       this.getAllModels()
     })
   }

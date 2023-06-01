@@ -4,6 +4,7 @@ import {IPart} from "../../../../../../../../models/part-equipment";
 import {FormControl, FormGroup} from "@angular/forms";
 import {AddingComponentService} from "../../../services/adding-component.service";
 import {AddingEquipmentComponent} from "../../../layout/adding-equipment.component";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-setting-component',
@@ -17,20 +18,19 @@ export class SettingComponentComponent implements OnInit{
   isUpgrade: boolean = false
   @Input() part: IPart
 
-  constructor(private router: Router, private route: ActivatedRoute, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent) {
+  constructor(private router: Router, private route: ActivatedRoute, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent, private toastrService: ToastrService) {
   }
 
   btnDeletePart() {
     this.addingComponentService.deletePart(this.part.id).subscribe( {
       next: (res: any) => {
-        console.log('Удаление прошло успешно')
+        this.toastrService.success('Составляющая удалена')
         this.addingEquipmentComponent.getAllPart()
       },
       error: (err) => {
         console.log('Не удалено' + err)
       }
     })
-    console.log('АЙДИ удаления' + this.part.id)
   }
 
   openUpgradePart() {

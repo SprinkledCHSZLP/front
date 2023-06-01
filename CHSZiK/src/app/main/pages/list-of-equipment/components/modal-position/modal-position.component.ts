@@ -4,6 +4,7 @@ import {ListOfLocationService} from "../../../list-of-location/services/list-of-
 import {ListOfEquipmentService} from "../../services/list-of-equipment.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {IPosition} from "../../../../../models/position";
+import {ToastrService} from "ngx-toastr";
 
 interface IModelsData {
   modelsId: number
@@ -15,7 +16,7 @@ interface IModelsData {
   styleUrls: ['./modal-position.component.scss']
 })
 export class ModalPositionComponent implements OnInit {
-  constructor(private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalPositionComponent>, @Inject(MAT_DIALOG_DATA) public data: IModelsData) {
+  constructor(private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalPositionComponent>, @Inject(MAT_DIALOG_DATA) public data: IModelsData, private toastrService: ToastrService) {
   }
   positionsArr: IPosition[] = []
   addingPositionForm!: FormGroup;
@@ -26,6 +27,7 @@ export class ModalPositionComponent implements OnInit {
 
   deletePosition(group_id: string) {
     this.listOfEquipmentService.deletePosition(group_id).subscribe(() => {
+      this.toastrService.success('Позиция удалена')
       this.openPositions(this.data.modelsId)
     })
   }
@@ -36,7 +38,9 @@ export class ModalPositionComponent implements OnInit {
       position: this.addingPositionForm.get('position')?.value
     }
     this.listOfLocationService.addingNewPosition(component).subscribe(() => {
+      this.toastrService.success('Позиция добавлена')
       this.openPositions(this.data.modelsId)
+      this.addingPositionForm.reset()
     })
 
   }

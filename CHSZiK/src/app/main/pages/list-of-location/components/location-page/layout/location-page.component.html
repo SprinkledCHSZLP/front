@@ -3,7 +3,7 @@
     <div class="head">
       <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
                                                               src="./assets/img/back.png"></button>
-      <div class="head__header">{{parentLocation?.name_location}}</div>
+      <div class="head__header" *ngIf="parentLocation">{{parentLocation.name_location}}</div>
       <div class="head__btns">
         <button (click)="openLocation()" class="head__btn">Разбить локацию</button>
         <button class="head__btn" (click)="openModalWindowAddingModel()">Добавить оборудование</button>

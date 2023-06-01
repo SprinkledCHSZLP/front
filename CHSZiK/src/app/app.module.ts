@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SignInModule} from "./sign-in/sign-in.module";
 import {TokenInterceptor} from "./auth/interseptors/token.interceptor";
 import {ErrorInterceptor} from "./error-handler/interseptors/error.interseptor";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,11 @@ import {ErrorInterceptor} from "./error-handler/interseptors/error.interseptor";
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 15000, // 15 seconds
+      closeButton: true,
+      progressBar: true,
+    }),
   ],
   providers: [
     {

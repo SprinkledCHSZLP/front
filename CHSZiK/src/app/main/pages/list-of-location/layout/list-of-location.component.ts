@@ -3,6 +3,7 @@ import {ListOfLocationService} from "../services/list-of-location.service";
 import {ILocation} from "../../../../models/location";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-list-of-location',
@@ -11,7 +12,7 @@ import {Subscription} from "rxjs";
 })
 export class ListOfLocationComponent implements OnInit, OnDestroy {
 
-  constructor(private listOfLocationService: ListOfLocationService, private router: Router, private route: ActivatedRoute) {
+  constructor(private listOfLocationService: ListOfLocationService, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService) {
   }
   @Output() addingNewLocation = false
   sub$: Subscription = new Subscription()
@@ -54,6 +55,7 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
       ...component, parent_location_id: this.parent_location_id
     }).subscribe(() => {
       this.getAllLocation()
+      this.toastrService.success('Локация добавлена')
     })
   }
 

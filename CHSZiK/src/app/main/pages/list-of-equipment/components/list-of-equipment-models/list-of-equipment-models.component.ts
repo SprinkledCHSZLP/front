@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ListOfEquipmentService} from "../../services/list-of-equipment.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalPositionComponent} from "../modal-position/modal-position.component";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({

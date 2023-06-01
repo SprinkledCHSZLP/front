@@ -1,7 +1,9 @@
 <div class="container">
   <div class="content">
     <div class="content__control-btn">
-      <button (click)="back()" class="content__button-control" *ngIf="!isModels"><img class="content__img-control" src="../../../../../../assets/img/back.png" alt=""></button>
+      <button (click)="back()" class="content__button-control" *ngIf="!isModels"><img class="content__img-control"
+                                                                                      src="../../../../../../assets/img/back.png"
+                                                                                      alt=""></button>
       <div *ngIf="isModels"></div>
       <button class="content__button-control"
               (click)="btnCloseModal()"><img class="content__img-control"
@@ -40,8 +42,19 @@
 <ng-template #models>
   <p>Модели</p>
   <div class="item-list" *ngFor="let model of modelsArr">
-    <div (click)="openPositionsOfModel(model.id)" class="item-list__item">{{model.equipment_name}}</div>
+    <div class="item-list__flex">
+      <div (click)="openPositionsOfModel(model.id)" class="item-list__item">{{model.equipment_name}}</div>
+      <img (click)="openAddingEquipment(model.id)" class="item-list__img-change"
+           src="../../../../../../../../assets/img/change.png" alt="">
+    </div>
   </div>
+  <form [formGroup]="addingModelForm" class="item-list__create">
+    <input formControlName="equipment_name" class="item-list__input" type="text" placeholder="название">
+    <button (click)="addingNewModel()"
+            [disabled]="addingModelForm.invalid" class="item-list__button"><img class="item-list__img"
+                                                                                src="../../../../../../../../assets/img/apply.png"
+                                                                                alt=""></button>
+  </form>
 </ng-template>
 
 
