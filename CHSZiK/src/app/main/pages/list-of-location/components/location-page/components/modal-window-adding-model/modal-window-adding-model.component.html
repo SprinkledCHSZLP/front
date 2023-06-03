@@ -1,14 +1,10 @@
 <div class="container">
   <div class="content">
     <div class="content__control-btn">
-      <button (click)="back()" class="content__button-control" *ngIf="!isModels"><img class="content__img-control"
-                                                                                      src="../../../../../../assets/img/back.png"
-                                                                                      alt=""></button>
+      <button (click)="back()" mat-raised-button color="accent" matTooltip="Назад" class="content__button-control" *ngIf="!isModels"><mat-icon>arrow_back_ios</mat-icon></button>
       <div *ngIf="isModels"></div>
-      <button class="content__button-control"
-              (click)="btnCloseModal()"><img class="content__img-control"
-                                             src="../../../../../../assets/img/close.png"
-                                             alt=""></button>
+      <button mat-raised-button color="accent" matTooltip="Закрыть" class="content__button-control"
+              (click)="btnCloseModal()"><mat-icon>close</mat-icon></button>
     </div>
 
     <ng-container *ngIf="isModels; else position">
@@ -20,40 +16,60 @@
 
 
 <ng-template #position>
-  <p>Позиции</p>
+  <p class="content__name">Позиции</p>
   <div class="item-list" *ngFor="let position of positionsArr">
     <div class="item-list__flex">
       <div class="item-list__item">{{position.position}}</div>
-      <button (click)="addPositionInLocation(position.id)" class="item-list__button"><img class="item-list__img"
-                                                                                          src="../../../../../../../../assets/img/add.png"
-                                                                                          alt=""></button>
+<!--      <button (click)="addPositionInLocation(position.id)" class="item-list__button"><img class="item-list__img"-->
+<!--                                                                                          src="../../../../../../../../assets/img/add.png"-->
+<!--                                                                                          alt=""></button>-->
+      <button (click)="addPositionInLocation(position.id)" matTooltip="Добавить" class="item-list__button" mat-fab color="accent">
+        <mat-icon class="size-icon">add</mat-icon>
+      </button>
     </div>
   </div>
   <form [formGroup]="addingPositionForm" class="item-list__create">
-    <input formControlName="position" class="item-list__input" type="text" placeholder="название">
-    <button (click)="addingNewPosition()"
-            [disabled]="addingPositionForm.invalid" class="item-list__button"><img class="item-list__img"
-                                                                                   src="../../../../../../../../assets/img/apply.png"
-                                                                                   alt=""></button>
+<!--    <input formControlName="position" class="item-list__input" type="text" placeholder="название">-->
+<!--    <button (click)="addingNewPosition()"-->
+<!--            [disabled]="addingPositionForm.invalid" class="item-list__button"><img class="item-list__img"-->
+<!--                                                                                   src="../../../../../../../../assets/img/apply.png"-->
+<!--                                                                                   alt=""></button>-->
+    <mat-form-field class="example-full-width">
+      <mat-label>Наименование</mat-label>
+      <input type="text" formControlName="position" matInput placeholder="Введите наименование">
+    </mat-form-field>
+    <button [disabled]="addingPositionForm.invalid" (click)="addingNewPosition()" matTooltip="Создать" class="item-list__button" mat-fab color="accent">
+      <mat-icon class="size-icon">done</mat-icon>
+    </button>
   </form>
 </ng-template>
 
 
 <ng-template #models>
-  <p>Модели</p>
+  <p class="content__name">Модели</p>
   <div class="item-list" *ngFor="let model of modelsArr">
     <div class="item-list__flex">
       <div (click)="openPositionsOfModel(model.id)" class="item-list__item">{{model.equipment_name}}</div>
-      <img (click)="openAddingEquipment(model.id)" class="item-list__img-change"
-           src="../../../../../../../../assets/img/change.png" alt="">
+<!--      <img (click)="openAddingEquipment(model.id)" class="item-list__img-change"-->
+<!--           src="../../../../../../../../assets/img/change.png" alt="">-->
+      <div (click)="openAddingEquipment(model.id)" class="border" matTooltip="Редактировать">
+        <mat-icon class="size-icon">edit</mat-icon>
+      </div>
     </div>
   </div>
   <form [formGroup]="addingModelForm" class="item-list__create">
-    <input formControlName="equipment_name" class="item-list__input" type="text" placeholder="название">
-    <button (click)="addingNewModel()"
-            [disabled]="addingModelForm.invalid" class="item-list__button"><img class="item-list__img"
-                                                                                src="../../../../../../../../assets/img/apply.png"
-                                                                                alt=""></button>
+<!--    <input formControlName="equipment_name" class="item-list__input" type="text" placeholder="название">-->
+<!--    <button (click)="addingNewModel()"-->
+<!--            [disabled]="addingModelForm.invalid" class="item-list__button"><img class="item-list__img"-->
+<!--                                                                                src="../../../../../../../../assets/img/apply.png"-->
+<!--                                                                                alt=""></button>-->
+    <mat-form-field class="example-full-width">
+      <mat-label>Наименование</mat-label>
+      <input type="text" formControlName="equipment_name" matInput placeholder="Введите наименование">
+    </mat-form-field>
+    <button [disabled]="addingModelForm.invalid" (click)="addingNewModel()" matTooltip="Создать" class="item-list__button" mat-fab color="accent">
+      <mat-icon class="size-icon">done</mat-icon>
+    </button>
   </form>
 </ng-template>
 

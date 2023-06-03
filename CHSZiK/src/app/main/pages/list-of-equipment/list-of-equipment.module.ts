@@ -42,13 +42,21 @@ import {
 import {ReactiveFormsModule} from "@angular/forms";
 import {ModalPositionComponent} from "./components/modal-position/modal-position.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatIconModule} from "@angular/material/icon";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [ModalPositionComponent, AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent],
   exports: [
     ListOfEquipmentModelsComponent
   ],
-  imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule, PdfViewerModule, FormsModule, NgxExtendedPdfViewerModule, MatDialogModule]
+    imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule, PdfViewerModule, FormsModule, NgxExtendedPdfViewerModule, MatDialogModule, MatButtonModule, MatTooltipModule, MatIconModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule]
 })
 export class ListOfEquipmentModule {
 }

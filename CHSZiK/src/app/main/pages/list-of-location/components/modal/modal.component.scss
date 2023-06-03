@@ -14,8 +14,7 @@
 }
 
 .container {
-  top: 300px;
-  position: absolute;
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
@@ -31,6 +30,8 @@
     //align-items: center;
 
     .content__button-close {
+      min-width: 15px;
+      min-height: 15px;
       width: 25px;
       height: 25px;
       display: flex;
@@ -39,28 +40,29 @@
       align-self: end;
       margin-right: 5px;
       margin-top: 5px;
+      margin-left: 5px;
       border-radius: 5px;
-      border: 1px solid #A49343;
-      background-color: #E3B800;
-    }
 
-    .content__img-close {
-      width: 25px;
-      height: 25px;
+      mat-icon {
+        margin: 0 auto;
+        font-size: 24px;
+        width: auto;
+        height: auto;
+      }
     }
 
 
     .content__name {
       align-self: center;
       margin-top: 10px;
-      display: flex;
-      background-color: #D9D9D9;
-      width: 450px;
-      height: 40px;
       font-size: 16px;
-      justify-content: space-around;
-      align-items: center;
-      border-radius: 5px;
+
+      .example-full-width {
+        width: 450px;
+        height: 45px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+      }
 
       .content__input {
         width: 350px;
@@ -70,27 +72,13 @@
     }
 
     .content__button {
+      box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
       align-self: center;
       margin-top: 20px;
       font-size: 16px;
       width: 230px;
       height: 50px;
-      border: 3px solid #A49343;
-      background-color: #E3B800;
       border-radius: 25px;
-      transition: 0.15s linear;
     }
-    button:hover {
-      font-size: 17px;
-      transition: 0.15s linear;
-      background: #A49343;
-      border: 3px solid #E3B800;
-    }
-    button:active {
-      font-size: 16px;
-      border: 3px solid #A49343;
-      background-color: #E3B800;
-    }
-
   }
 }

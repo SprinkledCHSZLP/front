@@ -1,13 +1,17 @@
-<div class="background">
-</div>
+<!--<div class="background">-->
+<!--</div>-->
 <div class="container">
   <div class="content">
-    <button class="content__button-close" (click)="btnCloseModal()"><img class="content__img-close" src="../../../../../../assets/img/close.png" alt=""></button>
+<!--    <button class="content__button-close" (click)="btnCloseModal()"><img class="content__img-close" src="../../../../../../assets/img/close.png" alt=""></button>-->
+    <button mat-raised-button color="accent" matTooltip="Закрыть" class="content__button-close"
+            (click)="btnCloseModal()"><mat-icon>close</mat-icon></button>
     <div class="content__name" [formGroup]="addingNewLocation">
-      <p>Название </p>
-      <input formControlName="name_location" class="content__input" type="text" placeholder="Введите название">
+      <mat-form-field class="example-full-width">
+        <mat-label>Наименование</mat-label>
+        <input type="text" formControlName="name_location" matInput placeholder="Введите наименование">
+      </mat-form-field>
     </div>
-    <button (click)="saveNewLocation()" class="content__button">Сохранить</button>
+    <button [disabled]="addingNewLocation.invalid" (click)="saveNewLocation()" mat-raised-button color="accent" class="content__button">Сохранить</button>
   </div>
 </div>
 

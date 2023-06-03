@@ -1,7 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ILocation} from "../../../../../models/location";
 import {ToastrService} from "ngx-toastr";
+import {MatDialogRef} from "@angular/material/dialog";
+import {ListOfLocationService} from "../../services/list-of-location.service";
 
 @Component({
   selector: 'app-modal',
@@ -9,15 +11,14 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  constructor(private toastrService: ToastrService) {
+  constructor(private toastrService: ToastrService, public dialogRef: MatDialogRef<ModalComponent>, private listOfLocationService: ListOfLocationService) {
   }
   addingNewLocation!: FormGroup;
 
-  @Output() send: EventEmitter<boolean> = new EventEmitter<boolean>()
   @Output() addSend: EventEmitter<ILocation> = new EventEmitter<ILocation>()
 
   btnCloseModal() {
-    return this.send.emit(false)
+    this.dialogRef.close()
   }
 
   saveNewLocation() {
@@ -30,7 +31,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.addingNewLocation = new FormGroup({
-      name_location: new FormControl('')
+      name_location: new FormControl('', [Validators.required])
     })
   }
 

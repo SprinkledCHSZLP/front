@@ -13,6 +13,12 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
 import {
   LocationPageItemComponent
 } from "./components/location-page/components/location-page-item/location-page-item.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -23,7 +29,7 @@ import {
     ModalComponent,
     LocationItemComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, ListOfLocationRoutingModule, FormsModule, MatDialogModule, PdfViewerModule]
+    imports: [CommonModule, ReactiveFormsModule, ListOfLocationRoutingModule, FormsModule, MatDialogModule, PdfViewerModule, MatTooltipModule, MatIconModule, MatButtonModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule]
 })
 export class ListOfLocationModule {
 }

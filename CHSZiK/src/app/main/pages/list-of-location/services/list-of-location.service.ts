@@ -21,7 +21,6 @@ import {IPosition} from "../../../../models/position";
 export class ListOfLocationService {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
-
   update$: Subject<null> = new Subject<null>()
 
   getAllLocation(urlId: number): Observable<ResponseDataLocation> {

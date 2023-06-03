@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -44,8 +44,8 @@ export class SignInComponent implements OnInit {
     }
 
     this.authForm = new FormGroup({
-      login: new FormControl(''),
-      password: new FormControl(''),
+      login: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
 
   }

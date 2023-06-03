@@ -2,45 +2,64 @@
   <div class="wrapper">
 
     <div [formGroup]="upgradeComponentForm" *ngIf="isUpgrade" class="setting-component">
-      <input formControlName="position_on_plan" [(ngModel)]="part.position_on_plan" class="number-component__update" type="text">
-      <div class="name-component__update">
-        <p>Название</p>
-        <input formControlName="equipment_name" [(ngModel)]="part.equipment_name" type="text" class="input-name-component__update" placeholder="Введите название"/>
+<!--      <input formControlName="position_on_plan" [(ngModel)]="part.position_on_plan" class="number-component__update" type="text">-->
+      <mat-form-field class="example-full-width example-full-width_50px">
+        <input type="text" formControlName="position_on_plan" [(ngModel)]="part.position_on_plan" matInput>
+      </mat-form-field>
+      <div>
+<!--        <p>Название</p>-->
+<!--        <input formControlName="equipment_name" [(ngModel)]="part.equipment_name" type="text" class="input-name-component__update" placeholder="Введите название"/>-->
+        <mat-form-field class="example-full-width">
+          <mat-label>Наименование</mat-label>
+          <input type="text" formControlName="equipment_name" [(ngModel)]="part.equipment_name" matInput placeholder="Введите наименование">
+        </mat-form-field>
       </div>
-      <button (click)="upgradePart()" class="btn-save-component__update" type="submit">
-        <img class="img-apply" src="../../../../../../../../assets/img/apply.png">
+<!--      <button (click)="upgradePart()" class="btn-save-component__update" type="submit">-->
+<!--        <img class="img-apply" src="../../../../../../../../assets/img/apply.png">-->
+<!--      </button>-->
+      <button (click)="upgradePart()" [disabled]="upgradeComponentForm.invalid" matTooltip="Сохранить" class="btn-save-component__update" mat-fab color="accent" aria-label="Example fab with a heart icon">
+        <mat-icon class="size-icon">done</mat-icon>
       </button>
     </div>
 
 
     <div *ngIf="!isUpgrade" class="setting-component">
-      <div class="number-component">{{part.position_on_plan}}</div>
-      <div class="name-component">
+      <div matTooltip="Позиция" class="number-component">{{part.position_on_plan}}</div>
+      <div matTooltip="Наименование" class="name-component">
         <p>{{part.equipment_name}}</p>
       </div>
-      <img (click)="openUpgradePart()" class="setting-component__img" src="../../../../../../../../../assets/img/change.png" alt="">
+<!--      <img (click)="openUpgradePart()" class="setting-component__img" src="../../../../../../../../../assets/img/change.png" alt="">-->
+      <div class="border" matTooltip="Редактировать" (click)="openUpgradePart()">
+        <mat-icon class="size-icon">edit</mat-icon>
+      </div>
     </div>
 
 
     <div [formGroup]="upgradeComponentForm" *ngIf="isUpgrade" class="upgrade-setting-component__checkboxs">
       <div class="upgrade-checkbox">
-        <input type="checkbox" formControlName="have_equipment" [(ngModel)]="part.have_equipment"/>
-        <label for="">Разбить на составляющие</label>
+<!--        <input type="checkbox" formControlName="have_equipment" [(ngModel)]="part.have_equipment"/>-->
+<!--        <label for="">Разбить на составляющие</label>-->
+        <mat-checkbox formControlName="have_equipment" [(ngModel)]="part.have_equipment" class="example-margin">Разбить на составляющие</mat-checkbox>
       </div>
       <div class="upgrade-checkbox">
-        <input type="checkbox" formControlName="service" [(ngModel)]="part.service"/>
-        <label for="">Включить обслуживание</label>
+<!--        <input type="checkbox" formControlName="service" [(ngModel)]="part.service"/>-->
+<!--        <label for="">Включить обслуживание</label>-->
+        <mat-checkbox formControlName="service" [(ngModel)]="part.service" class="example-margin">Включить обслуживание</mat-checkbox>
+
       </div>
     </div>
 
-    <button *ngIf="isUpgrade" (click)="btnDeletePart()" class="btn-delete__component">Удалить составляющую</button>
+<!--    <button *ngIf="isUpgrade" (click)="btnDeletePart()" class="btn-delete__component">Удалить составляющую</button>-->
+
+      <button *ngIf="isUpgrade" (click)="btnDeletePart()" class="btn-delete__component" mat-raised-button color="warn">Удалить составляющую</button>
+
 
     <div *ngIf="!isUpgrade" class="open-setting-component__btn">
       <div *ngIf="part.have_equipment" class="btn">
-        <button (click)="openSettings()">Добавить составляющие</button>
+        <button mat-raised-button (click)="openSettings()">Добавить составляющие</button>
       </div>
       <div *ngIf="part.service" class="btn">
-        <button (click)="submitMainTenanceSheetEditing()">Настроить обслуживание</button>
+        <button mat-raised-button (click)="submitMainTenanceSheetEditing()">Настроить обслуживание</button>
       </div>
     </div>
   </div>

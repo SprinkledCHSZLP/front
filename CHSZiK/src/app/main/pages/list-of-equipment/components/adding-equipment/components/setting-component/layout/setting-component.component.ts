@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {IPart} from "../../../../../../../../models/part-equipment";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AddingComponentService} from "../../../services/adding-component.service";
 import {AddingEquipmentComponent} from "../../../layout/adding-equipment.component";
 import {ToastrService} from "ngx-toastr";
@@ -50,6 +50,7 @@ export class SettingComponentComponent implements OnInit{
   }
 
   openSettings() {
+    this.addingEquipmentComponent.loading = true
     this.router.navigate(['adding-equipment', this.part.id])
   }
 
@@ -60,7 +61,7 @@ export class SettingComponentComponent implements OnInit{
   ngOnInit(): void {
     this.upgradeComponentForm = new FormGroup({
       position_on_plan: new FormControl(''),
-      equipment_name: new FormControl(''),
+      equipment_name: new FormControl('', [Validators.required]),
       have_equipment: new FormControl(true || false),
       service: new FormControl(true || false)
     })

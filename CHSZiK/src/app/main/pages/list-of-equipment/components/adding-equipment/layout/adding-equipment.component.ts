@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {AddingComponentService} from "../services/adding-component.service";
 import {Subscription} from "rxjs";
 import {IParentPart} from "../../../../../../models/parent-part-equipment";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -20,6 +20,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService, private toastrService: ToastrService) {
   }
+
+  loading: boolean
 
   pdfSource: any
   @ViewChild('input') inputRef: ElementRef
@@ -39,6 +41,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
 
   btnBack() {
+    this.loading = true
     window.history.back()
   }
 
@@ -49,6 +52,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
   saveNewModel() {
     if (this.isNew) {
+      this.loading = true
       this.addingComponentService.createNewParentPart(
         this.addingNewModelForm.get('equipment_name')?.value,
         this.image
@@ -69,7 +73,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
           this.inputRef.nativeElement.value = ''
           this.updateImage = false
           this.toastrService.success('Схема обновлена')
-          this.ifNotIsNew()
+          this.getParentPart()
         }
       })
     }
@@ -81,7 +85,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
         next: () => {
           this.updateName = false
           this.toastrService.success('Наименование обновлено')
-          this.ifNotIsNew()
+          this.getParentPart()
         }
       })
     }
@@ -91,6 +95,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getAllPart(this.parent_equipment_id).subscribe((part) => {
       if (part) {
         this.part = part.data
+        console.log('getAllPart')
       }
     })
   }
@@ -102,6 +107,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
+        console.log('getParentPart')
+        this.loading = false
         this.addingNewModelForm.patchValue(this.parent)
         if (this.parent.image_plan_reference != null) {
           this.isParentImagePlanReference = true
@@ -140,10 +147,12 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   ifNotIsNew() {
+    // this.loading = true
     this.sub$.add(
       this.route.params.subscribe(params => {
         this.parent_equipment_id = params['id']
         if (this.parent_equipment_id != 0) {
+          console.log('IFNOTISNEW')
           this.getAllPart()
           this.getParentPart()
           // this.getFilePart()
@@ -154,7 +163,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.addingNewModelForm = new FormGroup({
-      equipment_name: new FormControl(''),
+      equipment_name: new FormControl('', Validators.required),
     })
 
     this.route.params.subscribe(params => {
@@ -165,6 +174,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     })
 
     if (this.isNew == false) {
+      // this.loading = true
       this.ifNotIsNew()
     }
   }

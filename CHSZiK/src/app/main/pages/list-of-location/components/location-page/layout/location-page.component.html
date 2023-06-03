@@ -1,12 +1,12 @@
-<div>
+<mat-spinner *ngIf="loadedChild && loadedParent" class="loading"></mat-spinner>
+<div *ngIf="!loadedChild && !loadedParent">
   <div class="wrapper">
     <div class="head">
-      <button class="btn-back" (click)="btnBack()">Назад <img class="img-back"
-                                                              src="./assets/img/back.png"></button>
+      <button mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><mat-icon>arrow_back_ios</mat-icon>Назад</button>
       <div class="head__header" *ngIf="parentLocation">{{parentLocation.name_location}}</div>
       <div class="head__btns">
-        <button (click)="openLocation()" class="head__btn">Разбить локацию</button>
-        <button class="head__btn" (click)="openModalWindowAddingModel()">Добавить оборудование</button>
+        <button (click)="openLocation()" mat-raised-button color="accent" class="head__btn">Разбить локацию</button>
+        <button class="head__btn" mat-raised-button color="accent" (click)="openModalWindowAddingModel()">Добавить оборудование</button>
       </div>
     </div>
     <div class="container">

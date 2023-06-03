@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {IPart} from "../../../../../../../models/part-equipment";
@@ -37,7 +37,7 @@ export class AddingComponentComponent implements OnInit {
 
     this.addingForm = new FormGroup({
       position_on_plan: new FormControl(''),
-      equipment_name: new FormControl(''),
+      equipment_name: new FormControl('', [Validators.required]),
       have_equipment: new FormControl(false),
       service: new FormControl(false),
     });

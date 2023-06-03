@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ListOfLocationComponent} from "../../layout/list-of-location.component";
 import {ILocation} from "../../../../../models/location";
 import {ListOfLocationService} from "../../services/list-of-location.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -44,8 +44,13 @@ export class LocationItemComponent implements OnInit {
 
   openLocaton(id: number, have_child_location: boolean) {
     if (have_child_location == true) {
+      if (this.listOfLocationComponent.isMainList) {
+        this.router.navigate(['list-of-location', id])
+        this.listOfLocationComponent.ifNotIsMain()
+      }
+      this.listOfLocationComponent.loadedChild = true
       this.router.navigate(['list-of-location', id])
-      this.listOfLocationComponent.ifNotIsMain()
+      // this.listOfLocationComponent.ifNotIsMain()
     }
     if(have_child_location == false) {
       this.router.navigate(['location-page', id])
@@ -54,7 +59,7 @@ export class LocationItemComponent implements OnInit {
 
   ngOnInit() {
     this.changeLocationForm = new FormGroup({
-      name_location: new FormControl('')
+      name_location: new FormControl('', [Validators.required])
     })
   }
 

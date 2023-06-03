@@ -4,6 +4,8 @@ import {ILocation} from "../../../../models/location";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {MatDialog} from "@angular/material/dialog";
+import {ModalComponent} from "../components/modal/modal.component";
 
 @Component({
   selector: 'app-list-of-location',
@@ -12,8 +14,13 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ListOfLocationComponent implements OnInit, OnDestroy {
 
-  constructor(private listOfLocationService: ListOfLocationService, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService) {
+  constructor(private listOfLocationService: ListOfLocationService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private toastrService: ToastrService) {
   }
+  loading: boolean
+
+  loadedChild = true
+  loadedParent: boolean
+
   @Output() addingNewLocation = false
   sub$: Subscription = new Subscription()
   parent_location_id: number
@@ -23,30 +30,39 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
   isMainList: boolean = true
 
   getParentLocation() {
+    this.loadedParent = true
     this.listOfLocationService.getParentLocation(this.parent_location_id).subscribe((parentLocation) => {
       if(parentLocation) {
         this.parentLocation = parentLocation.data
+        this.loadedParent = false
+        console.log('getParentLocation')
       }
     })
   }
 
   btnBack() {
+    this.isMainList = true
+    this.loadedChild = true
     window.history.back()
   }
 
-  // loading = true
   btnOpenModal() {
-  this.addingNewLocation = true
-  }
-  btnCloseModal(status: boolean) {
-    this.addingNewLocation = false
+    this.dialog.open(ModalComponent).componentInstance.addSend.subscribe((component) => {
+      this.addingLocation(component)
+    })
   }
 
   getAllLocation() {
+    // if(this.isMainList) {
+    //   this.loading = true
+    // }
+    // this.loadedChild = true
     this.listOfLocationService.getAllLocation(this.parent_location_id).subscribe((location) => {
       if(location) {
         this.location = location.data
-        console.log('location = ' + this.location)
+        this.loading = false
+        this.loadedChild = false
+        console.log('getAllLocation')
       }
     })
   }
@@ -59,6 +75,17 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
     })
   }
 
+  // ifNotIsMain() {
+  //   this.sub$.add(
+  //     this.route.params.subscribe(params => {
+  //       this.parent_location_id = params['id']
+  //       if (this.parent_location_id != 0) {
+  //         this.getAllLocation()
+  //         this.getParentLocation()
+  //       }
+  //     })
+  //   )
+  // }
   ifNotIsMain() {
     this.sub$.add(
       this.route.params.subscribe(params => {
@@ -72,22 +99,28 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
   }
 
 
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parent_location_id = params['id']
       if(this.parent_location_id != 0) {
         this.isMainList = false
+        console.log('СТРАНИЦА НОМЕР = ')
+        console.log(this.parent_location_id)
+      }
+      if (this.parent_location_id == 0) {
+        // this.isMainList = true
+        this.getAllLocation()
       }
     })
 
     if(this.isMainList == false) {
       this.ifNotIsMain()
     }
-
-    this.getAllLocation()
   }
 
   ngOnDestroy(): void {
+    console.log('отписка')
     this.sub$.unsubscribe()
   }
 }

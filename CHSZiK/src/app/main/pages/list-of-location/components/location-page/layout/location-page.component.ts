@@ -19,6 +19,8 @@ export class LocationPageComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private listOfLocationService: ListOfLocationService, private route: ActivatedRoute, private dialog: MatDialog, private toastrService: ToastrService) {
   }
+  loadedParent = true
+  loadedChild = true
 
   sub$: Subscription = new Subscription()
 
@@ -33,15 +35,6 @@ export class LocationPageComponent implements OnInit, OnDestroy {
     window.history.back()
   }
 
-  // test3(component: {id: number, locations_id: string}) {
-  //   console.log('asdasdsadsadsad' + component)
-  //   this.listOfLocationService.addPositionInLocation({...component}).subscribe(() => {
-  //     this.getPositionModels()
-  //     console.log('ВЫПОЛНЯЕТСЯ ДОБАВЛЕНИЕ')
-  //   })
-  // }
-
-
   deletePositionModel(id: number) {
     this.listOfLocationService.deletePositionModel(id).subscribe(() => {
       this.getPositionModels()
@@ -52,6 +45,7 @@ export class LocationPageComponent implements OnInit, OnDestroy {
     this.listOfLocationService.getPositionModels(this.parent_location_id).subscribe((positionModels) => {
       if (positionModels) {
         this.positionModel = positionModels.data
+        this.loadedChild = false
       }
     })
   }
@@ -61,10 +55,6 @@ export class LocationPageComponent implements OnInit, OnDestroy {
     this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}}).componentInstance.sendAdd.subscribe((component) => {
       console.log(component)
     });
-  }
-
-  btnCloseModal(status: boolean) {
-    this.openModalWindow = false
   }
 
   openLocation() {
@@ -80,6 +70,7 @@ export class LocationPageComponent implements OnInit, OnDestroy {
     this.listOfLocationService.getParentLocation(this.parent_location_id).subscribe((parentLocation) => {
       if (parentLocation) {
         this.parentLocation = parentLocation.data
+        this.loadedParent = false
       }
     })
   }

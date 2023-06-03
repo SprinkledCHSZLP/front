@@ -1,15 +1,19 @@
-<div>
+<mat-spinner *ngIf="loading" class="loading"></mat-spinner>
+<div *ngIf="!loading">
   <div class="wrapper">
     <div class="head">
-      <div class="head__header">Оборудование</div>
+      <div class="head__header"><span class="head__header-name">Оборудование</span></div>
       <div class="head__search">
-        <input type="text" placeholder="Поиск"/>
+        <mat-form-field class="example-full-width">
+          <mat-label>Поиск</mat-label>
+          <input type="text" matInput placeholder="Введите наименование">
+        </mat-form-field>
       </div>
-      <button class="head__btn-adding" (click)="submitAddingEquipment()">Добавить модель оборудования</button>
+      <button class="head__btn-adding" mat-raised-button color="accent" (click)="submitAddingEquipment()">Добавить модель оборудования</button>
     </div>
+    <mat-spinner *ngIf="loading" class="loading"></mat-spinner>
     <div class="container">
       <div class="item-list">
-        <div *ngIf="loading" class="loading">Loading...</div>
         <app-list-of-equipment-models (send)="getModels($event)" *ngFor="let model of models" [models]="model"></app-list-of-equipment-models>
       </div>
     </div>

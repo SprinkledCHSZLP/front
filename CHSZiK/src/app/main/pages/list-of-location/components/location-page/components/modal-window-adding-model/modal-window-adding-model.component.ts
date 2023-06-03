@@ -26,7 +26,6 @@ interface IPositionData {
 export class ModalWindowAddingModelComponent implements OnInit {
   constructor(private addingComponentService: AddingComponentService, private router: Router, private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalWindowAddingModelComponent>, @Inject(MAT_DIALOG_DATA) public data: IPositionData, private toastrService: ToastrService) {
   }
-
   modelsArr: IModel[] = []
   positionsArr: IPosition[] = []
 
