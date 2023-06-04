@@ -2,20 +2,17 @@
 <div *ngIf="!loading">
   <div class="wrapper" *ngIf="parent || isNew">
     <div class="head">
-      <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()"><mat-icon>arrow_back_ios</mat-icon>Назад</button>
+      <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">
+        <mat-icon>arrow_back_ios</mat-icon>
+        Назад
+      </button>
       <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent.equipment_name}}</p>
-<!--        <img class="img-change"-->
-<!--             (click)="btnUpgradeHeadName()"-->
-<!--             src="../../../../../../../assets/img/change.png">-->
         <div class="border" matTooltip="Редактировать" (click)="btnUpgradeHeadName()">
           <mat-icon class="size-icon">edit</mat-icon>
         </div>
-
       </div>
       <div [formGroup]="addingNewModelForm">
-<!--        <input *ngIf="isNew || updateName == true" formControlName="equipment_name" class="head__name input" type="text"-->
-<!--               placeholder="Название"/>-->
         <mat-form-field *ngIf="isNew || updateName == true" class="example-full-width">
           <mat-label>Наименование</mat-label>
           <input type="text" formControlName="equipment_name" matInput placeholder="Введите наименование">
@@ -34,8 +31,11 @@
             ></pdf-viewer>
           </div>
         </div>
-        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change" *ngIf="isParentImagePlanReference">
-          Редактировать<mat-icon class="size-icon">edit</mat-icon></button>
+        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change"
+                *ngIf="isParentImagePlanReference">
+          Редактировать
+          <mat-icon class="size-icon">edit</mat-icon>
+        </button>
       </div>
       <div class="adding-component" *ngIf="parent_equipment_id != 0">
         <div class="adding-component__content">
@@ -46,7 +46,9 @@
       </div>
     </div>
     <div class="save">
-      <button (click)="saveNewModel()" [disabled]="addingNewModelForm.invalid" mat-raised-button color="accent" class="save__btn">Сохранить</button>
+      <button (click)="saveNewModel()" [disabled]="addingNewModelForm.invalid" mat-raised-button color="accent"
+              class="save__btn">Сохранить
+      </button>
     </div>
   </div>
 </div>

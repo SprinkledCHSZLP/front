@@ -16,17 +16,14 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
 
   constructor(private listOfLocationService: ListOfLocationService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private toastrService: ToastrService) {
   }
-  loading: boolean
 
   loadedChild = true
   loadedParent: boolean
-
   @Output() addingNewLocation = false
   sub$: Subscription = new Subscription()
   parent_location_id: number
   parentLocation: ILocation
   location: ILocation[] = []
-
   isMainList: boolean = true
 
   getParentLocation() {
@@ -35,7 +32,6 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
       if(parentLocation) {
         this.parentLocation = parentLocation.data
         this.loadedParent = false
-        console.log('getParentLocation')
       }
     })
   }
@@ -53,16 +49,10 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
   }
 
   getAllLocation() {
-    // if(this.isMainList) {
-    //   this.loading = true
-    // }
-    // this.loadedChild = true
     this.listOfLocationService.getAllLocation(this.parent_location_id).subscribe((location) => {
       if(location) {
         this.location = location.data
-        this.loading = false
         this.loadedChild = false
-        console.log('getAllLocation')
       }
     })
   }
@@ -75,17 +65,6 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
     })
   }
 
-  // ifNotIsMain() {
-  //   this.sub$.add(
-  //     this.route.params.subscribe(params => {
-  //       this.parent_location_id = params['id']
-  //       if (this.parent_location_id != 0) {
-  //         this.getAllLocation()
-  //         this.getParentLocation()
-  //       }
-  //     })
-  //   )
-  // }
   ifNotIsMain() {
     this.sub$.add(
       this.route.params.subscribe(params => {
@@ -98,29 +77,23 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
     )
   }
 
-
-
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parent_location_id = params['id']
       if(this.parent_location_id != 0) {
         this.isMainList = false
-        console.log('СТРАНИЦА НОМЕР = ')
-        console.log(this.parent_location_id)
       }
       if (this.parent_location_id == 0) {
-        // this.isMainList = true
         this.getAllLocation()
       }
     })
 
-    if(this.isMainList == false) {
+    if(!this.isMainList) {
       this.ifNotIsMain()
     }
   }
 
   ngOnDestroy(): void {
-    console.log('отписка')
     this.sub$.unsubscribe()
   }
 }

@@ -1,14 +1,10 @@
 .item {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 320px;
-  //height: 380px;
   background-color: #FFFFFF;
   border-radius: 5px;
 }
@@ -19,12 +15,6 @@
   border-radius: 5px;
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
   margin-top: 5px;
-}
-
-.btn {
-  width: 320px;
-  display: flex;
-  justify-content: space-around;
 }
 
 .setting {
@@ -68,7 +58,6 @@
   background-color: #f5f5f5;
   border-radius: 5px
 }
-//////////
 
 .image-model-equipment .container {
   width: 300px;
@@ -85,7 +74,6 @@ pdf-viewer {
   display: flex;
   align-items: center;
   justify-content: center;
-  //filter: drop-shadow(5px 5px 5px #222222);
   box-shadow: 3px 3px 3px 3px rgba(221, 221, 221, 1);
   border-radius: 5px;
 }

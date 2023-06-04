@@ -9,7 +9,6 @@ import {Router} from "@angular/router";
 import {
   AddingComponentService
 } from "../../../../../list-of-equipment/components/adding-equipment/services/adding-component.service";
-import {ILocation} from "../../../../../../../models/location";
 import {ToastrService} from "ngx-toastr";
 
 interface IPositionData {
@@ -22,22 +21,18 @@ interface IPositionData {
   styleUrls: ['./modal-window-adding-model.component.scss']
 })
 
-
 export class ModalWindowAddingModelComponent implements OnInit {
   constructor(private addingComponentService: AddingComponentService, private router: Router, private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalWindowAddingModelComponent>, @Inject(MAT_DIALOG_DATA) public data: IPositionData, private toastrService: ToastrService) {
   }
+
   modelsArr: IModel[] = []
   positionsArr: IPosition[] = []
-
   equipment_id: number
   isModels: boolean = true
   locationId: number
-
   addingPositionForm!: FormGroup;
   addingModelForm!: FormGroup;
-
   @Output() sendAdd: EventEmitter<{id: number, locations_id: string}> = new EventEmitter<{id: number, locations_id: string}>()
-
 
   getAllModels() {
     this.listOfEquipmentService.getAllModels().subscribe((modelsArr) => {

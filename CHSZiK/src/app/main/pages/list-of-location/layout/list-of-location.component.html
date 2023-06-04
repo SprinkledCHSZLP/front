@@ -1,24 +1,5 @@
-<!--<mat-spinner *ngIf="loading" class="loading"></mat-spinner>-->
 <mat-spinner *ngIf="loadedChild && loadedParent" class="loading"></mat-spinner>
 <mat-spinner *ngIf="loadedChild && isMainList" class="loading"></mat-spinner>
-
-<!--<div *ngIf="!loading">-->
-<!--  <div class="wrapper">-->
-<!--    <div class="head">-->
-<!--      <div class="head__header" *ngIf="isMainList">Локации</div>-->
-<!--      <button *ngIf="isMainList == false" mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><mat-icon>arrow_back_ios</mat-icon>Назад</button>-->
-<!--      <div class="head__header" *ngIf="isMainList == false && parentLocation">{{parentLocation.name_location}}</div>-->
-<!--      <button mat-raised-button color="accent" class="head__btn-adding" (click)="btnOpenModal()">Добавить</button>-->
-
-<!--    </div>-->
-<!--    <div class="container">-->
-<!--      <div class="item-list">-->
-<!--        <app-location-item *ngFor="let location of location" [location]="location"></app-location-item>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <app-modal *ngIf="addingNewLocation"></app-modal>-->
-<!--</div>-->
 
 <div *ngIf="!loadedChild && (!loadedParent || isMainList)">
   <div class="wrapper">

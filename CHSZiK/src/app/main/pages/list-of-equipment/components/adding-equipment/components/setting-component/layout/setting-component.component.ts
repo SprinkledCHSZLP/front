@@ -23,12 +23,9 @@ export class SettingComponentComponent implements OnInit{
 
   btnDeletePart() {
     this.addingComponentService.deletePart(this.part.id).subscribe( {
-      next: (res: any) => {
+      next: () => {
         this.toastrService.success('Составляющая удалена')
         this.addingEquipmentComponent.getAllPart()
-      },
-      error: (err) => {
-        console.log('Не удалено' + err)
       }
     })
   }

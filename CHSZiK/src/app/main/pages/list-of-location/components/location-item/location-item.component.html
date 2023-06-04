@@ -2,19 +2,16 @@
   <div class="item-list__item" *ngIf="location.id && location.have_child_location != null">
     <div class="flex">
       <div (click)="openLocaton(location.id, location.have_child_location)" *ngIf="!isChange" class="item-list__item-name">{{location.name_location}}</div>
-<!--      <img *ngIf="!isChange" (click)="openChange()" class="item-list__img-change" src="assets/img/change.png" alt="">-->
       <div *ngIf="!isChange" class="border" matTooltip="Редактировать" (click)="openChange()">
         <mat-icon class="size-icon">edit</mat-icon>
       </div>
     </div>
 
     <div class="flex" [formGroup]="changeLocationForm">
-<!--      <input formControlName="name_location" *ngIf="isChange" type="text" [(ngModel)]="location.name_location" class="item-list__input">-->
       <mat-form-field *ngIf="isChange" class="example-full-width">
         <mat-label>Наименование</mat-label>
         <input type="text" formControlName="name_location" [(ngModel)]="location.name_location" matInput placeholder="Введите наименование">
       </mat-form-field>
-<!--      <button *ngIf="isChange" (click)="saveChange()" class="item-list__button-apply"><img class="item-list__img" src="assets/img/apply.png" alt=""></button>-->
       <button [disabled]="changeLocationForm.invalid" *ngIf="isChange" (click)="saveChange()" matTooltip="Сохранить" class="item-list__button-apply" mat-fab color="accent" aria-label="Example fab with a heart icon">
         <mat-icon class="size-icon">done</mat-icon>
       </button>

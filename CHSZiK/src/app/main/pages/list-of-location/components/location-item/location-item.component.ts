@@ -50,7 +50,6 @@ export class LocationItemComponent implements OnInit {
       }
       this.listOfLocationComponent.loadedChild = true
       this.router.navigate(['list-of-location', id])
-      // this.listOfLocationComponent.ifNotIsMain()
     }
     if(have_child_location == false) {
       this.router.navigate(['location-page', id])

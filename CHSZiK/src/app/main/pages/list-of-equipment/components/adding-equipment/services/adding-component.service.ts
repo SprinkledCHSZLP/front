@@ -12,7 +12,6 @@ import {
   UPGRADEPART_URL
 } from "../../../../../../conf/conf";
 
-
 @Injectable({
   providedIn: 'root',
 })

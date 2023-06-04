@@ -54,9 +54,7 @@
   margin-bottom: 15px;
 
   .item-list {
-    //justify-content: center;
     width: 1360px;
-    //box-sizing: border-box;
     display: flex;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -64,32 +62,13 @@
     margin: 0 auto;
 
     .item-list__item {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
+      margin: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 320px;
       background-color: #FFFFFF;
       border-radius: 5px;
-
-      .item-list__button {
-        margin-left: 5px;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        background-color: white;
-
-        .item-list__img {
-          width: 30px;
-          height: 30px;
-        }
-      }
 
       .item-list__item-name {
         margin-top: 10px;
@@ -100,7 +79,6 @@
         border-radius: 5px;
         margin-bottom: 10px;
       }
-
     }
   }
 }

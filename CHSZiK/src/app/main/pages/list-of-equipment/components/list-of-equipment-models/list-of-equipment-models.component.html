@@ -7,7 +7,7 @@
   </mat-menu>
   <div class="image-model-equipment">
     <img [src]="models.image_plan_reference" alt="" *ngIf="pdfStrModel != true">
-    <div class="container" *ngIf="pdfStrModel">
+    <div class="container" *ngIf="pdfStrModel && models.image_plan_reference">
       <pdf-viewer [src]="models.image_plan_reference"
                   [original-size]="false"
       ></pdf-viewer>

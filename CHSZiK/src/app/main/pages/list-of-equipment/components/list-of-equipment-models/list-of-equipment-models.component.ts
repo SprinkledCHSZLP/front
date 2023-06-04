@@ -19,10 +19,7 @@ export class ListOfEquipmentModelsComponent implements OnInit{
 
   pdfStrModel: boolean
   searchStringModel = '.pdf'
-
-
   @Output() send: EventEmitter<number> = new EventEmitter<number>()
-
   @Input() models: IModel
 
   openSettings() {

@@ -32,7 +32,6 @@ export class ListOfEquipmentComponent implements OnInit, OnDestroy {
         this.loading = false
       }
     }))
-
   }
 
   getModels(id: number) {

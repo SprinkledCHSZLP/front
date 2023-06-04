@@ -20,12 +20,9 @@
     <div class="item-list__flex">
       <div class="item-list__item">{{position.position}}</div>
       <mat-icon *ngIf="position.group_id" (click)="deletePosition(position.group_id)" matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
-<!--      <img *ngIf="position.group_id" (click)="deletePosition(position.group_id)" class="item-list__img-delete"-->
-<!--           src="../../../../../../../../assets/img/delete.png" alt="">-->
     </div>
   </div>
   <form [formGroup]="addingPositionForm" class="item-list__create">
-<!--    <input formControlName="position" class="item-list__input" type="text" placeholder="название">-->
     <mat-form-field class="example-full-width">
       <mat-label>Наименование</mat-label>
       <input type="text" formControlName="position" matInput placeholder="Введите наименование">
@@ -33,10 +30,6 @@
     <button [disabled]="addingPositionForm.invalid" (click)="addingNewPosition()" matTooltip="Создать" class="item-list__button" mat-fab color="accent">
       <mat-icon class="size-icon">done</mat-icon>
     </button>
-<!--    <button (click)="addingNewPosition()"-->
-<!--            [disabled]="addingPositionForm.invalid" class="item-list__button"><img class="item-list__img"-->
-<!--                                                                                   src="../../../../../../../../assets/img/apply.png"-->
-<!--                                                                                   alt=""></button>-->
   </form>
 </ng-template>
 

@@ -22,7 +22,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   loading: boolean
-
   pdfSource: any
   @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
@@ -35,10 +34,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   updateImage: boolean = false
   image: File
   parentFile: File
-
   pdfStr: boolean
   searchString = '.pdf'
-
 
   btnBack() {
     this.loading = true
@@ -147,7 +144,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   ifNotIsNew() {
-    // this.loading = true
     this.sub$.add(
       this.route.params.subscribe(params => {
         this.parent_equipment_id = params['id']
@@ -155,7 +151,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
           console.log('IFNOTISNEW')
           this.getAllPart()
           this.getParentPart()
-          // this.getFilePart()
         }
       })
     )
@@ -174,7 +169,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     })
 
     if (this.isNew == false) {
-      // this.loading = true
       this.ifNotIsNew()
     }
   }

@@ -41,7 +41,5 @@ export class AddingComponentComponent implements OnInit {
       have_equipment: new FormControl(false),
       service: new FormControl(false),
     });
-
   }
-
 }

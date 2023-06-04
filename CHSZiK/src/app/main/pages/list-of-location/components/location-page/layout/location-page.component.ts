@@ -19,15 +19,13 @@ export class LocationPageComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private listOfLocationService: ListOfLocationService, private route: ActivatedRoute, private dialog: MatDialog, private toastrService: ToastrService) {
   }
+
   loadedParent = true
   loadedChild = true
-
   sub$: Subscription = new Subscription()
-
   parent_location_id: number
   parentLocation: ILocation
   positionModel: IPosition[] = []
-
   @Output() openModalWindow: boolean = false
   @Input() parentLoc: ILocation
 
@@ -51,7 +49,6 @@ export class LocationPageComponent implements OnInit, OnDestroy {
   }
 
   openModalWindowAddingModel() {
-    // this.openModalWindow = true
     this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}}).componentInstance.sendAdd.subscribe((component) => {
       console.log(component)
     });
@@ -75,7 +72,6 @@ export class LocationPageComponent implements OnInit, OnDestroy {
     })
   }
 
-  // loading = true
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parent_location_id = params['id']

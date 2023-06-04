@@ -1,7 +1,7 @@
 export interface IModel {
   id: number,
   equipment_name: string,
-  image_plan_reference: string,
+  image_plan_reference?: string,
   listPosition?: {
     id: number,
     groupId: number,

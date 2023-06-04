@@ -1,34 +1,24 @@
 <div>
   <div [formGroup]="addingForm" class="wrapper">
     <div class="setting-component">
-<!--      <input formControlName="position_on_plan" class="number-component" type="text">-->
       <mat-form-field class="example-full-width example-full-width_50px">
         <input type="text" formControlName="position_on_plan" matInput>
       </mat-form-field>
       <div>
-<!--        <p>Название</p>-->
-<!--        <input formControlName="equipment_name" type="text" class="input-name-component" placeholder="Введите название"/>-->
         <mat-form-field class="example-full-width">
           <mat-label>Наименование</mat-label>
           <input type="text" formControlName="equipment_name" matInput placeholder="Введите наименование">
         </mat-form-field>
       </div>
-<!--      <button class="btn-save-component" type="submit" (click)="saveComponent()">-->
-<!--        <img class="img-apply" src="../../../../../../../../assets/img/apply.png">-->
-<!--      </button>-->
-      <button (click)="saveComponent()" [disabled]="addingForm.invalid" matTooltip="Создать" class="btn-save-component" mat-fab color="accent" aria-label="Example fab with a heart icon">
+      <button (click)="saveComponent()" [disabled]="addingForm.invalid" matTooltip="Создать" class="btn-save-component" mat-fab color="accent">
         <mat-icon class="size-icon">done</mat-icon>
       </button>
     </div>
     <div class="setting-component__checkboxs">
       <div class="checkbox">
-<!--        <input type="checkbox" formControlName="have_equipment"/>-->
-<!--        <label for="">Разбить на составляющие</label>-->
         <mat-checkbox formControlName="have_equipment" class="example-margin">Разбить на составляющие</mat-checkbox>
       </div>
       <div class="checkbox">
-<!--        <input type="checkbox" formControlName="service"/>-->
-<!--        <label for="">Включить обслуживание</label>-->
         <mat-checkbox formControlName="service" class="example-margin">Включить обслуживание</mat-checkbox>
       </div>
     </div>
