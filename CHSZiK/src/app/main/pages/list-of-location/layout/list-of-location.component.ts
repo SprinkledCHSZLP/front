@@ -39,7 +39,12 @@ export class ListOfLocationComponent implements OnInit, OnDestroy {
   btnBack() {
     this.isMainList = true
     this.loadedChild = true
-    window.history.back()
+    if(this.parentLocation.parent_location_id != null) {
+      this.router.navigate(['list-of-location/', this.parentLocation.parent_location_id])
+    }
+    if(this.parentLocation.parent_location_id == null) {
+      this.router.navigate(['list-of-location/', 0])
+    }
   }
 
   btnOpenModal() {

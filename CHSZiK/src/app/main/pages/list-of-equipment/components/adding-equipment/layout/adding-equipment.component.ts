@@ -21,7 +21,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
               private http: HttpClient, private addingComponentService: AddingComponentService, private toastrService: ToastrService) {
   }
 
-  loading: boolean
+  // loading: boolean
+  loading = true
   pdfSource: any
   @ViewChild('input') inputRef: ElementRef
   addingNewModelForm!: FormGroup;
@@ -32,14 +33,19 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   isNew: boolean = true
   updateName: boolean = false
   updateImage: boolean = false
-  image: File
+  image: File | undefined
   parentFile: File
   pdfStr: boolean
   searchString = '.pdf'
 
   btnBack() {
     this.loading = true
-    window.history.back()
+    if(this.parent.parent_equipment_id != null) {
+      this.router.navigate(['adding-equipment/' + this.parent.parent_equipment_id])
+    }
+    else {
+      this.router.navigate(['list-of-equipment'])
+    }
   }
 
   btnUpdateImage() {
@@ -55,13 +61,14 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
         this.image
       ).subscribe({
         next: (res: any) => {
+          this.image = undefined
           this.router.navigate(['adding-equipment/' + res])
           this.toastrService.success('Создана новая модель')
           this.ifNotIsNew()
         }
       })
     }
-    if (this.isNew == false && this.updateImage) {
+    if (this.isNew == false && this.updateImage && this.image) {
       this.addingComponentService.upgradeImage(
         this.parent_equipment_id,
         this.image
@@ -69,6 +76,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
         next: () => {
           this.inputRef.nativeElement.value = ''
           this.updateImage = false
+          this.image = undefined
           this.toastrService.success('Схема обновлена')
           this.getParentPart()
         }
@@ -92,7 +100,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getAllPart(this.parent_equipment_id).subscribe((part) => {
       if (part) {
         this.part = part.data
-        console.log('getAllPart')
       }
     })
   }
@@ -104,7 +111,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
-        console.log('getParentPart')
         this.loading = false
         this.addingNewModelForm.patchValue(this.parent)
         if (this.parent.image_plan_reference != null) {
@@ -140,7 +146,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   onFileUpload(event: any) {
     this.updateImage = true
     this.image = event.target.files[0]
-
   }
 
   ifNotIsNew() {
@@ -148,7 +153,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
       this.route.params.subscribe(params => {
         this.parent_equipment_id = params['id']
         if (this.parent_equipment_id != 0) {
-          console.log('IFNOTISNEW')
           this.getAllPart()
           this.getParentPart()
         }
@@ -167,6 +171,9 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
         this.isNew = false
       }
     })
+    if(this.isNew) {
+      this.loading = false
+    }
 
     if (this.isNew == false) {
       this.ifNotIsNew()
