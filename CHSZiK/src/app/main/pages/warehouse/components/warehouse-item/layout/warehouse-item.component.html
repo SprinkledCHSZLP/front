@@ -1,0 +1,258 @@
+<!--<mat-spinner class="loading"></mat-spinner>-->
+<div>
+  <div class="wrapper">
+    <div class="head">
+      <button mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><mat-icon>arrow_back_ios</mat-icon>Назад</button>
+      <div class="header">
+        <div class="header__name">Наименование</div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="container">
+      <div class="setting">
+        <div class="setting__settings">
+          <div *ngIf="!isUpgradePrice" class="setting__settings-price">
+            <div class="setting__settings-name">Цена</div>
+            <div (click)="OpenUpgradePrice()" class="border" matTooltip="Редактировать">
+              <mat-icon class="size-icon">edit</mat-icon>
+            </div>
+          </div>
+
+          <form *ngIf="isUpgradePrice" class="setting__settings-price">
+            <mat-form-field class="example-full-width">
+              <mat-label>Цена</mat-label>
+              <input type="text" formControlName="price" matInput placeholder="Введите цену">
+            </mat-form-field>
+            <button (click)="upgradePrice()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
+              <mat-icon class="size-icon">done</mat-icon>
+<!--              <img src="../../../../../../../assets/img/icons8.gif" alt="">-->
+            </button>
+          </form>
+
+          <div *ngIf="!isUpgradeManufacturer" class="setting__settings-manufacturer">
+            <div class="setting__settings-name">Производитель</div>
+            <div (click)="OpenUpgradeManufacturer()" class="border" matTooltip="Редактировать">
+              <mat-icon class="size-icon">edit</mat-icon>
+            </div>
+          </div>
+
+          <form *ngIf="isUpgradeManufacturer" class="setting__settings-manufacturer">
+            <mat-form-field class="example-full-width">
+              <mat-label>Производитель</mat-label>
+              <input type="text" formControlName="manufacturer" matInput placeholder="Введите производителя">
+            </mat-form-field>
+            <button (click)="upgradeManufacturer()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
+              <mat-icon class="size-icon">done</mat-icon>
+            </button>
+          </form>
+
+          <div *ngIf="!isUpgradeArticle" class="setting__settings-article">
+            <div class="setting__settings-name">123123123</div>
+            <div (click)="OpenUpgradeArticle()" class="border" matTooltip="Редактировать">
+              <mat-icon class="size-icon">edit</mat-icon>
+            </div>
+          </div>
+
+          <form *ngIf="isUpgradeArticle" class="setting__settings-article">
+            <mat-form-field class="example-full-width">
+              <mat-label>Артикул</mat-label>
+              <input type="text" formControlName="article" matInput placeholder="Введите артикул">
+            </mat-form-field>
+            <button (click)="upgradeArticle()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
+              <mat-icon class="size-icon">done</mat-icon>
+            </button>
+          </form>
+        </div>
+
+        <div class="setting__reliability">
+          <div class="setting__reliability-header">Средний срок службы</div>
+          <div class="setting__reliability-content">123 дн.</div>
+        </div>
+
+      </div>
+
+      <div class="container__btns">
+        <button mat-raised-button color="accent" class="container__btns-btn">Пополнить</button>
+        <button mat-raised-button color="accent" class="container__btns-btn">фильтр</button>
+      </div>
+
+      <div class="item-list">
+        <div class="item item__header">
+          <div class="item__element item__element-id bg-header">Id</div>
+          <div class="item__element item__element-date bg-header">Дата поступления на склад</div>
+          <div class="item__element item__element-date bg-header">Дата установки</div>
+          <div class="item__element item__element-name bg-header">Наименование станка (позиция)</div>
+          <div class="item__element item__element-date bg-header">Дата снятия</div>
+          <div class="item__element item__element-date bg-header">Статус</div>
+          <div class="item__element item__element-reason bg-header">Причина снятия</div>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+
+        <div class="item">
+          <div class="item__element item__element-id">1234</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-name">Элеватор ленточный стационарный ЭЛС 320
+            (позиция 1)</div>
+          <div class="item__element item__element-date">21.22.2012</div>
+          <div class="item__element item__element-date">Статус</div>
+          <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

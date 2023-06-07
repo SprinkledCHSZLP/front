@@ -1,0 +1,57 @@
+<!--<mat-spinner class="loading"></mat-spinner>-->
+<div>
+  <div class="wrapper">
+    <div class="head">
+      <div class="head__header"><span class="head__header-name">Склад</span></div>
+      <div class="head__search">
+        <mat-form-field class="example-full-width">
+          <mat-label>Поиск</mat-label>
+          <input type="text" matInput placeholder="Введите наименование">
+        </mat-form-field>
+      </div>
+      <div class="head__btns">
+        <button mat-raised-button color="accent" class="head__btn" (click)="btnOpenModal()">Добавить</button>
+        <button class="head__btn" mat-raised-button color="accent">Показать отсуствующие</button>
+      </div>
+
+      <div class="container">
+        <div class="item-list">
+          <div class="item item__name" matTooltip="Наименование">Наименование запчасти</div>
+          <div class="item item__article" matTooltip="Артикул">Артикул</div>
+          <div class="item item__price" matTooltip="Цена">Цена</div>
+          <div class="item item__manufacturer" matTooltip="Производитель">Производитель</div>
+          <div class="item item-quantity">
+            <div class="item-quantity__number" matTooltip="Колличество">123</div>
+            <div class="item-quantity__measurement" matTooltip="Измерение">Кг</div>
+          </div>
+          <mat-icon matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
+        </div>
+
+        <div class="item-list">
+          <div class="item item__name">Наименование запчасти</div>
+          <div class="item item__article">Артикул</div>
+          <div class="item item__price">Цена</div>
+          <div class="item item__manufacturer">Производитель</div>
+          <div class="item item-quantity">
+            <div class="item-quantity__number">123</div>
+            <div class="item-quantity__measurement">Кг</div>
+          </div>
+          <mat-icon matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
+        </div>
+
+        <div class="item-list">
+          <div class="item item__name">Наименование запчасти</div>
+          <div class="item item__article">Артикул</div>
+          <div class="item item__price">Цена</div>
+          <div class="item item__manufacturer">Производитель</div>
+          <div class="item item-quantity">
+            <div class="item-quantity__number">123</div>
+            <div class="item-quantity__measurement">Кг</div>
+          </div>
+          <mat-icon matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-modal-creating-item-in-warehouse *ngIf="openModal"></app-modal-creating-item-in-warehouse>
+</div>

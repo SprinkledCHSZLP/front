@@ -18,6 +18,14 @@ const routes: Routes = [
         loadChildren: () => import('./pages/list-of-location/list-of-location.module').then(m => m.ListOfLocationModule)
       }
     ]
+  },
+  {
+    path: '', component: WrapperComponent, children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/warehouse/warehouse.module').then(m => m.WarehouseModule)
+      }
+    ]
   }
 ];
 

@@ -1,6 +1,6 @@
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .container {
@@ -13,7 +13,7 @@
   .content {
     background-color: white;
     width: 500px;
-    height: 170px;
+    height: 280px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -40,17 +40,21 @@
       }
     }
 
-
-    .content__name {
-      align-self: center;
-      margin-top: 10px;
+    .content__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       font-size: 16px;
 
       .example-full-width {
+        margin-top: 10px;
         width: 450px;
         height: 45px;
         border-radius: 5px;
         box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+      }
+      .mt15px {
+        margin-top: 15px;
       }
     }
 

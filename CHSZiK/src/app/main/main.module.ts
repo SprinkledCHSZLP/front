@@ -15,10 +15,13 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
+import {WarehouseModule} from "./pages/warehouse/warehouse.module";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
-  declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent],
-    imports: [CommonModule, MainRoutingModule, ListOfEquipmentModule, ReactiveFormsModule, ListOfLocationModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule]
+  declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent],
+    imports: [CommonModule, MainRoutingModule, ListOfEquipmentModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule]
 })
 export class MainModule {
 }
