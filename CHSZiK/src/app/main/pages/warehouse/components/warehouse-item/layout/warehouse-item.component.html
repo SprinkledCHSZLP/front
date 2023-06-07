@@ -22,7 +22,7 @@
           <form *ngIf="isUpgradePrice" class="setting__settings-price">
             <mat-form-field class="example-full-width">
               <mat-label>Цена</mat-label>
-              <input type="text" formControlName="price" matInput placeholder="Введите цену">
+              <input type="text" matInput placeholder="Введите цену">
             </mat-form-field>
             <button (click)="upgradePrice()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
               <mat-icon class="size-icon">done</mat-icon>
@@ -40,7 +40,7 @@
           <form *ngIf="isUpgradeManufacturer" class="setting__settings-manufacturer">
             <mat-form-field class="example-full-width">
               <mat-label>Производитель</mat-label>
-              <input type="text" formControlName="manufacturer" matInput placeholder="Введите производителя">
+              <input type="text" matInput placeholder="Введите производителя">
             </mat-form-field>
             <button (click)="upgradeManufacturer()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
               <mat-icon class="size-icon">done</mat-icon>
@@ -57,7 +57,7 @@
           <form *ngIf="isUpgradeArticle" class="setting__settings-article">
             <mat-form-field class="example-full-width">
               <mat-label>Артикул</mat-label>
-              <input type="text" formControlName="article" matInput placeholder="Введите артикул">
+              <input type="text" matInput placeholder="Введите артикул">
             </mat-form-field>
             <button (click)="upgradeArticle()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
               <mat-icon class="size-icon">done</mat-icon>

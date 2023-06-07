@@ -4,7 +4,6 @@ import {MainRoutingModule} from "./main-routing.module";
 import {WrapperComponent} from "./components/wrapper/wrapper.component";
 import {HeaderComponent} from "./pages/header/header.component";
 import {ListOfEquipmentComponent} from "./pages/list-of-equipment/layout/list-of-equipment.component";
-import {ListOfEquipmentModule} from "./pages/list-of-equipment/list-of-equipment.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ListOfLocationComponent} from "./pages/list-of-location/layout/list-of-location.component";
 import {ListOfLocationModule} from "./pages/list-of-location/list-of-location.module";
@@ -18,10 +17,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
 import {WarehouseModule} from "./pages/warehouse/warehouse.module";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {ListOfEquipmentModule} from "./pages/list-of-equipment/list-of-equipment.module";
 
 @NgModule({
   declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent],
-    imports: [CommonModule, MainRoutingModule, ListOfEquipmentModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule]
+  imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule, ListOfEquipmentModule]
 })
 export class MainModule {
 }

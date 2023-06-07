@@ -2,12 +2,14 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {ActivatedRoute, Router} from "@angular/router";
 import {IPart} from "../../../../../../models/part-equipment";
 import {ListOfEquipmentService} from "../../../services/list-of-equipment.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpEventType, HttpRequest} from "@angular/common/http";
 import {AddingComponentService} from "../services/adding-component.service";
 import {Subscription} from "rxjs";
 import {IParentPart} from "../../../../../../models/parent-part-equipment";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {query} from "@angular/animations";
+import * as docx from 'docx-preview'
 
 @Component({
   selector: 'app-adding-equipment',
@@ -20,7 +22,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private listOfEquipmentService: ListOfEquipmentService,
               private http: HttpClient, private addingComponentService: AddingComponentService, private toastrService: ToastrService) {
   }
-
+  @ViewChild('render') render: ElementRef
   // loading: boolean
   loading = true
   pdfSource: any
@@ -35,8 +37,9 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   updateImage: boolean = false
   image: File | undefined
   parentFile: File
-  pdfStr: boolean
-  searchString = '.pdf'
+  pdfStr: boolean = false
+  docx: boolean = false
+  // searchString = '.pdf'
 
   btnBack() {
     this.loading = true
@@ -111,11 +114,19 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
+        // this.getContactsDictionary(parent.data.image_plan_reference)
         this.loading = false
         this.addingNewModelForm.patchValue(this.parent)
         if (this.parent.image_plan_reference != null) {
           this.isParentImagePlanReference = true
-          this.pdfStr = this.parent.image_plan_reference.includes(this.searchString)
+          if (this.parent.image_plan_reference.includes('.docx')) {
+            this.getContactsDictionary(parent.data.image_plan_reference)
+            this.docx = true
+          }
+          if (this.parent.image_plan_reference.includes('.pdf')) {
+            this.pdfStr = true
+          }
+
         }
       }
     })
@@ -160,6 +171,10 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     )
   }
 
+  scroll() {
+
+  }
+
   ngOnInit() {
     this.addingNewModelForm = new FormGroup({
       equipment_name: new FormControl('', Validators.required),
@@ -182,5 +197,34 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe()
+  }
+
+
+  getContactsDictionary(url: string) {
+    const req = new HttpRequest(
+      'GET',
+      url,
+      {
+        reportProgress: true,
+        responseType: 'blob',
+      }
+    )
+
+    this.http
+      .request(req)
+      .subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            console.log('Sent')
+            break
+          case HttpEventType.DownloadProgress:
+            console.log(
+              `Downloading: ${event.loaded / 1024}Kb`
+            )
+            break
+          case HttpEventType.Response:
+            docx.renderAsync(event.body, this.render.nativeElement, undefined, {inWrapper: false} )
+        }
+      })
   }
 }

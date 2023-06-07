@@ -26,13 +26,14 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {SafePipe} from "./pipes/safe.pipe";
 
 @NgModule({
-  declarations: [ModalPositionComponent, AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent],
+  declarations: [SafePipe, ModalPositionComponent, AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent],
   exports: [
     ListOfEquipmentModelsComponent
   ],
-    imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule, PdfViewerModule, FormsModule, NgxExtendedPdfViewerModule, MatDialogModule, MatButtonModule, MatTooltipModule, MatIconModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule]
+  imports: [CommonModule, ListOfEquipmentRoutingModule, ReactiveFormsModule, PdfViewerModule, FormsModule, NgxExtendedPdfViewerModule, MatDialogModule, MatButtonModule, MatTooltipModule, MatIconModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule]
 })
 export class ListOfEquipmentModule {
 }
