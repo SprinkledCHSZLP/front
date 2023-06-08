@@ -39,6 +39,11 @@
   cursor: pointer;
   width: 45px;
   height: 45px;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .wrapper {
@@ -109,11 +114,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.size-icon {
-  font-size: 32px;
-  width: auto;
-  height: auto;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .upgrade-setting-component__checkboxs {

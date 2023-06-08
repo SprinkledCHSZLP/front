@@ -2,7 +2,7 @@
 <div>
   <div class="wrapper">
     <div class="head">
-      <button mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><mat-icon>arrow_back_ios</mat-icon>Назад</button>
+      <button mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><img src="../../../../../../../assets/img/back.png" alt="">Назад</button>
       <div class="header">
         <div class="header__name">Наименование</div>
       </div>
@@ -15,7 +15,7 @@
           <div *ngIf="!isUpgradePrice" class="setting__settings-price">
             <div class="setting__settings-name">Цена</div>
             <div (click)="OpenUpgradePrice()" class="border" matTooltip="Редактировать">
-              <mat-icon class="size-icon">edit</mat-icon>
+              <img src="../../../../../../../assets/img/change.png" alt="">
             </div>
           </div>
 
@@ -25,15 +25,14 @@
               <input type="text" matInput placeholder="Введите цену">
             </mat-form-field>
             <button (click)="upgradePrice()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
-              <mat-icon class="size-icon">done</mat-icon>
-<!--              <img src="../../../../../../../assets/img/icons8.gif" alt="">-->
+              <img src="../../../../../../../assets/img/done.png" alt="">
             </button>
           </form>
 
           <div *ngIf="!isUpgradeManufacturer" class="setting__settings-manufacturer">
             <div class="setting__settings-name">Производитель</div>
             <div (click)="OpenUpgradeManufacturer()" class="border" matTooltip="Редактировать">
-              <mat-icon class="size-icon">edit</mat-icon>
+              <img src="../../../../../../../assets/img/change.png" alt="">
             </div>
           </div>
 
@@ -43,14 +42,14 @@
               <input type="text" matInput placeholder="Введите производителя">
             </mat-form-field>
             <button (click)="upgradeManufacturer()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
-              <mat-icon class="size-icon">done</mat-icon>
+              <img src="../../../../../../../assets/img/done.png" alt="">
             </button>
           </form>
 
           <div *ngIf="!isUpgradeArticle" class="setting__settings-article">
             <div class="setting__settings-name">123123123</div>
             <div (click)="OpenUpgradeArticle()" class="border" matTooltip="Редактировать">
-              <mat-icon class="size-icon">edit</mat-icon>
+              <img src="../../../../../../../assets/img/change.png" alt="">
             </div>
           </div>
 
@@ -60,7 +59,7 @@
               <input type="text" matInput placeholder="Введите артикул">
             </mat-form-field>
             <button (click)="upgradeArticle()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
-              <mat-icon class="size-icon">done</mat-icon>
+              <img src="../../../../../../../assets/img/done.png" alt="">
             </button>
           </form>
         </div>

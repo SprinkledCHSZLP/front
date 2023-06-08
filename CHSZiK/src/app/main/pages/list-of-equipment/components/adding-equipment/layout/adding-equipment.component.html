@@ -3,13 +3,15 @@
   <div class="wrapper" *ngIf="parent || isNew">
     <div class="head">
       <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">
-        <mat-icon>arrow_back_ios</mat-icon>
+<!--        <mat-icon>arrow_back_ios</mat-icon>-->
+        <img src="../../../../../../../assets/img/back.png" alt="">
         Назад
       </button>
       <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent.equipment_name}}</p>
         <div class="border" matTooltip="Редактировать" (click)="btnUpgradeHeadName()">
-          <mat-icon class="size-icon">edit</mat-icon>
+<!--          <mat-icon class="size-icon">edit</mat-icon>-->
+          <img src="../../../../../../../assets/img/change.png" alt="">
         </div>
       </div>
       <div [formGroup]="addingNewModelForm">
@@ -34,8 +36,9 @@
         </div>
         <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change"
                 *ngIf="isParentImagePlanReference">
+          <img src="../../../../../../../assets/img/change.png" alt="">
           Редактировать
-          <mat-icon class="size-icon">edit</mat-icon>
+<!--          <mat-icon class="size-icon">edit</mat-icon>-->
         </button>
       </div>
       <div class="adding-component" *ngIf="parent_equipment_id != 0">

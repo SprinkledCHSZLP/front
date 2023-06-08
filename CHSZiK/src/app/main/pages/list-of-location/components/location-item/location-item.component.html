@@ -3,7 +3,7 @@
     <div class="flex">
       <div (click)="openLocaton(location.id, location.have_child_location)" *ngIf="!isChange" class="item-list__item-name">{{location.name_location}}</div>
       <div *ngIf="!isChange" class="border" matTooltip="Редактировать" (click)="openChange()">
-        <mat-icon class="size-icon">edit</mat-icon>
+        <img src="../../../../../../assets/img/change.png" alt="">
       </div>
     </div>
 
@@ -13,7 +13,7 @@
         <input type="text" formControlName="name_location" [(ngModel)]="location.name_location" matInput placeholder="Введите наименование">
       </mat-form-field>
       <button [disabled]="changeLocationForm.invalid" *ngIf="isChange" (click)="saveChange()" matTooltip="Сохранить" class="item-list__button-apply" mat-fab color="accent" aria-label="Example fab with a heart icon">
-        <mat-icon class="size-icon">done</mat-icon>
+        <img src="../../../../../../assets/img/done.png" alt="">
       </button>
     </div>
 

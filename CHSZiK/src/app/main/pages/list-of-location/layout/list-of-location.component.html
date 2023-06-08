@@ -5,7 +5,8 @@
   <div class="wrapper">
     <div class="head">
       <div class="head__header" *ngIf="isMainList">Локации</div>
-      <button *ngIf="isMainList == false" mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><mat-icon>arrow_back_ios</mat-icon>Назад</button>
+      <button *ngIf="isMainList == false" mat-raised-button color="accent" class="btn-back" (click)="btnBack()"><img
+        src="../../../../../assets/img/back.png" alt="">Назад</button>
       <div class="head__header" *ngIf="isMainList == false && parentLocation">{{parentLocation.name_location}}</div>
       <button mat-raised-button color="accent" class="head__btn-adding" (click)="btnOpenModal()">Добавить</button>
 

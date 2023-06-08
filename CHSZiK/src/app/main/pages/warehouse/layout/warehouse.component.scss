@@ -73,6 +73,13 @@
       height: 50px;
       margin-top: 10px;
 
+      .item-list__img-delete {
+        margin-left: 12px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+      }
+
       .item {
         padding: 5px;
         border-radius: 5px;

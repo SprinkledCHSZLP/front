@@ -52,11 +52,9 @@
       height: 30px;
       border-radius: 50px;
 
-      mat-icon {
-        margin: 0 auto;
-        font-size: 24px;
-        width: auto;
-        height: auto;
+      img {
+        width: 25px;
+        height: 25px;
       }
     }
 
@@ -109,11 +107,9 @@
   margin-left: 5px;
   border-radius: 5px;
 
-  mat-icon {
-    margin: 0 auto;
-    font-size: 24px;
-    width: auto;
-    height: auto;
+  img {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -128,6 +124,11 @@
   cursor: pointer;
   width: 35px;
   height: 35px;
+
+  img {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 .loading {

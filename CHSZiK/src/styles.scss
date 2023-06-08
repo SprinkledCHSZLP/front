@@ -27,6 +27,18 @@ button {
 .mdc-button {
   font-size: 16px;
   font-weight: 400;
+
+  .mdc-button__label {
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+  }
+}
+
+.mat-mdc-fab .mdc-button__label {
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
 }
 //$color: black;
 

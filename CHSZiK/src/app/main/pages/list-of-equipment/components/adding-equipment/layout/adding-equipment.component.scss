@@ -207,10 +207,10 @@
   align-items: center;
   border-radius: 5px;
 
-  .size-icon {
-    font-size: 32px;
-    width: auto;
-    height: auto;
+  img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -258,10 +258,9 @@ input.active {
   align-items: center;
   border-radius: 5px;
 
-  .size-icon {
-    font-size: 32px;
-    width: auto;
-    height: auto;
+  img {
+    height: 40px;
+    width: 40px;
   }
 }
 
@@ -312,6 +311,11 @@ input.active {
   cursor: pointer;
   width: 45px;
   height: 45px;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .head-name {

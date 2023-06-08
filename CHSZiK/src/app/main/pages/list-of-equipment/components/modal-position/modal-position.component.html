@@ -2,8 +2,8 @@
   <div class="content">
     <div class="content__control-btn">
       <div></div>
-      <button mat-raised-button color="accent" matTooltip="Закрыть" class="content__button-control"
-              (click)="btnCloseModal()"><mat-icon>close</mat-icon></button>
+      <button mat-raised-button color="warn" matTooltip="Закрыть" class="content__button-control"
+              (click)="btnCloseModal()"><img src="../../../../../../assets/img/close.png" alt=""></button>
     </div>
 
     <ng-container>
@@ -19,7 +19,7 @@
   <div class="item-list" *ngFor="let position of positionsArr">
     <div class="item-list__flex">
       <div class="item-list__item">{{position.position}}</div>
-      <mat-icon *ngIf="position.group_id" (click)="deletePosition(position.group_id)" matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
+      <img *ngIf="position.group_id" (click)="deletePosition(position.group_id)" matTooltip="Удалить" class="item-list__img-delete" src="../../../../../../assets/img/delete.png" alt="">
     </div>
   </div>
   <form [formGroup]="addingPositionForm" class="item-list__create">
@@ -28,7 +28,7 @@
       <input type="text" formControlName="position" matInput placeholder="Введите наименование">
     </mat-form-field>
     <button [disabled]="addingPositionForm.invalid" (click)="addingNewPosition()" matTooltip="Создать" class="item-list__button" mat-fab color="accent">
-      <mat-icon class="size-icon">done</mat-icon>
+      <img src="../../../../../../assets/img/done.png" alt="">
     </button>
   </form>
 </ng-template>

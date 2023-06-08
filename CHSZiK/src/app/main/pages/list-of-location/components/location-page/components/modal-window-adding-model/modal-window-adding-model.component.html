@@ -1,10 +1,11 @@
 <div class="container">
   <div class="content">
     <div class="content__control-btn">
-      <button (click)="back()" mat-raised-button color="accent" matTooltip="Назад" class="content__button-control" *ngIf="!isModels"><mat-icon>arrow_back_ios</mat-icon></button>
+      <button (click)="back()" mat-raised-button color="accent" matTooltip="Назад" class="content__button-control" *ngIf="!isModels">
+        <img src="../../../../../../../../assets/img/back.png" alt=""></button>
       <div *ngIf="isModels"></div>
-      <button mat-raised-button color="accent" matTooltip="Закрыть" class="content__button-control"
-              (click)="btnCloseModal()"><mat-icon>close</mat-icon></button>
+      <button mat-raised-button color="warn" matTooltip="Закрыть" class="content__button-control"
+              (click)="btnCloseModal()"><img src="../../../../../../../../assets/img/close.png" alt=""></button>
     </div>
 
     <ng-container *ngIf="isModels; else position">
@@ -21,7 +22,7 @@
     <div class="item-list__flex">
       <div class="item-list__item">{{position.position}}</div>
       <button (click)="addPositionInLocation(position.id)" matTooltip="Добавить" class="item-list__button" mat-fab color="accent">
-        <mat-icon class="size-icon">add</mat-icon>
+        <img src="../../../../../../../../assets/img/add.png" alt="">
       </button>
     </div>
   </div>
@@ -31,7 +32,7 @@
       <input type="text" formControlName="position" matInput placeholder="Введите наименование">
     </mat-form-field>
     <button [disabled]="addingPositionForm.invalid" (click)="addingNewPosition()" matTooltip="Создать" class="item-list__button" mat-fab color="accent">
-      <mat-icon class="size-icon">done</mat-icon>
+      <img src="../../../../../../../../assets/img/done.png" alt="">
     </button>
   </form>
 </ng-template>
@@ -43,7 +44,7 @@
     <div class="item-list__flex">
       <div (click)="openPositionsOfModel(model.id)" class="item-list__item">{{model.equipment_name}}</div>
       <div (click)="openAddingEquipment(model.id)" class="border" matTooltip="Редактировать">
-        <mat-icon class="size-icon">edit</mat-icon>
+        <img src="../../../../../../../../assets/img/change.png" alt="">
       </div>
     </div>
   </div>
@@ -53,7 +54,7 @@
       <input type="text" formControlName="equipment_name" matInput placeholder="Введите наименование">
     </mat-form-field>
     <button [disabled]="addingModelForm.invalid" (click)="addingNewModel()" matTooltip="Создать" class="item-list__button" mat-fab color="accent">
-      <mat-icon class="size-icon">done</mat-icon>
+      <img src="../../../../../../../../assets/img/done.png" alt="">
     </button>
   </form>
 </ng-template>
