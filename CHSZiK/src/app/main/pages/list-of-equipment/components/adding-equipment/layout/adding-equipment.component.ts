@@ -8,7 +8,6 @@ import {Subscription} from "rxjs";
 import {IParentPart} from "../../../../../../models/parent-part-equipment";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {query} from "@angular/animations";
 import * as docx from 'docx-preview'
 
 @Component({
@@ -23,7 +22,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
               private http: HttpClient, private addingComponentService: AddingComponentService, private toastrService: ToastrService) {
   }
   @ViewChild('render') render: ElementRef
-  // loading: boolean
   loading = true
   pdfSource: any
   @ViewChild('input') inputRef: ElementRef
@@ -39,12 +37,18 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   parentFile: File
   pdfStr: boolean = false
   docx: boolean = false
-  // searchString = '.pdf'
 
   btnBack() {
+    this.docx = false
+    this.pdfStr = false
     this.loading = true
-    if(this.parent.parent_equipment_id != null) {
-      this.router.navigate(['adding-equipment/' + this.parent.parent_equipment_id])
+    if (this.parent) {
+      if(this.parent.parent_equipment_id != null) {
+        this.router.navigate(['adding-equipment/' + this.parent.parent_equipment_id])
+      }
+      if(this.parent.parent_equipment_id == null) {
+        this.router.navigate(['list-of-equipment'])
+      }
     }
     else {
       this.router.navigate(['list-of-equipment'])
@@ -57,6 +61,8 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   }
 
   saveNewModel() {
+    this.docx = false
+    this.pdfStr = false
     if (this.isNew) {
       this.loading = true
       this.addingComponentService.createNewParentPart(
@@ -114,7 +120,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
-        // this.getContactsDictionary(parent.data.image_plan_reference)
         this.loading = false
         this.addingNewModelForm.patchValue(this.parent)
         if (this.parent.image_plan_reference != null) {

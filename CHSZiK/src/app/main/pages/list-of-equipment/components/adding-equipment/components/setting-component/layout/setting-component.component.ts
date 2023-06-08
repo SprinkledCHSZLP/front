@@ -47,6 +47,8 @@ export class SettingComponentComponent implements OnInit{
   }
 
   openSettings() {
+    this.addingEquipmentComponent.docx = false
+    this.addingEquipmentComponent.pdfStr = false
     this.addingEquipmentComponent.loading = true
     this.router.navigate(['adding-equipment', this.part.id])
   }
