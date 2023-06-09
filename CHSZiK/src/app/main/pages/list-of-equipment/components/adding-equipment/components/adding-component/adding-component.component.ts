@@ -1,9 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
 import {IPart} from "../../../../../../../models/part-equipment";
-import {ListOfEquipmentService} from "../../../../services/list-of-equipment.service";
 
 @Component({
   selector: 'app-adding-component',

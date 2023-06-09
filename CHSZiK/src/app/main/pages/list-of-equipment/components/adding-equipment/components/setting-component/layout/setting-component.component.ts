@@ -58,6 +58,7 @@ export class SettingComponentComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    console.log('asdasasd', this.part)
     this.upgradeComponentForm = new FormGroup({
       position_on_plan: new FormControl(''),
       equipment_name: new FormControl('', [Validators.required]),

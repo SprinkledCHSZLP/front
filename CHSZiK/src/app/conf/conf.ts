@@ -1,4 +1,5 @@
 export const BASE_URL = 'http://192.168.0.117:8080'
+// export const BASE_URL = 'http://127.0.0.1:8000'
 // export const BASE_URL = 'http://195.161.68.107'
 
 export const CHECKTOKEN_URL = BASE_URL + '/api/check_token'
@@ -9,10 +10,11 @@ export const DELETEPART_URL = BASE_URL + '/api/delete_equipment?id='
 export const PARENTPART_URL = BASE_URL + '/api/equipment_data?parent_equipment_id='
 export const ALLPART_URL = BASE_URL + '/api/equipment_child?parent_equipment_id='
 export const NEWPARENTPART_URL = BASE_URL + '/api/add_equipment'
-export const UPGRADEIMAGE_URL = BASE_URL + '/api/change_image'
 export const UPGRADENAME_URL = BASE_URL + '/api/change_name'
 export const ALLMODELS_URL = BASE_URL + '/api/equipment'
 export const DELETEMODEL_URL = BASE_URL + '/api/delete_equipment?id='
+export const ADDFILE_URL = BASE_URL + '/api/add_file'
+export const DELETEFILE_URL = BASE_URL + '/api/delete_file?id='
 
 export const ADDINGLOCATION_URL = BASE_URL + '/api/add_location'
 export const ALLLOCATION_URL = BASE_URL + '/api/location?id='

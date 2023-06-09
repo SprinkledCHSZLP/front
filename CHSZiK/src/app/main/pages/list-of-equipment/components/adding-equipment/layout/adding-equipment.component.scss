@@ -214,6 +214,10 @@
   }
 }
 
+.add-file {
+  display: none;
+}
+
 input.active {
   display: none;
 }
@@ -235,10 +239,29 @@ input.active {
   width: 650px;
   height: 850px;
   border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 5px;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent;
+}
+.adding-img-model-line {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.content{
+  display: inline-block;
+}
+
+.btn-controll {
+  margin-top: 10px;
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+  button {
+    height: 25px;
+    width: 25px;
+  }
 }
 
 .model-img {
@@ -356,11 +379,11 @@ pdf-viewer {
   border: 1px solid black;
 }
 
-.size-icon {
-  font-size: 32px;
-  width: auto;
-  height: auto;
-}
+//.size-icon {
+//  font-size: 32px;
+//  width: auto;
+//  height: auto;
+//}
 
 .render {
   overflow: auto;

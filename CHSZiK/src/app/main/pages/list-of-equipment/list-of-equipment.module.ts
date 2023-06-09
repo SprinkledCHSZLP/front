@@ -26,9 +26,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {
+  ViewingModelFilesComponent
+} from "./components/adding-equipment/components/viewing-model-files/viewing-model-files.component";
 
 @NgModule({
-  declarations: [ModalPositionComponent, AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent],
+  declarations: [ModalPositionComponent, AddingEquipmentComponent, AddingComponentComponent, SettingComponentComponent, ListOfEquipmentModelsComponent, MaintenanceSheetEditingComponent, ViewingModelFilesComponent],
   exports: [
     ListOfEquipmentModelsComponent
   ],

@@ -1,16 +1,71 @@
+<!--<mat-spinner *ngIf="loading" class="loading"></mat-spinner>-->
+<!--<div *ngIf="!loading">-->
+<!--  <div class="wrapper" *ngIf="parent || isNew">-->
+<!--    <div class="head">-->
+<!--      <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">-->
+<!--        <img src="../../../../../../../assets/img/back.png" alt="">-->
+<!--        Назад-->
+<!--      </button>-->
+<!--      <div *ngIf="!isNew && updateName == false" class="head-name">-->
+<!--        <p class="head__name">{{parent.equipment_name}}</p>-->
+<!--        <div class="border" matTooltip="Редактировать" (click)="btnUpgradeHeadName()">-->
+<!--          <img src="../../../../../../../assets/img/change.png" alt="">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div [formGroup]="addingNewModelForm">-->
+<!--        <mat-form-field *ngIf="isNew || updateName == true" class="example-full-width">-->
+<!--          <mat-label>Наименование</mat-label>-->
+<!--          <input type="text" formControlName="equipment_name" matInput placeholder="Введите наименование">-->
+<!--        </mat-form-field>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="container">-->
+<!--      <div class="model-img">-->
+<!--        <div class="adding-img-model">-->
+<!--          <input [class.active]="isParentImagePlanReference" #input (change)="onFileUpload($event)" type="file">-->
+<!--          <img *ngIf="isParentImagePlanReference && pdfStr == false && docx == false" class="img-model"-->
+<!--               [src]="parent.image_plan_reference" alt="">-->
+<!--          <div class="pfd-container" *ngIf="isParentImagePlanReference && pdfStr">-->
+<!--            <pdf-viewer [src]="parent.image_plan_reference"-->
+<!--                        [original-size]="false"-->
+<!--            ></pdf-viewer>-->
+<!--          </div>-->
+<!--          <div *ngIf="isParentImagePlanReference && docx" class="render" #render></div>-->
+<!--        </div>-->
+<!--        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change"-->
+<!--                *ngIf="isParentImagePlanReference">-->
+<!--          <img src="../../../../../../../assets/img/change.png" alt="">-->
+<!--          Редактировать-->
+<!--&lt;!&ndash;          <mat-icon class="size-icon">edit</mat-icon>&ndash;&gt;-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="adding-component" *ngIf="parent_equipment_id != 0">-->
+<!--        <div class="adding-component__content">-->
+<!--          <app-setting-component (send)="upgradePart($event)" *ngFor="let part of part"-->
+<!--                                 [part]="part"></app-setting-component>-->
+<!--          <app-adding-component (send)="addingPart($event)"></app-adding-component>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="save">-->
+<!--      <button (click)="saveNewModel()" [disabled]="addingNewModelForm.invalid" mat-raised-button color="accent"-->
+<!--              class="save__btn">Сохранить-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
 <mat-spinner *ngIf="loading" class="loading"></mat-spinner>
 <div *ngIf="!loading">
   <div class="wrapper" *ngIf="parent || isNew">
     <div class="head">
       <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">
-<!--        <mat-icon>arrow_back_ios</mat-icon>-->
         <img src="../../../../../../../assets/img/back.png" alt="">
         Назад
       </button>
       <div *ngIf="!isNew && updateName == false" class="head-name">
         <p class="head__name">{{parent.equipment_name}}</p>
         <div class="border" matTooltip="Редактировать" (click)="btnUpgradeHeadName()">
-<!--          <mat-icon class="size-icon">edit</mat-icon>-->
           <img src="../../../../../../../assets/img/change.png" alt="">
         </div>
       </div>
@@ -23,22 +78,18 @@
     </div>
     <div class="container">
       <div class="model-img">
+        <input class="add-file" #input (change)="onFileUpload($event)" type="file">
         <div class="adding-img-model">
-          <input [class.active]="isParentImagePlanReference" #input (change)="onFileUpload($event)" type="file">
-          <img *ngIf="isParentImagePlanReference && pdfStr == false && docx == false" class="img-model"
-               [src]="parent.image_plan_reference" alt="">
-          <div class="pfd-container" *ngIf="isParentImagePlanReference && pdfStr">
-            <pdf-viewer [src]="parent.image_plan_reference"
-                        [original-size]="false"
-            ></pdf-viewer>
+          <div class="adding-img-model-line" #addingImgModelLine>
+            <app-viewing-model-files class="content" #content *ngFor="let parentFileArr of parentFileArr" [parentFileArr]="parentFileArr"></app-viewing-model-files>
           </div>
-          <div *ngIf="isParentImagePlanReference && docx" class="render" #render></div>
         </div>
-        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change"
-                *ngIf="isParentImagePlanReference">
-          <img src="../../../../../../../assets/img/change.png" alt="">
-          Редактировать
-<!--          <mat-icon class="size-icon">edit</mat-icon>-->
+        <div class="btn-controll" *ngIf="!isNew">
+          <button mat-fab color="accent" matTooltip="Влево" (click)="scrollRight()"><</button>
+          <button mat-fab color="accent" matTooltip="Вправо" (click)="scrollLeft()">></button>
+        </div>
+        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change">
+          Добавить
         </button>
       </div>
       <div class="adding-component" *ngIf="parent_equipment_id != 0">
@@ -56,86 +107,4 @@
     </div>
   </div>
 </div>
-
-
-<!--<mat-spinner *ngIf="loading" class="loading"></mat-spinner>-->
-<!--<div *ngIf="!loading">-->
-<!--  <div class="wrapper" *ngIf="parent || isNew">-->
-<!--    <div class="head">-->
-<!--      <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">-->
-<!--        <mat-icon>arrow_back_ios</mat-icon>-->
-<!--        Назад-->
-<!--      </button>-->
-<!--      <div *ngIf="!isNew && updateName == false" class="head-name">-->
-<!--        <p class="head__name">{{parent.equipment_name}}</p>-->
-<!--        <div class="border" matTooltip="Редактировать" (click)="btnUpgradeHeadName()">-->
-<!--          <mat-icon class="size-icon">edit</mat-icon>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div [formGroup]="addingNewModelForm">-->
-<!--        <mat-form-field *ngIf="isNew || updateName == true" class="example-full-width">-->
-<!--          <mat-label>Наименование</mat-label>-->
-<!--          <input type="text" formControlName="equipment_name" matInput placeholder="Введите наименование">-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="container">-->
-<!--&lt;!&ndash;      <div class="model-img">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="adding-img-model">&ndash;&gt;-->
-<!--&lt;!&ndash;          <input [class.active]="isParentImagePlanReference" #input (change)="onFileUpload($event)" type="file">&ndash;&gt;-->
-<!--&lt;!&ndash;          <img *ngIf="isParentImagePlanReference && pdfStr != true" class="img-model"&ndash;&gt;-->
-<!--&lt;!&ndash;               [src]="parent.image_plan_reference" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="pfd-container" *ngIf="isParentImagePlanReference && pdfStr">&ndash;&gt;-->
-<!--&lt;!&ndash;            <pdf-viewer [src]="parent.image_plan_reference"&ndash;&gt;-->
-<!--&lt;!&ndash;                        [original-size]="false"&ndash;&gt;-->
-<!--&lt;!&ndash;            ></pdf-viewer>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change"&ndash;&gt;-->
-<!--&lt;!&ndash;                *ngIf="isParentImagePlanReference">&ndash;&gt;-->
-<!--&lt;!&ndash;          Редактировать&ndash;&gt;-->
-<!--&lt;!&ndash;          <mat-icon class="size-icon">edit</mat-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;        </button>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-
-
-
-
-<!--      <div class="model-img">-->
-<!--        <div class="adding-img-model">-->
-<!--          <input [class.active]="isParentImagePlanReference" #input (change)="onFileUpload($event)" type="file">-->
-<!--&lt;!&ndash;          <img *ngIf="isParentImagePlanReference && pdfStr != true" class="img-model"&ndash;&gt;-->
-<!--&lt;!&ndash;               [src]="parent.image_plan_reference" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="pfd-container" *ngIf="isParentImagePlanReference && pdfStr">&ndash;&gt;-->
-
-<!--&lt;!&ndash;            <pdf-viewer [src]="parent.image_plan_reference"&ndash;&gt;-->
-<!--&lt;!&ndash;                        [original-size]="false"&ndash;&gt;-->
-<!--&lt;!&ndash;            ></pdf-viewer>&ndash;&gt;-->
-<!--          <div class="render" #render></div>-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--        </div>-->
-<!--        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change"-->
-<!--                *ngIf="isParentImagePlanReference">-->
-<!--          Редактировать-->
-<!--          <mat-icon class="size-icon">edit</mat-icon>-->
-<!--        </button>-->
-<!--      </div>-->
-
-
-
-<!--      <div class="adding-component" *ngIf="parent_equipment_id != 0">-->
-<!--        <div class="adding-component__content">-->
-<!--          <app-setting-component (send)="upgradePart($event)" *ngFor="let part of part"-->
-<!--                                 [part]="part"></app-setting-component>-->
-<!--          <app-adding-component (send)="addingPart($event)"></app-adding-component>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="save">-->
-<!--      <button (click)="saveNewModel()" [disabled]="addingNewModelForm.invalid" mat-raised-button color="accent"-->
-<!--              class="save__btn">Сохранить-->
-<!--      </button>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 

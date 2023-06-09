@@ -5,10 +5,11 @@ import {IPart} from "../../../../../../models/part-equipment";
 import {Observable} from "rxjs";
 import {ResponseDataParentPart, ResponseDataPart} from "../../../../../../models/response";
 import {
+  ADDFILE_URL,
   ADDINGPART_URL,
-  ALLPART_URL,
+  ALLPART_URL, DELETEFILE_URL,
   DELETEPART_URL, NEWPARENTPART_URL,
-  PARENTPART_URL, UPGRADEIMAGE_URL, UPGRADENAME_URL,
+  PARENTPART_URL, UPGRADENAME_URL,
   UPGRADEPART_URL
 } from "../../../../../../conf/conf";
 
@@ -18,6 +19,21 @@ import {
 
 export class AddingComponentService {
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+  }
+
+  addFile(image: File, equipment_id: number) {
+    const fd = new FormData()
+
+
+    fd.append('image', image)
+
+    fd.append('equipment_id', equipment_id.toString())
+
+    return this.http.post(ADDFILE_URL, fd)
+  }
+
+  deleteFile(id: any) {
+    return this.http.delete(DELETEFILE_URL + id)
   }
 
   addingPart(component: IPart) {
@@ -50,17 +66,6 @@ export class AddingComponentService {
     fd.append('equipment_name', equipment_name)
 
     return this.http.post(NEWPARENTPART_URL, fd)
-  }
-
-  upgradeImage(id: any, image: File) {
-    const fd = new FormData()
-
-    if (image) {
-      fd.append('image', image)
-    }
-    fd.append('id', id)
-
-    return this.http.post(UPGRADEIMAGE_URL, fd)
   }
 
   updateName(id: any, equipment_name: string) {
