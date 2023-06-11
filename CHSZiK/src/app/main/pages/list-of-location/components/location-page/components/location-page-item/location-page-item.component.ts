@@ -1,9 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {ListOfLocationService} from "../../../../services/list-of-location.service";
 import {IPosition} from "../../../../../../../models/position";
 import {LocationPageComponent} from "../../layout/location-page.component";
 import {ToastrService} from "ngx-toastr";
+import {HttpClient, HttpEvent, HttpEventType, HttpRequest} from "@angular/common/http";
+import * as docx from 'docx-preview'
+
 
 
 @Component({
@@ -13,16 +16,45 @@ import {ToastrService} from "ngx-toastr";
 })
 export class LocationPageItemComponent implements OnInit{
 
-  constructor(private router: Router, private listOfLocationService: ListOfLocationService, private locationPageComponent: LocationPageComponent, private toastrService: ToastrService) {
+  constructor(private router: Router, private http: HttpClient, private listOfLocationService: ListOfLocationService, private locationPageComponent: LocationPageComponent, private toastrService: ToastrService) {
   }
 
-  pdfStrModel: boolean
-  searchStringModel = '.pdf'
+  pdfStrModel: boolean = false
+  docx: boolean = false
 
 
   @Output() send: EventEmitter<number> = new EventEmitter<number>()
+  @ViewChild('render') render: ElementRef
 
   @Input() position: IPosition
+
+  getContactsDictionary(url: string) {
+    const req = new HttpRequest(
+      'GET',
+      url,
+      {
+        reportProgress: true,
+        responseType: 'blob',
+      }
+    )
+
+    this.http
+      .request(req)
+      .subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            console.log('Sent')
+            break
+          case HttpEventType.DownloadProgress:
+            console.log(
+              `Downloading: ${event.loaded / 1024}Kb`
+            )
+            break
+          case HttpEventType.Response:
+            docx.renderAsync(event.body, this.render.nativeElement, undefined, {inWrapper: false} )
+        }
+      })
+  }
 
   btnDelete(id: number) {
     this.listOfLocationService.deletePositionModel(id).subscribe(() => {
@@ -34,7 +66,14 @@ export class LocationPageItemComponent implements OnInit{
 
   ngOnInit(): void {
     if(this.position.image) {
-      this.pdfStrModel = this.position.image.includes(this.searchStringModel)
+      if (this.position.image.includes('.pdf')) {
+        this.pdfStrModel = true
+      }
+
+      if(this.position.image.includes('.docx')) {
+        this.getContactsDictionary(this.position.image)
+        this.docx = true
+      }
     }
 
   }

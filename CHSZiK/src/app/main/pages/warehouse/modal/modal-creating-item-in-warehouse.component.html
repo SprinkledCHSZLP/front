@@ -15,8 +15,13 @@
         <mat-label>Артикул</mat-label>
         <input type="text" formControlName="article" matInput placeholder="Введите артикул">
       </mat-form-field>
+      <mat-form-field class="example-full-width mt15px">
+        <mat-label>Группа</mat-label>
+        <input type="text" formControlName="group" matInput required="true" placeholder="Введите группу">
+      </mat-form-field>
     </div>
     <button [disabled]="addingNewItem.invalid" (click)="saveNewItem()" mat-raised-button color="accent" class="content__button">Добавить на склад</button>
   </div>
 </div>
+
 

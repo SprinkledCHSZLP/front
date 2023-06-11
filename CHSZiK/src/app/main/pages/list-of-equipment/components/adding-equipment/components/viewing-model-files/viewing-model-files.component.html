@@ -2,7 +2,7 @@
   <button class="btn-delete" mat-raised-button color="warn" (click)="deleteFile()">Удалить</button>
   <img *ngIf="pdfStr == false && docx == false" class="img-model"
        [src]="parentFileArr.image_plan_reference" alt="">
-  <div class="pfd-container" *ngIf=" pdfStr">
+  <div class="pfd-container" *ngIf="pdfStr">
     <pdf-viewer [src]="parentFileArr.image_plan_reference"
                 [original-size]="false"
     ></pdf-viewer>

@@ -7,12 +7,13 @@
     <button mat-raised-button color="warn" (click)="deleteModel()" class="setting">Удалить</button>
   </mat-menu>
   <div class="image-model-equipment">
-    <img [src]="models.image_plan_reference" alt="" *ngIf="pdfStrModel != true">
+    <img [src]="models.image_plan_reference" alt="" *ngIf="pdfStrModel == false && docx == false">
     <div class="container" *ngIf="pdfStrModel && models.image_plan_reference">
       <pdf-viewer [src]="models.image_plan_reference"
                   [original-size]="false"
       ></pdf-viewer>
     </div>
+    <div *ngIf="docx" class="render" #render></div>
   </div>
   <div matTooltip="Наименование модели" class="name-model-equipment">
     <span>{{models.equipment_name}} </span>

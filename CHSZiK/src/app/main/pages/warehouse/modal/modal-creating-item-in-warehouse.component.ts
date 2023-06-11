@@ -13,7 +13,6 @@ export class ModalCreatingItemInWarehouseComponent implements OnInit {
   }
   addingNewItem!: FormGroup;
 
-  // @Output() addSend: EventEmitter<ILocation> = new EventEmitter<ILocation>()
 
   btnCloseModal() {
     this.dialogRef.close()
@@ -23,19 +22,13 @@ export class ModalCreatingItemInWarehouseComponent implements OnInit {
 
   }
 
-  // saveNewItem() {
-  //   let component: ILocation = {
-  //     name_location: this.addingNewLocation.get('name_location')?.value
-  //   }
-  //   this.addSend.emit(component)
-  //   this.addingNewLocation.reset()
-  // }
 
   ngOnInit(): void {
     this.addingNewItem = new FormGroup({
       name_item: new FormControl('', [Validators.required]),
       manufacturer: new FormControl(''),
-      article: new FormControl('')
+      article: new FormControl(''),
+      group: new FormControl('' )
     })
   }
 

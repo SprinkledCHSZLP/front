@@ -262,12 +262,12 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
 
   scrollRight() {
     const wrapper = this.addingImgModelLine.nativeElement;
-    const distance = wrapper.offsetWidth / 1;
+    const distance = wrapper.offsetWidth;
     wrapper.scrollLeft -= distance;
   }
   scrollLeft() {
     const wrapper = this.addingImgModelLine.nativeElement;
-    const distance = -wrapper.offsetWidth / 1;
+    const distance = -wrapper.offsetWidth;
     wrapper.scrollLeft -= distance;
   }
 
