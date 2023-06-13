@@ -363,9 +363,7 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
     this.addingComponentService.getParentPart(this.parent_equipment_id).subscribe((parent) => {
       if (parent) {
         this.parent = parent.data
-        console.log(this.parent)
         this.parentFileArr = parent.data.list_image
-        console.log(this.parentFileArr)
         this.loading = false
         this.addingNewModelForm.patchValue(this.parent)
       }

@@ -50,7 +50,6 @@ export class LocationPageComponent implements OnInit, OnDestroy {
 
   openModalWindowAddingModel() {
     this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}}).componentInstance.sendAdd.subscribe((component) => {
-      console.log(component)
     });
   }
 
@@ -78,7 +77,6 @@ export class LocationPageComponent implements OnInit, OnDestroy {
     })
 
     this.sub$.add(this.listOfLocationService.update$.subscribe(() => {
-      console.log()
       this.getPositionModels()
     }))
 

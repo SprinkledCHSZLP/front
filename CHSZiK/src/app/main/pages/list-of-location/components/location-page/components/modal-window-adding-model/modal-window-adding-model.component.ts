@@ -36,7 +36,6 @@ export class ModalWindowAddingModelComponent implements OnInit {
 
   getAllModels() {
     this.listOfEquipmentService.getAllModels().subscribe((modelsArr) => {
-      console.log(modelsArr)
       if (modelsArr) {
         this.modelsArr = modelsArr.data
       }

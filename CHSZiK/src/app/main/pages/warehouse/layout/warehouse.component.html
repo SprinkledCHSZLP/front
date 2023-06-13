@@ -1,5 +1,5 @@
-<!--<mat-spinner class="loading"></mat-spinner>-->
-<div>
+<mat-spinner *ngIf="loading" class="loading"></mat-spinner>
+<div *ngIf="!loading">
   <div class="wrapper">
     <div class="head">
       <div class="head__header"><span class="head__header-name">Склад</span></div>
@@ -15,41 +15,18 @@
       </div>
 
       <div class="container">
-        <div class="item-list">
-          <div class="item item__name" matTooltip="Наименование">Наименование запчасти</div>
-          <div class="item item__article" matTooltip="Артикул">Артикул</div>
-          <div class="item item__price" matTooltip="Цена">Цена</div>
-          <div class="item item__manufacturer" matTooltip="Производитель">Производитель</div>
-          <div class="item item-quantity">
-            <div class="item-quantity__number" matTooltip="Колличество">123</div>
-            <div class="item-quantity__measurement" matTooltip="Измерение">Кг</div>
+        <div class="item-list" *ngFor="let typeSpareParts of typeSpareParts">
+          <div class="item-list__line" (click)="openItem(typeSpareParts.id)">
+            <div class="item item__name" matTooltip="Наименование">{{typeSpareParts.name}}</div>
+            <div class="item item__article" matTooltip="Артикул">{{typeSpareParts.article}}</div>
+            <div class="item item__price" matTooltip="Цена">{{typeSpareParts.price}}</div>
+            <div class="item item__manufacturer" matTooltip="Производитель">{{typeSpareParts.manufacturer}}</div>
+            <div class="item item-quantity">
+              <div class="item-quantity__number" matTooltip="Колличество">{{typeSpareParts.quantity}}</div>
+              <div class="item-quantity__measurement" matTooltip="Измерение">{{typeSpareParts.measurement_units}}</div>
+            </div>
           </div>
-<!--          <mat-icon matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>-->
-          <img matTooltip="Удалить" class="item-list__img-delete" src="../../../../../assets/img/delete.png" alt="">
-        </div>
-
-        <div class="item-list">
-          <div class="item item__name">Наименование запчасти</div>
-          <div class="item item__article">Артикул</div>
-          <div class="item item__price">Цена</div>
-          <div class="item item__manufacturer">Производитель</div>
-          <div class="item item-quantity">
-            <div class="item-quantity__number">123</div>
-            <div class="item-quantity__measurement">Кг</div>
-          </div>
-          <mat-icon matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
-        </div>
-
-        <div class="item-list">
-          <div class="item item__name">Наименование запчасти</div>
-          <div class="item item__article">Артикул</div>
-          <div class="item item__price">Цена</div>
-          <div class="item item__manufacturer">Производитель</div>
-          <div class="item item-quantity">
-            <div class="item-quantity__number">123</div>
-            <div class="item-quantity__measurement">Кг</div>
-          </div>
-          <mat-icon matTooltip="Удалить" class="item-list__img-delete">delete</mat-icon>
+          <img (click)="deleteTypeSpareParts(typeSpareParts.id)" matTooltip="Удалить" class="item-list__img-delete" src="../../../../../assets/img/delete.png" alt="">
         </div>
       </div>
     </div>

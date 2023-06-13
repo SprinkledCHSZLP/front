@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="content">
+    <button mat-raised-button color="warn" matTooltip="Закрыть" class="content__button-close"
+            (click)="btnCloseModal()"><img src="../../../../../../assets/img/close.png" alt=""></button>
+    <div class="content__item" [formGroup]="replenishmentForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>Колличество</mat-label>
+        <input type="text" formControlName="units" matInput placeholder="Введите колличество">
+      </mat-form-field>
+
+      <mat-form-field class="unit" *ngIf="data != null">
+        <mat-label>Единица измерения</mat-label>
+
+        <mat-select *ngIf="data == 1" formControlName="measure_units_id" required>
+          <mat-option value="Килограмм">Килограмм</mat-option>
+          <mat-option value="Грамм">Грамм</mat-option>
+        </mat-select>
+
+        <mat-select *ngIf="data == 2" formControlName="measure_units_id" required>
+          <mat-option value="Литр">Литр</mat-option>
+          <mat-option value="Миллилитр">Миллилитр</mat-option>
+        </mat-select>
+
+        <mat-select *ngIf="data == 3" formControlName="measure_units_id" required>
+          <mat-option value="Метр">Метр</mat-option>
+          <mat-option value="Сантиметр">Сантиметр</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <button [disabled]="replenishmentForm.invalid" (click)="replenishment()" mat-raised-button color="accent" class="content__button">Пополнить</button>
+  </div>
+</div>
+
+

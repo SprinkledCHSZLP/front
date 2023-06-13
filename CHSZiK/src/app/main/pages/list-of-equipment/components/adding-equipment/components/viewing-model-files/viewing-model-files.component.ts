@@ -67,7 +67,5 @@ export class ViewingModelFilesComponent implements OnInit {
       this.getContactsDictionary(this.parentFileArr.image_plan_reference)
       this.docx = true
     }
-
-    console.log(this.parentFileArr)
   }
 }
