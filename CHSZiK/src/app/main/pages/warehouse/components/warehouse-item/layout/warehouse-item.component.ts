@@ -6,6 +6,7 @@ import {ModalReplenishmentComponent} from "../components/modal-replenishment/mod
 import {ITypeSpareParts} from "../../../../../../models/type-spare-part";
 import {WarehouseService} from "../../../services/warehouse.service";
 import {ISparePart} from "../../../../../../models/spare-part";
+import {FormControl, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -18,6 +19,7 @@ export class WarehouseItemComponent implements OnInit{
   constructor(private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, private dialog: MatDialog, private warehouseService: WarehouseService) {
   }
 
+  warehouseForm!: FormGroup;
   consumables: boolean
   sparePart: ISparePart[] = []
   loading: boolean = true
@@ -32,6 +34,7 @@ export class WarehouseItemComponent implements OnInit{
     this.warehouseService.getTypeSparePart(this.parentSparePartId).subscribe((typeSparePart) => {
       if(typeSparePart) {
         this.typeSparePart = typeSparePart.data
+        this.warehouseForm.patchValue(this.typeSparePart)
         if(this.typeSparePart.type_measure_units_id == null) {
           this.consumables = false
         }
@@ -43,12 +46,20 @@ export class WarehouseItemComponent implements OnInit{
     })
   }
 
+
   openUpgradeName() {
     this.isUpgradeName = true
   }
 
   upgradeName() {
     this.isUpgradeName = false
+    this.warehouseService.changeTypeSparePart({
+      id: this.parentSparePartId,
+      name: this.warehouseForm.get('name')?.value
+    }).subscribe(() => {
+      this.getTypeSparePart()
+      this.toastrService.success('Наименование обновлено')
+    })
   }
 
   openUpgradePrice() {
@@ -57,6 +68,13 @@ export class WarehouseItemComponent implements OnInit{
 
   upgradePrice() {
     this.isUpgradePrice = false
+    this.warehouseService.changeTypeSparePart({
+      id: this.parentSparePartId,
+      price: this.warehouseForm.get('price')?.value
+    }).subscribe(() => {
+      this.getTypeSparePart()
+      this.toastrService.success('Цена обновлена')
+    })
   }
 
   OpenUpgradeManufacturer() {
@@ -65,6 +83,13 @@ export class WarehouseItemComponent implements OnInit{
 
   upgradeManufacturer() {
     this.isUpgradeManufacturer = false
+    this.warehouseService.changeTypeSparePart({
+      id: this.parentSparePartId,
+      manufacturer: this.warehouseForm.get('manufacturer')?.value
+    }).subscribe(() => {
+      this.getTypeSparePart()
+      this.toastrService.success('Производитель обновлён')
+    })
   }
 
   OpenUpgradeArticle() {
@@ -73,6 +98,13 @@ export class WarehouseItemComponent implements OnInit{
 
   upgradeArticle() {
     this.isUpgradeArticle = false
+    this.warehouseService.changeTypeSparePart({
+      id: this.parentSparePartId,
+      article: this.warehouseForm.get('article')?.value
+    }).subscribe(() => {
+      this.getTypeSparePart()
+      this.toastrService.success('Артикул обновлён')
+    })
   }
 
   openModalReplenishment() {
@@ -81,6 +113,7 @@ export class WarehouseItemComponent implements OnInit{
         this.warehouseService.createSparePart({
           ...component, type_parts_id: this.parentSparePartId
         }).subscribe(() => {
+          this.getTypeSparePart()
           this.getSparePart()
           this.toastrService.success('Пополнено')
         })
@@ -108,6 +141,13 @@ export class WarehouseItemComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.warehouseForm = new FormGroup({
+      name: new FormControl(''),
+      article: new FormControl(''),
+      price: new FormControl(''),
+      manufacturer: new FormControl('')
+    })
+
     this.route.params.subscribe(params => {
       this.parentSparePartId = params['id']
     })

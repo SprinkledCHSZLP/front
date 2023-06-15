@@ -15,11 +15,12 @@ import {
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [ModalCreatingItemInWarehouseComponent, WarehouseItemComponent, ModalReplenishmentComponent],
   exports: [ModalCreatingItemInWarehouseComponent],
-  imports: [CommonModule, WarehouseRoutingModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatProgressSpinnerModule]
+    imports: [CommonModule, WarehouseRoutingModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule]
 })
 export class WarehouseModule {
 }

@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {IParentPartFile} from "../../../../../../../models/parent-part-equipment";
 import {HttpClient, HttpEvent, HttpEventType, HttpRequest} from "@angular/common/http";
 import * as docx from 'docx-preview'
+
 import {AddingComponentService} from "../../services/adding-component.service";
 import {AddingEquipmentComponent} from "../../layout/adding-equipment.component";
 import {ToastrService} from "ngx-toastr";
