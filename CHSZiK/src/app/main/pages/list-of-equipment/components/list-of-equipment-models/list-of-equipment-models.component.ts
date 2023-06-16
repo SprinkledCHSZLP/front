@@ -7,6 +7,7 @@ import {ModalPositionComponent} from "../modal-position/modal-position.component
 import {ToastrService} from "ngx-toastr";
 import {HttpClient, HttpEvent, HttpEventType, HttpRequest} from "@angular/common/http";
 import * as docx from 'docx-preview'
+import {ModalConfirmationComponent} from "../../../modal-confirmation/modal-confirmation.component";
 
 @Component({
   selector: 'app-list-of-equipment-models',
@@ -60,7 +61,13 @@ export class ListOfEquipmentModelsComponent implements OnInit{
   }
 
   deleteModel() {
-    this.send.emit(this.models.id)
+
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+      if(send) {
+        this.send.emit(this.models.id)
+      }
+    })
+    // this.send.emit(this.models.id)
   }
 
   ngOnInit(): void {

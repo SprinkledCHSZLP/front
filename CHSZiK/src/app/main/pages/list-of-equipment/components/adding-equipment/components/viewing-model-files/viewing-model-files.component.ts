@@ -6,6 +6,9 @@ import * as docx from 'docx-preview'
 import {AddingComponentService} from "../../services/adding-component.service";
 import {AddingEquipmentComponent} from "../../layout/adding-equipment.component";
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
+import {ModalConfirmationComponent} from "../../../../../modal-confirmation/modal-confirmation.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-viewing-model-files',
@@ -14,10 +17,11 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ViewingModelFilesComponent implements OnInit {
 
-  constructor(private http: HttpClient, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent, private toastrService: ToastrService) {
+  constructor(private http: HttpClient, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent, private toastrService: ToastrService, public dialog: MatDialog) {
   }
   @Input() parentFileArr: IParentPartFile
   @ViewChild('render') render: ElementRef
+  subConfirmation$: Subscription = new Subscription()
 
   pdfStr: boolean = false
   docx: boolean = false
@@ -51,11 +55,15 @@ export class ViewingModelFilesComponent implements OnInit {
   }
 
   deleteFile() {
-    this.addingComponentService.deleteFile(this.parentFileArr.id).subscribe(() => {
-      this.addingEquipmentComponent.getParentPart()
-      this.toastrService.success('Схема удалена')
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+      if(send) {
+        this.addingComponentService.deleteFile(this.parentFileArr.id).subscribe(() => {
+            this.addingEquipmentComponent.getParentPart()
+            this.toastrService.success('Схема удалена')
+          }
+        )
       }
-    )
+    })
   }
 
   ngOnInit(): void {

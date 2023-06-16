@@ -2,6 +2,7 @@
   <button mat-raised-button color="accent" class="menu" matTooltip="Опции" [matMenuTriggerFor]="menu"><img src="../../../../../../../../assets/img/list.png"
                                                                                                            alt=""></button>
   <mat-menu class="column" #menu="matMenu">
+    <button mat-raised-button color="accent" (click)="openSettings(position.equipment_id)" class="setting">Редактировать модель</button>
     <button mat-raised-button color="warn" (click)="btnDelete(position.id)" class="setting">Удалить</button>
   </mat-menu>
   <div class="image-model-equipment">

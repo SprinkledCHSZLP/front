@@ -5,29 +5,55 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AddingComponentService} from "../../../services/adding-component.service";
 import {AddingEquipmentComponent} from "../../../layout/adding-equipment.component";
 import {ToastrService} from "ngx-toastr";
+import {MatDialog} from "@angular/material/dialog";
+import {ModalConfirmationComponent} from "../../../../../../modal-confirmation/modal-confirmation.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-setting-component',
   templateUrl: './setting-component.component.html',
   styleUrls: ['./setting-component.component.scss']
 })
-export class SettingComponentComponent implements OnInit{
+export class SettingComponentComponent implements OnInit {
 
   upgradeComponentForm!: FormGroup
   @Output() send: EventEmitter<IPart> = new EventEmitter<IPart>()
   isUpgrade: boolean = false
   @Input() part: IPart
+  subConfirmation$: Subscription = new Subscription()
 
-  constructor(private router: Router, private route: ActivatedRoute, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent, private toastrService: ToastrService) {
+  constructor(private router: Router, private route: ActivatedRoute, private addingComponentService: AddingComponentService, private addingEquipmentComponent: AddingEquipmentComponent, private toastrService: ToastrService, public dialog: MatDialog) {
   }
 
   btnDeletePart() {
-    this.addingComponentService.deletePart(this.part.id).subscribe( {
-      next: () => {
-        this.toastrService.success('Составляющая удалена')
-        this.addingEquipmentComponent.getAllPart()
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+        if (send) {
+          this.addingComponentService.deletePart(this.part.id).subscribe({
+            next: () => {
+              this.toastrService.success('Составляющая удалена')
+              this.addingEquipmentComponent.getAllPart()
+            }
+          })
+        }
       }
-    })
+    )
+    // this.subConfirmation$.add(
+    //   this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+    //     if(send) {
+    //
+    //     }
+    //     if(!send) {
+    //       this.subConfirmation$.unsubscribe()
+    //     }
+    //   })
+    // )
+
+    // this.addingComponentService.deletePart(this.part.id).subscribe( {
+    //   next: () => {
+    //     this.toastrService.success('Составляющая удалена')
+    //     this.addingEquipmentComponent.getAllPart()
+    //   }
+    // })
   }
 
   openUpgradePart() {

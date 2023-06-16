@@ -5,6 +5,8 @@ import {ILocation} from "../../../../../models/location";
 import {ListOfLocationService} from "../../services/list-of-location.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {ModalConfirmationComponent} from "../../../modal-confirmation/modal-confirmation.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-location-item',
@@ -13,7 +15,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class LocationItemComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private listOfLocationComponent: ListOfLocationComponent, private listOfLocationService: ListOfLocationService, private toastrService: ToastrService) { }
+  constructor(private router: Router, private dialog: MatDialog, private route: ActivatedRoute, private listOfLocationComponent: ListOfLocationComponent, private listOfLocationService: ListOfLocationService, private toastrService: ToastrService) { }
 
   changeLocationForm!: FormGroup
   isChange: boolean = false
@@ -36,10 +38,21 @@ export class LocationItemComponent implements OnInit {
   }
 
   deleteLocation(id: number) {
-    this.listOfLocationService.deleteLocation(id).subscribe(() => {
-      this.listOfLocationComponent.getAllLocation()
-      this.toastrService.success('Локация удалена')
+
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+      if(send) {
+        this.listOfLocationService.deleteLocation(id).subscribe(() => {
+          this.listOfLocationComponent.getAllLocation()
+          this.toastrService.success('Локация удалена')
+        })
+      }
     })
+
+
+    // this.listOfLocationService.deleteLocation(id).subscribe(() => {
+    //   this.listOfLocationComponent.getAllLocation()
+    //   this.toastrService.success('Локация удалена')
+    // })
   }
 
   openLocaton(id: number, have_child_location: boolean) {

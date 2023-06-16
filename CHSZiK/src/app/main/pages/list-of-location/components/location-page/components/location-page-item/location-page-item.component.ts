@@ -6,6 +6,8 @@ import {LocationPageComponent} from "../../layout/location-page.component";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient, HttpEvent, HttpEventType, HttpRequest} from "@angular/common/http";
 import * as docx from 'docx-preview'
+import {ModalConfirmationComponent} from "../../../../../modal-confirmation/modal-confirmation.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 
@@ -16,7 +18,7 @@ import * as docx from 'docx-preview'
 })
 export class LocationPageItemComponent implements OnInit{
 
-  constructor(private router: Router, private http: HttpClient, private listOfLocationService: ListOfLocationService, private locationPageComponent: LocationPageComponent, private toastrService: ToastrService) {
+  constructor(private router: Router, private dialog: MatDialog, private http: HttpClient, private listOfLocationService: ListOfLocationService, private locationPageComponent: LocationPageComponent, private toastrService: ToastrService) {
   }
 
   pdfStrModel: boolean = false
@@ -27,6 +29,10 @@ export class LocationPageItemComponent implements OnInit{
   @ViewChild('render') render: ElementRef
 
   @Input() position: IPosition
+
+  openSettings(id: number) {
+    this.router.navigate(['adding-equipment', id])
+  }
 
   getContactsDictionary(url: string) {
     const req = new HttpRequest(
@@ -57,10 +63,20 @@ export class LocationPageItemComponent implements OnInit{
   }
 
   btnDelete(id: number) {
-    this.listOfLocationService.deletePositionModel(id).subscribe(() => {
-      this.locationPageComponent.getPositionModels()
-      this.toastrService.success('Позиция удалена')
+
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+      if(send) {
+        this.listOfLocationService.deletePositionModel(id).subscribe(() => {
+          this.locationPageComponent.getPositionModels()
+          this.toastrService.success('Позиция удалена')
+        })
+      }
     })
+
+    // this.listOfLocationService.deletePositionModel(id).subscribe(() => {
+    //   this.locationPageComponent.getPositionModels()
+    //   this.toastrService.success('Позиция удалена')
+    // })
   }
 
 
