@@ -2,20 +2,22 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
+  CHANGEGROUPINWAREHOUSE_URL,
   CHANGETYPESPAREPART_URL,
   CREATESPAREPART_URL,
-  CREATETYPESPAREPART_URL,
-  DELETETYPESPAREPARTS_URL, GETGROUPSPAREPART_URL, GETSPAREPART_URL,
+  CREATETYPESPAREPART_URL, CREATEWAREHOUSEGROUP_URL, DELETEGROUPINWAREHOUSE_URL,
+  DELETETYPESPAREPARTS_URL, GETGROUPSINWAREHOUSE_URL, GETGROUPWAREHOUSE_URL, GETSPAREPART_URL,
   GETTYPESPAREPART_URL,
   GETTYPESPAREPARTS_URL
 } from "../../../../conf/conf";
 import {Observable} from "rxjs";
 import {
+  ResponseDataGroupInWarehouse,
+  ResponseDataGroupsInWarehouse,
   ResponseDataSparePart,
   ResponseDataTypeSparePart,
   ResponseDataTypeSpareParts
 } from "../../../../models/response";
-import {IGroup} from "../components/modal/modal-creating-item-in-warehouse.component";
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +27,33 @@ export class WarehouseService {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
-  createTypeSparePart(component: { name: string, manufacturer: string, article: string, type_measure_units_id?: number }) {
+  createTypeSparePart(component: { name: string, manufacturer: string, article: string, type_measure_units_id?: number, group_id: number}) {
     return this.http.post(CREATETYPESPAREPART_URL, component)
   }
 
-  getTypeSpareParts(): Observable<ResponseDataTypeSpareParts> {
-    return this.http.get<ResponseDataTypeSpareParts>(GETTYPESPAREPARTS_URL)
+  createGroup(component: {name: string, type_measure_units_id?: number}) {
+    return this.http.post(CREATEWAREHOUSEGROUP_URL, component)
+  }
+
+  getGroupInWarehouse(group_id: number): Observable<ResponseDataGroupInWarehouse> {
+    return this.http.get<ResponseDataGroupInWarehouse>(GETGROUPWAREHOUSE_URL + group_id)
+
+  }
+
+  deleteGroupInWarehouse(id: number) {
+    return this.http.delete(DELETEGROUPINWAREHOUSE_URL + id)
+  }
+
+  changeGroupInWarehouse(component: {id: number, name: string}) {
+    return this.http.post(CHANGEGROUPINWAREHOUSE_URL, component)
+  }
+
+  getTypeSpareParts(id:number): Observable<ResponseDataTypeSpareParts> {
+    return this.http.get<ResponseDataTypeSpareParts>(GETTYPESPAREPARTS_URL + id)
+  }
+
+  getGroupsInWarehouse(): Observable<ResponseDataGroupsInWarehouse> {
+    return this.http.get<ResponseDataGroupsInWarehouse>(GETGROUPSINWAREHOUSE_URL)
   }
 
   getTypeSparePart(id: number): Observable<ResponseDataTypeSparePart> {
@@ -51,9 +74,5 @@ export class WarehouseService {
 
   changeTypeSparePart(component: { id: number, article?: string, name?: string, price?: number, manufacturer?: string }) {
     return this.http.post(CHANGETYPESPAREPART_URL, component)
-  }
-
-  getGroupSparePart(): Observable<{ data: IGroup[] }> {
-    return this.http.get<{ data: IGroup[] }>(GETGROUPSPAREPART_URL)
   }
 }

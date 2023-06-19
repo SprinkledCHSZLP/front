@@ -10,26 +10,24 @@
         </mat-form-field>
       </div>
       <div class="head__btns">
-        <button mat-raised-button color="accent" class="head__btn" (click)="btnOpenModal()">Добавить</button>
+        <button mat-raised-button color="accent" class="head__btn" (click)="btnOpenModal()">Добавить группу</button>
         <button class="head__btn" mat-raised-button color="accent">Показать отсуствующие</button>
       </div>
 
       <div class="container">
-        <div class="item-list" *ngFor="let typeSpareParts of typeSpareParts">
-          <div class="item-list__line" (click)="openItem(typeSpareParts.id)">
-            <div class="item item__name" matTooltip="Наименование">{{typeSpareParts.name}}</div>
-            <div class="item item__article" matTooltip="Артикул">{{typeSpareParts.article}}</div>
-            <div class="item item__price" matTooltip="Цена">{{typeSpareParts.price}}</div>
-            <div class="item item__manufacturer" matTooltip="Производитель">{{typeSpareParts.manufacturer}}</div>
+        <div class="item-list" *ngFor="let groups of groups">
+          <div class="item-list__line" (click)="openGroup(groups.id)">
+            <div class="item item__name" matTooltip="Наименование группы">{{groups.name}}</div>
+            <div class="item item-quantity__number" matTooltip="Колличество типов">{{groups.quantity_type_part}}</div>
             <div class="item item-quantity">
-              <div class="item-quantity__number" matTooltip="Колличество">{{typeSpareParts.quantity}}</div>
-              <div class="item-quantity__measurement" matTooltip="Измерение">{{typeSpareParts.measurement_units}}</div>
+              <div class="item-quantity__number" matTooltip="Колличество всех элементов">{{groups.quantity_part}}</div>
+              <div class="item-quantity__measurement" matTooltip="Измерение всех элементов">{{groups.measurement_units}}</div>
             </div>
           </div>
-          <img (click)="deleteTypeSpareParts(typeSpareParts.id)" matTooltip="Удалить" class="item-list__img-delete" src="../../../../../assets/img/delete.png" alt="">
+          <img (click)="deleteGroup(groups.id)" matTooltip="Удалить" class="item-list__img-delete" src="../../../../../../../assets/img/delete.png" alt="">
         </div>
       </div>
     </div>
   </div>
-  <app-modal-creating-item-in-warehouse *ngIf="openModal"></app-modal-creating-item-in-warehouse>
+  <app-modal-creating-group-in-warehouse *ngIf="openModal"></app-modal-creating-group-in-warehouse>
 </div>

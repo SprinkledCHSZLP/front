@@ -1,0 +1,52 @@
+<mat-spinner *ngIf="loadingChildren && loadingParent" class="loading"></mat-spinner>
+<div *ngIf="!loadingChildren && !loadingParent">
+  <div class="wrapper">
+    <div class="head">
+      <div class="head__header" *ngIf="!upgradeName">
+        <span matTooltip="Наименование группы" class="head__header-name">{{group.name}}</span>
+        <div (click)="openUpgradeGroupInWarehouse()" class="border" matTooltip="Редактировать">
+          <img src="../../../../../../../assets/img/change.png" alt="">
+        </div>
+      </div>
+
+      <form *ngIf="upgradeName" [formGroup]="changeFormGroup" class="header">
+        <mat-form-field class="example-full-width">
+          <mat-label>Наименование</mat-label>
+          <input type="text" formControlName="name" matInput placeholder="Введите наименование">
+        </mat-form-field>
+        <button (click)="upgradeGroupInWarehouse()" matTooltip="Сохранить" class="header__btn-save" mat-fab color="accent">
+          <img src="../../../../../../../assets/img/done.png" alt="">
+        </button>
+      </form>
+
+      <div class="head__search">
+        <mat-form-field class="example-full-width">
+          <mat-label>Поиск</mat-label>
+          <input type="text" matInput placeholder="Введите наименование">
+        </mat-form-field>
+      </div>
+      <div class="head__btns">
+        <button mat-raised-button color="accent" class="head__btn" (click)="btnOpenModal()">Добавить</button>
+        <button class="head__btn" mat-raised-button color="accent">Показать отсуствующие</button>
+      </div>
+
+      <div class="container">
+        <div class="item-list" *ngFor="let typeSpareParts of typeSpareParts">
+          <div class="item-list__line" (click)="openItem(typeSpareParts.id)">
+            <div class="item item__name" matTooltip="Наименование">{{typeSpareParts.name}}</div>
+            <div class="item item__article" matTooltip="Артикул">{{typeSpareParts.article}}</div>
+            <div class="item item__price" matTooltip="Цена">{{typeSpareParts.price}}</div>
+            <div class="item item__manufacturer" matTooltip="Производитель">{{typeSpareParts.manufacturer}}</div>
+            <div class="item item-quantity">
+              <div class="item-quantity__number" matTooltip="Колличество">{{typeSpareParts.quantity}}</div>
+              <div class="item-quantity__measurement" matTooltip="Измерение">{{typeSpareParts.measurement_units}}</div>
+            </div>
+          </div>
+          <img (click)="deleteTypeSpareParts(typeSpareParts.id)" matTooltip="Удалить" class="item-list__img-delete"
+               src="../../../../../../../assets/img/delete.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-modal-creating-item-in-warehouse *ngIf="openModal"></app-modal-creating-item-in-warehouse>
+</div>

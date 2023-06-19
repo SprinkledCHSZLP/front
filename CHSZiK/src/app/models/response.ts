@@ -5,6 +5,7 @@ import {ILocation} from "./location";
 import {IPosition} from "./position";
 import {ITypeSpareParts} from "./type-spare-part";
 import {ISparePart} from "./spare-part";
+import {IGroup} from "./groups-in-warehouse";
 
 export interface ResponseDataModels {
   data: IModel[]
@@ -41,4 +42,12 @@ export interface ResponseDataTypeSparePart {
 
 export interface ResponseDataSparePart {
   data: ISparePart[]
+}
+
+export interface ResponseDataGroupsInWarehouse {
+  data: IGroup[]
+}
+
+export interface ResponseDataGroupInWarehouse {
+  data: IGroup
 }

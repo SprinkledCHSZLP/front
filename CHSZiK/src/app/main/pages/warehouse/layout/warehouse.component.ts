@@ -4,9 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 import {ToastrService} from "ngx-toastr";
 import {MatDialog} from "@angular/material/dialog";
-import {ModalCreatingItemInWarehouseComponent} from "../components/modal/modal-creating-item-in-warehouse.component";
 import {WarehouseService} from "../services/warehouse.service";
-import {ITypeSpareParts} from "../../../../models/type-spare-part";
+import {ModalCreatingGroupInWarehouseComponent} from "../modal/modal-creating-group-in-warehouse.component";
+import {IGroup} from "../../../../models/groups-in-warehouse";
+import {ModalConfirmationComponent} from "../../modal-confirmation/modal-confirmation.component";
 
 
 @Component({
@@ -19,42 +20,45 @@ export class WarehouseComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, private dialog: MatDialog, private warehouseService: WarehouseService) {
   }
 
+  groups: IGroup[] = []
   @Output() openModal = false
   loading: boolean = true
-  typeSpareParts: ITypeSpareParts[] = []
 
-  openItem(id: number) {
-    this.router.navigate(['warehouse-item', id])
+  openGroup(id: number) {
+    this.router.navigate(['warehouse-group', id])
   }
 
-
   btnOpenModal() {
-    this.dialog.open(ModalCreatingItemInWarehouseComponent).componentInstance.send.subscribe((component) => {
-      this.warehouseService.createTypeSparePart(component).subscribe(() => {
+    this.dialog.open(ModalCreatingGroupInWarehouseComponent).componentInstance.send.subscribe((component) => {
+      this.warehouseService.createGroup(component).subscribe(() => {
         this.toastrService.success('Добавлено')
-        this.getTypeSpareParts()
+        this.getGroups()
       })
     })
   }
 
-  getTypeSpareParts() {
-    this.warehouseService.getTypeSpareParts().subscribe((typeSpareParts) => {
-      if(typeSpareParts) {
-        this.typeSpareParts = typeSpareParts.data
+  getGroups() {
+    this.warehouseService.getGroupsInWarehouse().subscribe((groups) => {
+      if(groups) {
+        this.groups = groups.data
         this.loading = false
       }
     })
   }
 
-  deleteTypeSpareParts(id: number) {
-    this.warehouseService.deleteTypeSpareParts(id).subscribe(() => {
-      this.getTypeSpareParts()
-      this.toastrService.success('Удалено')
+  deleteGroup(id: number) {
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+      if(send) {
+        this.warehouseService.deleteGroupInWarehouse(id).subscribe(() => {
+          this.getGroups()
+          this.toastrService.success('Удалено')
+        })
+      }
     })
   }
 
   ngOnInit(): void {
-    this.getTypeSpareParts()
+    this.getGroups()
   }
 
   ngOnDestroy(): void {

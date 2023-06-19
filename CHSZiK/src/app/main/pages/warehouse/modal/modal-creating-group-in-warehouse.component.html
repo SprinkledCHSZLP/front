@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="content">
+    <button mat-raised-button color="warn" matTooltip="Закрыть" class="content__button-close"
+            (click)="btnCloseModal()"><img src="../../../../../../../assets/img/close.png" alt=""></button>
+    <div class="content__item" [formGroup]="addingNewGroup">
+      <mat-form-field class="example-full-width">
+        <mat-label>Наименование</mat-label>
+        <input type="text" formControlName="name" matInput placeholder="Введите наименование">
+      </mat-form-field>
+
+      <p>
+        <mat-checkbox [formControl]="disableSelect">Единица измерения</mat-checkbox>
+      </p>
+      <mat-form-field>
+        <mat-label>Единица измерения</mat-label>
+        <mat-select [disabled]="disableSelect.value == false" formControlName="type_measure_units_id">
+          <mat-option value="Вес">Вес</mat-option>
+          <mat-option value="Объём">Объём</mat-option>
+          <mat-option value="Длина">Длина</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button [disabled]="addingNewGroup.invalid" (click)="saveNewGroup()" mat-raised-button color="accent" class="content__button">Добавить группу на склад</button>
+  </div>
+</div>
+
+

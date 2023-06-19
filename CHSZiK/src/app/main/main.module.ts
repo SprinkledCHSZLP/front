@@ -14,12 +14,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
 import {WarehouseModule} from "./pages/warehouse/warehouse.module";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ListOfEquipmentModule} from "./pages/list-of-equipment/list-of-equipment.module";
 import {ModalConfirmationComponent} from "./pages/modal-confirmation/modal-confirmation.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
 
 @NgModule({
   declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent, ModalConfirmationComponent],

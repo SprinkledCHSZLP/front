@@ -137,7 +137,7 @@ export class WarehouseItemComponent implements OnInit{
   }
 
   btnBack() {
-    this.router.navigate(['warehouse'])
+    window.history.back()
   }
 
   ngOnInit(): void {

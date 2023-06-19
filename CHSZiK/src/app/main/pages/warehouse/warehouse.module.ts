@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {WarehouseRoutingModule} from "./warehouse-routing.module";
-import {ModalCreatingItemInWarehouseComponent} from "./components/modal/modal-creating-item-in-warehouse.component";
+import {ModalCreatingItemInWarehouseComponent} from "./components/warehouse-group/modal/modal-creating-item-in-warehouse.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -16,10 +16,12 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {WarehouseGroupComponent} from "./components/warehouse-group/layout/warehouse-group.component";
+import {ModalCreatingGroupInWarehouseComponent} from "./modal/modal-creating-group-in-warehouse.component";
 
 @NgModule({
-  declarations: [ModalCreatingItemInWarehouseComponent, WarehouseItemComponent, ModalReplenishmentComponent],
-  exports: [ModalCreatingItemInWarehouseComponent],
+  declarations: [ModalCreatingItemInWarehouseComponent, WarehouseItemComponent, ModalReplenishmentComponent, WarehouseGroupComponent, ModalCreatingGroupInWarehouseComponent],
+  exports: [ModalCreatingItemInWarehouseComponent, ModalCreatingGroupInWarehouseComponent],
     imports: [CommonModule, WarehouseRoutingModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule]
 })
 export class WarehouseModule {
