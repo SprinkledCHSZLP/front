@@ -24,66 +24,84 @@
     </div>
 
     <div class="container">
-      <div class="setting">
-        <div class="setting__settings">
-          <div *ngIf="!isUpgradePrice" class="setting__settings-price">
-            <div class="setting__settings-name"><span class="mr5px">Цена: </span>{{typeSparePart.price | currency: '&#x20bd; '}}</div>
-            <div (click)="openUpgradePrice()" class="border" matTooltip="Редактировать">
-              <img src="../../../../../../../assets/img/change.png" alt="">
+      <div class="container-line">
+        <div class="adding-image">
+          <input class="add-file" #input (change)="onFileUpload($event)" type="file">
+          <div class="image">
+            <div class="image-line" #addingImgModelLine>
+              <app-viewing-files class="content" #content *ngFor="let parentFileArr of parentFileArr" [parentFileArr]="parentFileArr"></app-viewing-files>
             </div>
           </div>
-
-          <form *ngIf="isUpgradePrice" [formGroup]="warehouseForm" class="setting__settings-price">
-            <mat-form-field class="example-full-width">
-              <mat-label>Цена</mat-label>
-              <input type="text" formControlName="price" matInput placeholder="Введите цену">
-            </mat-form-field>
-            <button (click)="upgradePrice()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
-              <img src="../../../../../../../assets/img/done.png" alt="">
-            </button>
-          </form>
-
-          <div *ngIf="!isUpgradeManufacturer" class="setting__settings-manufacturer">
-            <div class="setting__settings-name"><span class="mr5px">Производитель: </span>{{typeSparePart.manufacturer}}</div>
-            <div (click)="OpenUpgradeManufacturer()" class="border" matTooltip="Редактировать">
-              <img src="../../../../../../../assets/img/change.png" alt="">
-            </div>
+          <div class="btn-controll">
+            <button mat-fab color="accent" matTooltip="Влево" (click)="scrollRight()"><</button>
+            <button mat-fab color="accent" matTooltip="Вправо" (click)="scrollLeft()">></button>
           </div>
-
-          <form *ngIf="isUpgradeManufacturer" [formGroup]="warehouseForm" class="setting__settings-manufacturer">
-            <mat-form-field class="example-full-width">
-              <mat-label>Производитель</mat-label>
-              <input type="text" formControlName="manufacturer" matInput placeholder="Введите производителя">
-            </mat-form-field>
-            <button (click)="upgradeManufacturer()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
-              <img src="../../../../../../../assets/img/done.png" alt="">
-            </button>
-          </form>
-
-          <div *ngIf="!isUpgradeArticle" class="setting__settings-article">
-            <div class="setting__settings-name"><span class="mr5px">Артикул: </span>{{typeSparePart.article}}</div>
-            <div (click)="OpenUpgradeArticle()" class="border" matTooltip="Редактировать">
-              <img src="../../../../../../../assets/img/change.png" alt="">
-            </div>
-          </div>
-
-          <form *ngIf="isUpgradeArticle" [formGroup]="warehouseForm" class="setting__settings-article">
-            <mat-form-field class="example-full-width">
-              <mat-label>Артикул</mat-label>
-              <input type="text" formControlName="article" matInput placeholder="Введите артикул">
-            </mat-form-field>
-            <button (click)="upgradeArticle()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
-              <img src="../../../../../../../assets/img/done.png" alt="">
-            </button>
-          </form>
+          <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change">
+            Добавить
+          </button>
         </div>
+        <div class="setting">
+          <div class="setting__settings">
+            <div *ngIf="!isUpgradePrice" class="setting__settings-price">
+              <div class="setting__settings-name"><span class="mr5px">Цена: </span>{{typeSparePart.price | currency: '&#x20bd; '}}</div>
+              <div (click)="openUpgradePrice()" class="border" matTooltip="Редактировать">
+                <img src="../../../../../../../assets/img/change.png" alt="">
+              </div>
+            </div>
 
-        <div class="setting__reliability">
-          <div class="setting__reliability-header">Средний срок службы</div>
-          <div class="setting__reliability-content">0 дн.</div>
+            <form *ngIf="isUpgradePrice" [formGroup]="warehouseForm" class="setting__settings-price">
+              <mat-form-field class="example-full-width">
+                <mat-label>Цена</mat-label>
+                <input type="text" formControlName="price" matInput placeholder="Введите цену">
+              </mat-form-field>
+              <button (click)="upgradePrice()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
+                <img src="../../../../../../../assets/img/done.png" alt="">
+              </button>
+            </form>
+
+            <div *ngIf="!isUpgradeManufacturer" class="setting__settings-manufacturer">
+              <div class="setting__settings-name"><span class="mr5px">Производитель: </span>{{typeSparePart.manufacturer}}</div>
+              <div (click)="OpenUpgradeManufacturer()" class="border" matTooltip="Редактировать">
+                <img src="../../../../../../../assets/img/change.png" alt="">
+              </div>
+            </div>
+
+            <form *ngIf="isUpgradeManufacturer" [formGroup]="warehouseForm" class="setting__settings-manufacturer">
+              <mat-form-field class="example-full-width">
+                <mat-label>Производитель</mat-label>
+                <input type="text" formControlName="manufacturer" matInput placeholder="Введите производителя">
+              </mat-form-field>
+              <button (click)="upgradeManufacturer()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
+                <img src="../../../../../../../assets/img/done.png" alt="">
+              </button>
+            </form>
+
+            <div *ngIf="!isUpgradeArticle" class="setting__settings-article">
+              <div class="setting__settings-name"><span class="mr5px">Артикул: </span>{{typeSparePart.article}}</div>
+              <div (click)="OpenUpgradeArticle()" class="border" matTooltip="Редактировать">
+                <img src="../../../../../../../assets/img/change.png" alt="">
+              </div>
+            </div>
+
+            <form *ngIf="isUpgradeArticle" [formGroup]="warehouseForm" class="setting__settings-article">
+              <mat-form-field class="example-full-width">
+                <mat-label>Артикул</mat-label>
+                <input type="text" formControlName="article" matInput placeholder="Введите артикул">
+              </mat-form-field>
+              <button (click)="upgradeArticle()" matTooltip="Сохранить" class="setting__settings-btn-save" mat-fab color="accent">
+                <img src="../../../../../../../assets/img/done.png" alt="">
+              </button>
+            </form>
+          </div>
+
+          <div class="setting__reliability">
+            <div class="setting__reliability-header">Средний срок службы</div>
+            <div class="setting__reliability-content">0 дн.</div>
+          </div>
+
         </div>
-
       </div>
+
 
       <div class="container__btns">
         <button mat-raised-button color="accent" (click)="openModalReplenishment()" class="container__btns-btn">Пополнить</button>

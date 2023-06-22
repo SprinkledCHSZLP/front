@@ -18,11 +18,13 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {WarehouseGroupComponent} from "./components/warehouse-group/layout/warehouse-group.component";
 import {ModalCreatingGroupInWarehouseComponent} from "./modal/modal-creating-group-in-warehouse.component";
+import {ViewingFilesComponent} from "./components/warehouse-item/components/viewing-files/viewing-files.component";
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 @NgModule({
-  declarations: [ModalCreatingItemInWarehouseComponent, WarehouseItemComponent, ModalReplenishmentComponent, WarehouseGroupComponent, ModalCreatingGroupInWarehouseComponent],
+  declarations: [ModalCreatingItemInWarehouseComponent, WarehouseItemComponent, ViewingFilesComponent, ModalReplenishmentComponent, WarehouseGroupComponent, ModalCreatingGroupInWarehouseComponent],
   exports: [ModalCreatingItemInWarehouseComponent, ModalCreatingGroupInWarehouseComponent],
-    imports: [CommonModule, WarehouseRoutingModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule]
+  imports: [CommonModule, WarehouseRoutingModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule, PdfViewerModule]
 })
 export class WarehouseModule {
 }

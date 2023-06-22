@@ -6,5 +6,9 @@ export interface ITypeSpareParts {
   price: number,
   type_measure_units_id: number,
   quantity: number,
-  measurement_units: string
+  measurement_units: string,
+  list_image: [{
+    id: number,
+    image_plan_reference: string
+  }]
 }

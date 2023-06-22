@@ -9,6 +9,7 @@ import {
 import {IPosition} from "../../../../../../models/position";
 import {Subscription} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {ModalSortingComponent} from "../components/modal-sorting/modal-sorting.component";
 
 @Component({
   selector: 'app-location-page',
@@ -31,6 +32,10 @@ export class LocationPageComponent implements OnInit, OnDestroy {
 
   btnBack() {
     window.history.back()
+  }
+
+  openModalSorting() {
+    this.dialog.open(ModalSortingComponent, {data: {locationId: this.parent_location_id}})
   }
 
   deletePositionModel(id: number) {

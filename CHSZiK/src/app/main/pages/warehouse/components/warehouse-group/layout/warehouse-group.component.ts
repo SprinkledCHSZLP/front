@@ -38,6 +38,7 @@ export class WarehouseGroupComponent implements OnInit, OnDestroy {
     this.warehouseService.getGroupInWarehouse(this.warehouseGroupId).subscribe((group) => {
       if(group) {
         this.group = group.data
+        this.changeFormGroup.patchValue(this.group)
         this.loadingParent = false
       }
     })

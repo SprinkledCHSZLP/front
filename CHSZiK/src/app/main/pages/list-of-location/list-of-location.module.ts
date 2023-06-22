@@ -19,12 +19,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ModalSortingComponent} from "./components/location-page/components/modal-sorting/modal-sorting.component";
 
 
 
 
 @NgModule({
-  declarations: [ModalComponent, LocationPageItemComponent, LocationPageComponent, LocationItemComponent, ModalWindowAddingModelComponent],
+  declarations: [ModalComponent, LocationPageItemComponent, LocationPageComponent, LocationItemComponent, ModalSortingComponent, ModalWindowAddingModelComponent],
   exports: [
     ModalComponent,
     LocationItemComponent

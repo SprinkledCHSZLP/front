@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, OnInit, Output, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {MatDialog} from "@angular/material/dialog";
@@ -7,6 +7,7 @@ import {ITypeSpareParts} from "../../../../../../models/type-spare-part";
 import {WarehouseService} from "../../../services/warehouse.service";
 import {ISparePart} from "../../../../../../models/spare-part";
 import {FormControl, FormGroup} from "@angular/forms";
+import {IParentPartFile} from "../../../../../../models/parent-part-equipment";
 
 
 @Component({
@@ -19,6 +20,21 @@ export class WarehouseItemComponent implements OnInit{
   constructor(private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, private dialog: MatDialog, private warehouseService: WarehouseService) {
   }
 
+  @ViewChild('addingImgModelLine') addingImgModelLine: ElementRef;
+  @ViewChild('content') content: ElementRef;
+
+  scrollRight() {
+    const wrapper = this.addingImgModelLine.nativeElement;
+    const distance = wrapper.offsetWidth;
+    wrapper.scrollLeft -= distance;
+  }
+  scrollLeft() {
+    const wrapper = this.addingImgModelLine.nativeElement;
+    const distance = -wrapper.offsetWidth;
+    wrapper.scrollLeft -= distance;
+  }
+
+  parentFileArr: IParentPartFile[] = []
   warehouseForm!: FormGroup;
   consumables: boolean
   sparePart: ISparePart[] = []
@@ -29,11 +45,35 @@ export class WarehouseItemComponent implements OnInit{
   isUpgradeManufacturer: boolean = false
   isUpgradeArticle: boolean = false
   isUpgradeName: boolean = false
+  @ViewChild('input') inputRef: ElementRef
+  image: File | undefined
+
+
+  btnUpdateImage() {
+    this.inputRef.nativeElement.click()
+  }
+
+  onFileUpload(event: any) {
+    this.image = event.target.files[0]
+    if (this.image) {
+      if(this.image != undefined) {
+        this.warehouseService.addFileByTypeSparePart(this.image, this.parentSparePartId).subscribe(() => {
+          this.getTypeSparePart()
+          this.toastrService.success('Схема добавлена')
+          this.inputRef.nativeElement.value = ''
+          this.image = undefined
+        })
+      }
+    }
+
+
+  }
 
   getTypeSparePart() {
     this.warehouseService.getTypeSparePart(this.parentSparePartId).subscribe((typeSparePart) => {
       if(typeSparePart) {
         this.typeSparePart = typeSparePart.data
+        this.parentFileArr = typeSparePart.data.list_image
         this.warehouseForm.patchValue(this.typeSparePart)
         if(this.typeSparePart.type_measure_units_id == null) {
           this.consumables = false

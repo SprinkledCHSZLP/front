@@ -5,6 +5,6 @@ export interface IPosition {
   image: string,
   position: string,
   group_id?: string,
-  location_id?: number
-
+  location_id?: number,
+  position_on_location: number
 }

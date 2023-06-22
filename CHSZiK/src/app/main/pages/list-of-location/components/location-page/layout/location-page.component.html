@@ -7,6 +7,7 @@
         <span class="head__header-name" *ngIf="parentLocation">{{parentLocation.name_location}}</span>
       </div>
       <div class="head__btns">
+        <button (click)="openModalSorting()" mat-raised-button color="accent" class="head__btn">Сортировка</button>
         <button (click)="openLocation()" mat-raised-button color="accent" class="head__btn">Разбить локацию</button>
         <button class="head__btn" mat-raised-button color="accent" (click)="openModalWindowAddingModel()">Добавить оборудование</button>
       </div>
