@@ -9,7 +9,7 @@ import {ILocation} from "../../../../models/location";
 import {
   ADDINGLOCATION_URL, ADDINGNEWPOSITION_URL, ADDINGTOLOCATION_URL,
   ALLLOCATION_URL,
-  CHANGELOCATION_URL, DELETELOCATION_URL, DELETEPOSITIONMODEL_URL, GETPOSITION_URL,
+  CHANGELOCATION_URL, CHANGEPOSITIONONLOCATION_URL, DELETELOCATION_URL, DELETEPOSITIONMODEL_URL, GETPOSITION_URL,
   PARENTLOCATION_URL, SHOWPOSITION_URL,
   SPLITLOCATION_URL
 } from "../../../../conf/conf";
@@ -55,7 +55,7 @@ export class ListOfLocationService {
     return this.http.post(ADDINGNEWPOSITION_URL, component)
   }
 
-  addPositionInLocation(component: {locations_id: string, id: number}) {
+  addPositionInLocation(component: {locations_id: number, id: number}) {
     return this.http.post(ADDINGTOLOCATION_URL, component)
   }
 
@@ -64,5 +64,9 @@ export class ListOfLocationService {
   }
   deletePositionModel(id: number) {
     return this.http.post(DELETEPOSITIONMODEL_URL, {id: id})
+  }
+
+  changePositionOnLocation(positionArr: { positionsArr: IPosition[] }) {
+    return this.http.post(CHANGEPOSITIONONLOCATION_URL, positionArr)
   }
 }

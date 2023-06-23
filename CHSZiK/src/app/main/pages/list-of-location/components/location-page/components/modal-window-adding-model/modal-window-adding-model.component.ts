@@ -12,7 +12,7 @@ import {
 import {ToastrService} from "ngx-toastr";
 
 interface IPositionData {
-  locationId: string
+  locationId: number
 }
 
 @Component({
@@ -32,7 +32,6 @@ export class ModalWindowAddingModelComponent implements OnInit {
   locationId: number
   addingPositionForm!: FormGroup;
   addingModelForm!: FormGroup;
-  @Output() sendAdd: EventEmitter<{id: number, locations_id: string}> = new EventEmitter<{id: number, locations_id: string}>()
 
   getAllModels() {
     this.listOfEquipmentService.getAllModels().subscribe((modelsArr) => {
@@ -77,11 +76,10 @@ export class ModalWindowAddingModelComponent implements OnInit {
   }
 
   addPositionInLocation(positionId: number){
-    let component: {id: number, locations_id: string} = {
+    let component: {id: number, locations_id: number} = {
       id: positionId,
       locations_id: this.data.locationId
     }
-    this.sendAdd.emit(component)
     this.listOfLocationService.addPositionInLocation(component).subscribe(() => {
       this.openPositionsOfModel(this.equipment_id)
       this.listOfLocationService.update$.next(null)

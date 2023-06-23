@@ -35,7 +35,11 @@ export class LocationPageComponent implements OnInit, OnDestroy {
   }
 
   openModalSorting() {
-    this.dialog.open(ModalSortingComponent, {data: {locationId: this.parent_location_id}})
+    this.dialog.open(ModalSortingComponent, {data: {locationId: this.parent_location_id}}).componentInstance.sendSorting.subscribe((positionArr) => {
+      if(positionArr) {
+
+      }
+    })
   }
 
   deletePositionModel(id: number) {
@@ -54,8 +58,7 @@ export class LocationPageComponent implements OnInit, OnDestroy {
   }
 
   openModalWindowAddingModel() {
-    this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}}).componentInstance.sendAdd.subscribe((component) => {
-    });
+    this.dialog.open(ModalWindowAddingModelComponent, {data: {locationId: this.parent_location_id}})
   }
 
   openLocation() {

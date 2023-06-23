@@ -10,6 +10,7 @@ import {
   AddingComponentService
 } from "../../../../../list-of-equipment/components/adding-equipment/services/adding-component.service";
 import {ToastrService} from "ngx-toastr";
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 interface IPositionData {
   locationId: number
@@ -24,19 +25,33 @@ interface IPositionData {
 export class ModalSortingComponent implements OnInit {
   constructor(private addingComponentService: AddingComponentService, private router: Router, private listOfLocationService: ListOfLocationService, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalSortingComponent>, @Inject(MAT_DIALOG_DATA) public data: IPositionData, private toastrService: ToastrService) {
   }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.positionsArr, event.previousIndex, event.currentIndex);
+  }
+
+
+
   positionsArr: IPosition[] = []
   equipment_id: number
   isModels: boolean = true
   locationId: number
   positionOnLocationForm!: FormGroup;
-  @Output() sendAdd: EventEmitter<{id: number, locations_id: string}> = new EventEmitter<{id: number, locations_id: string}>()
+  @Output() sendSorting: EventEmitter<IPosition[]> = new EventEmitter<IPosition[]>()
+
+  sorting() {
+    this.listOfLocationService.changePositionOnLocation({positionsArr: this.positionsArr}).subscribe(() => {
+      this.toastrService.success('Отсортированно')
+      this.listOfLocationService.update$.next(null)
+      this.dialogRef.close()
+
+    })
+  }
 
   getPosition() {
     this.locationId = this.data.locationId
     this.listOfLocationService.getPositionModels(this.locationId).subscribe((positionsArr) => {
       if (positionsArr) {
         this.positionsArr = positionsArr.data
-        this.positionsArr.push({id: 1, position: "213", position_on_location: 1, equipment_id: 5, location_id: 1, image: "asd", equipment_name: "123", group_id: "123"})
       }
     })
   }

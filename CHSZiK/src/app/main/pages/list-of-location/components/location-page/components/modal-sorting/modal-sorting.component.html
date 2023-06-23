@@ -1,24 +1,40 @@
+<!--<div class="container">-->
+<!--  <div class="content">-->
+<!--    <div class="content__control-btn">-->
+<!--      <button mat-raised-button color="warn" matTooltip="Закрыть" class="content__button-control"-->
+<!--              (click)="btnCloseModal()"><img src="../../../../../../../../assets/img/close.png" alt=""></button>-->
+<!--    </div>-->
+<!--    <p class="content__name">Сортировка</p>-->
+
+<!--    <div class="item-list" *ngFor="let position of positionsArr">-->
+<!--      <div class="item-list__flex">-->
+<!--        <div class="item-list__item">{{position.position}}</div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <button mat-raised-button color="accent" class="content__button">Сохранить</button>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
 <div class="container">
   <div class="content">
     <div class="content__control-btn">
       <button mat-raised-button color="warn" matTooltip="Закрыть" class="content__button-control"
               (click)="btnCloseModal()"><img src="../../../../../../../../assets/img/close.png" alt=""></button>
     </div>
-
     <p class="content__name">Сортировка</p>
-    <div class="item-list" *ngFor="let position of positionsArr">
-      <div class="item-list__flex">
-        <div class="item-list__item">{{position.position}}</div>
-        <form>
-          <mat-form-field [formGroup]="positionOnLocationForm" class="example-full-width">
-            <mat-label>№</mat-label>
-            <input type="text" formControlName="position_on_location" matInput placeholder="№">
-          </mat-form-field>
-        </form>
-      </div>
+
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let movie of positionsArr" cdkDrag><span matTooltip="Модель">{{movie.equipment_name}}</span><span matTooltip="Позиция">{{movie.position}}</span></div>
     </div>
-    <button mat-raised-button color="accent" class="content__button">Сохранить</button>
+
+    <button (click)="sorting()" mat-raised-button color="accent" class="content__button">Сохранить</button>
   </div>
 </div>
+
+
+
 
 

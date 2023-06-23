@@ -20,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ModalSortingComponent} from "./components/location-page/components/modal-sorting/modal-sorting.component";
+import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
 
 
 
@@ -30,7 +31,7 @@ import {ModalSortingComponent} from "./components/location-page/components/modal
     ModalComponent,
     LocationItemComponent
   ],
-    imports: [CommonModule, ReactiveFormsModule, ListOfLocationRoutingModule, FormsModule, MatDialogModule, PdfViewerModule, MatTooltipModule, MatIconModule, MatButtonModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule]
+  imports: [CommonModule, ReactiveFormsModule, ListOfLocationRoutingModule, FormsModule, MatDialogModule, PdfViewerModule, MatTooltipModule, MatIconModule, MatButtonModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, CdkDropList, CdkDrag]
 })
 export class ListOfLocationModule {
 }

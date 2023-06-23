@@ -1,6 +1,6 @@
-export const BASE_URL = 'http://192.168.0.117:8080'
+// export const BASE_URL = 'http://192.168.0.117:8080'
 // export const BASE_URL = 'http://127.0.0.1:8000'
-// export const BASE_URL = 'http://195.161.68.107'
+export const BASE_URL = 'http://195.161.68.107'
 
 export const CHECKTOKEN_URL = BASE_URL + '/api/check_token'
 export const USER_URL = BASE_URL + '/api/user'
@@ -45,3 +45,4 @@ export const DELETEGROUPINWAREHOUSE_URL = BASE_URL + '/api/delete_group?id='
 export const CHANGEGROUPINWAREHOUSE_URL = BASE_URL + '/api/change_group'
 export const ADDFILEBYTYPESPAREPART_URL = BASE_URL + '/api/add_file_by_type_part'
 export const DELETEFILEBYTYPESPAREPART_URL = BASE_URL + '/api/delete_file_by_type_part?id='
+export const CHANGEPOSITIONONLOCATION_URL = BASE_URL + '/api/change_position_on_location'
