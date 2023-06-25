@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-modal-creating-item-in-warehouse',
@@ -9,7 +9,7 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./modal-creating-item-in-warehouse.component.scss']
 })
 export class ModalCreatingItemInWarehouseComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<ModalCreatingItemInWarehouseComponent>) {
+  constructor(public dialogRef: MatDialogRef<ModalCreatingItemInWarehouseComponent>, @Inject(MAT_DIALOG_DATA) public data: {group: string}) {
   }
   addingNewItem!: FormGroup;
   @Output() send: EventEmitter<{name: string, manufacturer: string, article: string, type_measure_units_id?: number}> = new EventEmitter<{name: string, manufacturer: string, article: string, type_measure_units_id?: number}>()
@@ -41,7 +41,7 @@ export class ModalCreatingItemInWarehouseComponent implements OnInit {
 
   ngOnInit(): void {
     this.addingNewItem = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl(this.data.group, [Validators.required]),
       manufacturer: new FormControl(''),
       article: new FormControl(''),
       type_measure_units_id: new FormControl('')

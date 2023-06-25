@@ -162,6 +162,7 @@ export class WarehouseItemComponent implements OnInit{
     if(this.typeSparePart.type_measure_units_id == null) {
       this.warehouseService.createSparePart({type_parts_id: this.parentSparePartId}).subscribe(() => {
         this.getSparePart()
+        this.getTypeSparePart()
         this.toastrService.success('Пополнено')
       })
     }

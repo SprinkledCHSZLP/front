@@ -45,7 +45,11 @@ export class WarehouseGroupComponent implements OnInit, OnDestroy {
   }
 
   btnOpenModal() {
-    this.dialog.open(ModalCreatingItemInWarehouseComponent).componentInstance.send.subscribe((component) => {
+    this.dialog.open(ModalCreatingItemInWarehouseComponent, {
+      data: {
+        group: this.group.name
+      }
+    }).componentInstance.send.subscribe((component) => {
       this.warehouseService.createTypeSparePart({...component, group_id: this.warehouseGroupId}).subscribe(() => {
         this.toastrService.success('Добавлено')
         this.getTypeSpareParts()
