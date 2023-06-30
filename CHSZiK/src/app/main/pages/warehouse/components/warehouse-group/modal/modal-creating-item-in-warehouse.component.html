@@ -7,10 +7,23 @@
         <mat-label>Наименование</mat-label>
         <input type="text" formControlName="name" matInput placeholder="Введите наименование">
       </mat-form-field>
-      <mat-form-field class="example-full-width mt15px">
-        <mat-label>Производитель</mat-label>
-        <input type="text" formControlName="manufacturer" matInput placeholder="Введите производителя">
-      </mat-form-field>
+<!--      <mat-form-field class="example-full-width mt15px">-->
+<!--        <mat-label>Производитель</mat-label>-->
+<!--        <input type="text" formControlName="manufacturer" matInput placeholder="Введите производителя">-->
+<!--      </mat-form-field>-->
+
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Производитель</mat-label>
+          <input type="text" required matInput [formControl]="myControl" placeholder="Введите группу" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+
       <mat-form-field class="example-full-width mt15px">
         <mat-label>Артикул</mat-label>
         <input type="text" formControlName="article" matInput placeholder="Введите артикул">

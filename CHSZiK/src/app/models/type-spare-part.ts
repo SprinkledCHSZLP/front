@@ -12,3 +12,7 @@ export interface ITypeSpareParts {
     image_plan_reference: string
   }]
 }
+
+export interface IManufacturer {
+  manufacture_name: string
+}

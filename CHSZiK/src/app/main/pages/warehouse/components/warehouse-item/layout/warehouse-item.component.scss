@@ -327,6 +327,12 @@
       height: 50px;
       margin-top: 10px;
 
+      .item-list__img-delete {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+      }
+
       .item__element {
         display: flex;
         align-items: center;

@@ -8,6 +8,7 @@ import {WarehouseService} from "../../../services/warehouse.service";
 import {ISparePart} from "../../../../../../models/spare-part";
 import {FormControl, FormGroup} from "@angular/forms";
 import {IParentPartFile} from "../../../../../../models/parent-part-equipment";
+import {ModalConfirmationComponent} from "../../../../modal-confirmation/modal-confirmation.component";
 
 
 @Component({
@@ -147,25 +148,49 @@ export class WarehouseItemComponent implements OnInit{
     })
   }
 
-  openModalReplenishment() {
-    if(this.typeSparePart.type_measure_units_id != null) {
-      this.dialog.open(ModalReplenishmentComponent, {data: this.typeSparePart.type_measure_units_id}).componentInstance.send.subscribe((component) => {
-        this.warehouseService.createSparePart({
-          ...component, type_parts_id: this.parentSparePartId
-        }).subscribe(() => {
-          this.getTypeSparePart()
+  deleteSparePart(id: number) {
+    this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
+      if(send) {
+        this.warehouseService.deleteSparePart(id).subscribe(() => {
+          this.toastrService.success('Удалено')
           this.getSparePart()
-          this.toastrService.success('Пополнено')
+          this.getTypeSparePart()
         })
-      })
-    }
-    if(this.typeSparePart.type_measure_units_id == null) {
-      this.warehouseService.createSparePart({type_parts_id: this.parentSparePartId}).subscribe(() => {
-        this.getSparePart()
+      }
+    })
+
+
+
+  }
+
+  openModalReplenishment() {
+    // if(this.typeSparePart.type_measure_units_id != null) {
+    //   this.dialog.open(ModalReplenishmentComponent, {data: this.typeSparePart.type_measure_units_id}).componentInstance.send.subscribe((component) => {
+    //     this.warehouseService.createSparePart({
+    //       ...component, type_parts_id: this.parentSparePartId
+    //     }).subscribe(() => {
+    //       this.getTypeSparePart()
+    //       this.getSparePart()
+    //       this.toastrService.success('Пополнено')
+    //     })
+    //   })
+    // }
+    // if(this.typeSparePart.type_measure_units_id == null) {
+    //   this.warehouseService.createSparePart({type_parts_id: this.parentSparePartId}).subscribe(() => {
+    //     this.getSparePart()
+    //     this.getTypeSparePart()
+    //     this.toastrService.success('Пополнено')
+    //   })
+    // }
+    this.dialog.open(ModalReplenishmentComponent, {data: this.typeSparePart.type_measure_units_id}).componentInstance.send.subscribe((component) => {
+      this.warehouseService.createSparePart({
+        ...component, type_parts_id: this.parentSparePartId
+      }).subscribe(() => {
         this.getTypeSparePart()
+        this.getSparePart()
         this.toastrService.success('Пополнено')
       })
-    }
+    })
 
   }
 

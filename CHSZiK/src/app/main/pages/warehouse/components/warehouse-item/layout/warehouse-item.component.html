@@ -111,44 +111,48 @@
       <div class="item-list">
         <div *ngIf="!consumables">
           <div class="item item__header">
-            <div class="item__element item__element-id bg-header">Id</div>
             <div class="item__element item__element-date bg-header">Дата поступления на склад</div>
             <div class="item__element item__element-date bg-header">Дата установки</div>
             <div class="item__element item__element-name bg-header">Наименование станка (позиция)</div>
             <div class="item__element item__element-date bg-header">Дата снятия</div>
             <div class="item__element item__element-date bg-header">Статус</div>
             <div class="item__element item__element-reason bg-header">Причина снятия</div>
+            <img matTooltip="Удалить" class="item-list__img-delete"
+                 src="../../../../../../../assets/img/delete.png" alt="">
           </div>
           <div class="item" *ngFor="let sparePart of sparePart">
-            <div matTooltip="Id" class="item__element item__element-id">{{sparePart.id}}</div>
             <div matTooltip="Дата поступления на склад" class="item__element item__element-date">{{sparePart.date_admission}}</div>
             <div matTooltip="Дата установки" class="item__element item__element-date">{{sparePart.date_mounting}}</div>
             <div matTooltip="Наименование станка (позиция)" class="item__element item__element-name">{{sparePart.position_equipment}}</div>
             <div matTooltip="Дата снятия" class="item__element item__element-date">{{sparePart.date_remove}}</div>
             <div matTooltip="Статус" class="item__element item__element-date">{{sparePart.status_part}}</div>
             <button mat-raised-button color="accent" class="item__element button">Причина снятия</button>
+            <img (click)="deleteSparePart(sparePart.id)" matTooltip="Удалить" class="item-list__img-delete"
+                 src="../../../../../../../assets/img/delete.png" alt="">
           </div>
         </div>
 
 
         <div *ngIf="consumables">
           <div class="item item__header">
-            <div class="item__element item__element-id bg-header">Id</div>
             <div class="item__element item__element-date bg-header">Дата поступления на склад</div>
             <div class="item__element item__element-quantity bg-header">
               <div class="item__element-units">Кол-во</div>
               <div class="item__element-measure">Ед. Изм.</div>
             </div>
             <div class="item__element item__element-date bg-header">Статус</div>
+            <img matTooltip="Удалить" class="item-list__img-delete"
+                 src="../../../../../../../assets/img/delete.png" alt="">
           </div>
           <div class="item" *ngFor="let sparePart of sparePart">
-            <div matTooltip="Id" class="item__element item__element-id">{{sparePart.id}}</div>
             <div matTooltip="Дата поступления на склад" class="item__element item__element-date">{{sparePart.date_admission}}</div>
             <div class="item__element item__element-quantity">
               <div matTooltip="Колличество" class="item__element-units">{{sparePart.units}}</div>
               <div matTooltip="Единица измерения" class="item__element-measure">{{sparePart.measure_units_id}}</div>
             </div>
             <div matTooltip="Статус" class="item__element item__element-date">{{sparePart.status_part}}</div>
+            <img (click)="deleteSparePart(sparePart.id)" matTooltip="Удалить" class="item-list__img-delete"
+                 src="../../../../../../../assets/img/delete.png" alt="">
           </div>
         </div>
       </div>

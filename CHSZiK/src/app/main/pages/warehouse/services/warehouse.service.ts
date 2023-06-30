@@ -7,8 +7,15 @@ import {
   CHANGEGROUPINWAREHOUSE_URL,
   CHANGETYPESPAREPART_URL,
   CREATESPAREPART_URL,
-  CREATETYPESPAREPART_URL, CREATEWAREHOUSEGROUP_URL, DELETEFILEBYTYPESPAREPART_URL, DELETEGROUPINWAREHOUSE_URL,
-  DELETETYPESPAREPARTS_URL, GETGROUPSINWAREHOUSE_URL, GETGROUPWAREHOUSE_URL, GETSPAREPART_URL,
+  CREATETYPESPAREPART_URL,
+  CREATEWAREHOUSEGROUP_URL,
+  DELETEFILEBYTYPESPAREPART_URL,
+  DELETEGROUPINWAREHOUSE_URL,
+  DELETESPAREPARET_URL,
+  DELETETYPESPAREPARTS_URL,
+  GETGROUPSINWAREHOUSE_URL,
+  GETGROUPWAREHOUSE_URL, GETMANUFACTURER_URL,
+  GETSPAREPART_URL,
   GETTYPESPAREPART_URL,
   GETTYPESPAREPARTS_URL
 } from "../../../../conf/conf";
@@ -20,6 +27,7 @@ import {
   ResponseDataTypeSparePart,
   ResponseDataTypeSpareParts
 } from "../../../../models/response";
+import {IManufacturer} from "../../../../models/type-spare-part";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +37,7 @@ export class WarehouseService {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
-  createTypeSparePart(component: { name: string, manufacturer: string, article: string, type_measure_units_id?: number, group_id: number}) {
+  createTypeSparePart(component: { name: string, manufacturer: string | null, article: string, group_id: number}) {
     return this.http.post(CREATETYPESPAREPART_URL, component)
   }
 
@@ -91,5 +99,13 @@ export class WarehouseService {
 
   changeTypeSparePart(component: { id: number, article?: string, name?: string, price?: number, manufacturer?: string }) {
     return this.http.post(CHANGETYPESPAREPART_URL, component)
+  }
+
+  getManufacturer(): Observable<{data: [string ]}> {
+    return this.http.get<{data: [string]}>(GETMANUFACTURER_URL)
+  }
+
+  deleteSparePart(id: number) {
+    return this.http.delete(DELETESPAREPARET_URL + id)
   }
 }
