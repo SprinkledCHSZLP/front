@@ -1,6 +1,6 @@
 // export const BASE_URL = 'http://192.168.0.117:8080'
 // export const BASE_URL = 'http://127.0.0.1:8000'
-export const BASE_URL = 'http://195.161.68.107'
+export const BASE_URL = 'http://127.0.0.1:8000'
 // export const BASE_URL = 'http://172.20.10.6:8080'
 
 
@@ -50,3 +50,5 @@ export const DELETEFILEBYTYPESPAREPART_URL = BASE_URL + '/api/delete_file_by_typ
 export const CHANGEPOSITIONONLOCATION_URL = BASE_URL + '/api/change_position_on_location'
 export const DELETESPAREPARET_URL = BASE_URL + '/api/delete_part?id='
 export const GETMANUFACTURER_URL = BASE_URL + '/api/manufacturers'
+
+export const SHOWEQUIPMENTPOSITION_URL = BASE_URL + '/api/detail_show?id='

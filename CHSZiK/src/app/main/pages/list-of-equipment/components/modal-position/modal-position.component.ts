@@ -6,6 +6,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
 import {IPosition} from "../../../../../models/position";
 import {ToastrService} from "ngx-toastr";
 import {ModalConfirmationComponent} from "../../../modal-confirmation/modal-confirmation.component";
+import {Router} from "@angular/router";
 
 interface IModelsData {
   modelsId: number
@@ -17,7 +18,7 @@ interface IModelsData {
   styleUrls: ['./modal-position.component.scss']
 })
 export class ModalPositionComponent implements OnInit {
-  constructor(private listOfLocationService: ListOfLocationService, private dialog: MatDialog, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalPositionComponent>, @Inject(MAT_DIALOG_DATA) public data: IModelsData, private toastrService: ToastrService) {
+  constructor(private listOfLocationService: ListOfLocationService, private dialog: MatDialog, private listOfEquipmentService: ListOfEquipmentService, public dialogRef: MatDialogRef<ModalPositionComponent>, @Inject(MAT_DIALOG_DATA) public data: IModelsData, private toastrService: ToastrService, private router: Router) {
   }
   positionsArr: IPosition[] = []
   addingPositionForm!: FormGroup;
@@ -40,6 +41,11 @@ export class ModalPositionComponent implements OnInit {
     //   this.toastrService.success('Позиция удалена')
     //   this.openPositions(this.data.modelsId)
     // })
+  }
+
+  openEquipmentPosition(id: number) {
+    this.router.navigate(['equipment-position/' + id])
+    this.dialogRef.close()
   }
 
   addingNewPosition() {

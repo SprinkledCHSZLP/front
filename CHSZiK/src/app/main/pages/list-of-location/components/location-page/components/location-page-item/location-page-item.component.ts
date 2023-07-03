@@ -34,6 +34,10 @@ export class LocationPageItemComponent implements OnInit{
     this.router.navigate(['adding-equipment', id])
   }
 
+  openEquipmentPosition(id: number) {
+    this.router.navigate(['equipment-position/' + id])
+  }
+
   getContactsDictionary(url: string) {
     const req = new HttpRequest(
       'GET',

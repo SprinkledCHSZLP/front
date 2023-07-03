@@ -20,9 +20,10 @@ import {ListOfEquipmentModule} from "./pages/list-of-equipment/list-of-equipment
 import {ModalConfirmationComponent} from "./pages/modal-confirmation/modal-confirmation.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
+import {EquipmentPositionComponent} from "./pages/equipment-position/layout/equipment-position.component";
 
 @NgModule({
-  declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent, ModalConfirmationComponent],
+  declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent, ModalConfirmationComponent, EquipmentPositionComponent],
   imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule, ListOfEquipmentModule, MatDialogModule]
 })
 export class MainModule {

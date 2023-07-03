@@ -26,6 +26,14 @@ const routes: Routes = [
         loadChildren: () => import('./pages/warehouse/warehouse.module').then(m => m.WarehouseModule)
       }
     ]
+  },
+  {
+    path: '', component: WrapperComponent, children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/equipment-position/equipment-position.module').then(m => m.EquipmentPositionModule)
+      }
+    ]
   }
 ];
 

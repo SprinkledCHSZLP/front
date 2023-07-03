@@ -18,7 +18,7 @@
   <p class="content__name">Позиции</p>
   <div class="item-list" *ngFor="let position of positionsArr">
     <div class="item-list__flex">
-      <div class="item-list__item">{{position.position}}</div>
+      <div class="item-list__item" (click)="openEquipmentPosition(position.id)">{{position.position}}</div>
       <img *ngIf="position.group_id" (click)="deletePosition(position.group_id)" matTooltip="Удалить" class="item-list__img-delete" src="../../../../../../assets/img/delete.png" alt="">
     </div>
   </div>

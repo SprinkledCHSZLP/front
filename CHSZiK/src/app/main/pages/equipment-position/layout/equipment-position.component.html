@@ -1,0 +1,34 @@
+<mat-spinner *ngIf="loading" class="loading"></mat-spinner>
+<div *ngIf="!loading">
+  <div class="wrapper">
+    <div class="head">
+      <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">
+        <img src="../../../../../../../assets/img/back.png" alt="">
+        Назад
+      </button>
+      <div class="head-name">
+        <p class="head__name">Имя родителя</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="model-img">
+        <div class="adding-img-model">
+          <div class="adding-img-model-line" #addingImgModelLine>
+            <!--            <app-viewing-model-files class="content" #content *ngFor="let parentFileArr of parentFileArr" [parentFileArr]="parentFileArr"></app-viewing-model-files>-->
+          </div>
+        </div>
+        <div class="btn-controll">
+          <button mat-fab color="accent" matTooltip="Влево" (click)="scrollRight()"><</button>
+          <button mat-fab color="accent" matTooltip="Вправо" (click)="scrollLeft()">></button>
+        </div>
+      </div>
+      <div class="adding-component">
+        <div class="adding-component__content">
+<!--          <app-setting-component *ngFor="let part of part"-->
+<!--                                 [part]="part">-->
+<!--          </app-setting-component>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
