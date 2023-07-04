@@ -6,7 +6,8 @@ import {IPosition} from "./position";
 import {ITypeSpareParts} from "./type-spare-part";
 import {ISparePart} from "./spare-part";
 import {IGroup} from "./groups-in-warehouse";
-import {IEquipmentPosition} from "./equipment-position";
+import {IPartEquipmentPosition} from "./part-equipment-position";
+import {IParentEquipmentPosition} from "./parent-equipment-position";
 
 export interface ResponseDataModels {
   data: IModel[]
@@ -53,6 +54,10 @@ export interface ResponseDataGroupInWarehouse {
   data: IGroup
 }
 
-export interface ResponseDataEquipmentPosition {
-  data: IEquipmentPosition[]
+export interface ResponseDataPartEquipmentPosition {
+  data: IPartEquipmentPosition[]
+}
+
+export interface ResponseDataParentEquipmentPosition {
+  data: IParentEquipmentPosition
 }

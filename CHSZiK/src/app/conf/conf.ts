@@ -51,4 +51,5 @@ export const CHANGEPOSITIONONLOCATION_URL = BASE_URL + '/api/change_position_on_
 export const DELETESPAREPARET_URL = BASE_URL + '/api/delete_part?id='
 export const GETMANUFACTURER_URL = BASE_URL + '/api/manufacturers'
 
-export const SHOWEQUIPMENTPOSITION_URL = BASE_URL + '/api/detail_show?id='
+export const GETPARTEQUIPMENTPOSITION_URL = BASE_URL + '/api/detail_show?id='
+export const GETPARENTEQUIPMENTPOSITION_URL = BASE_URL + '/api/show_parent_position?id='

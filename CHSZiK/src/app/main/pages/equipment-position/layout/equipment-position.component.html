@@ -3,18 +3,19 @@
   <div class="wrapper">
     <div class="head">
       <button class="btn-back" mat-raised-button color="accent" (click)="btnBack()">
-        <img src="../../../../../../../assets/img/back.png" alt="">
+        <img src="../../../../../assets/img/back.png" alt="">
         Назад
       </button>
-      <div class="head-name">
-        <p class="head__name">Имя родителя</p>
+      <div class="head-name" *ngIf="parent">
+        <p class="head__name">{{parent.equipment_name}}</p>
+        <p *ngIf="parent.position != null" class="head__position">({{parent.position}})</p>
       </div>
     </div>
     <div class="container">
       <div class="model-img">
         <div class="adding-img-model">
           <div class="adding-img-model-line" #addingImgModelLine>
-            <!--            <app-viewing-model-files class="content" #content *ngFor="let parentFileArr of parentFileArr" [parentFileArr]="parentFileArr"></app-viewing-model-files>-->
+            <app-viewing-files-position class="content" #content *ngFor="let parentFileArr of parentFileArr" [parentFileArr]="parentFileArr"></app-viewing-files-position>
           </div>
         </div>
         <div class="btn-controll">
@@ -24,9 +25,9 @@
       </div>
       <div class="adding-component">
         <div class="adding-component__content">
-<!--          <app-setting-component *ngFor="let part of part"-->
-<!--                                 [part]="part">-->
-<!--          </app-setting-component>-->
+          <app-setting-component *ngFor="let part of part"
+                                 [part]="part">
+          </app-setting-component>
         </div>
       </div>
     </div>

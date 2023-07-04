@@ -3,9 +3,13 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import {ActivatedRoute, Router} from "@angular/router";
-import {SHOWEQUIPMENTPOSITION_URL} from "../../../../conf/conf";
 import {Observable} from "rxjs";
-import {ResponseDataEquipmentPosition} from "../../../../models/response";
+import {
+  ResponseDataPartEquipmentPosition,
+  ResponseDataParentPart,
+  ResponseDataParentEquipmentPosition
+} from "../../../../models/response";
+import {GETPARENTEQUIPMENTPOSITION_URL, GETPARTEQUIPMENTPOSITION_URL} from "../../../../conf/conf";
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +18,11 @@ export class EquipmentPositionService {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
-  getEquipmentPosition(id: number): Observable<ResponseDataEquipmentPosition> {
-    return this.http.get<ResponseDataEquipmentPosition>(SHOWEQUIPMENTPOSITION_URL + id)
+  getPartEquipmentPosition(id: number): Observable<ResponseDataPartEquipmentPosition> {
+    return this.http.get<ResponseDataPartEquipmentPosition>(GETPARTEQUIPMENTPOSITION_URL + id)
+  }
+  getParentEquipmentPosition(id: number): Observable<ResponseDataParentEquipmentPosition> {
+    return this.http.get<ResponseDataParentEquipmentPosition>(GETPARENTEQUIPMENTPOSITION_URL + id)
   }
 
 }

@@ -1,4 +1,4 @@
-export interface IEquipmentPosition {
+export interface IPartEquipmentPosition {
   id: number,
   position_on_plan: string,
   equipment_name: string,

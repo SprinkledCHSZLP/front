@@ -21,10 +21,11 @@ import {ModalConfirmationComponent} from "./pages/modal-confirmation/modal-confi
 import {MatDialogModule} from "@angular/material/dialog";
 import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
 import {EquipmentPositionComponent} from "./pages/equipment-position/layout/equipment-position.component";
+import {EquipmentPositionModule} from "./pages/equipment-position/equipment-position.module";
 
 @NgModule({
   declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent, ModalConfirmationComponent, EquipmentPositionComponent],
-  imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule, ListOfEquipmentModule, MatDialogModule]
+  imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule, ListOfEquipmentModule, MatDialogModule, EquipmentPositionModule]
 })
 export class MainModule {
 }
