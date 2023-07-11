@@ -1,15 +1,15 @@
 <div>
-  <div class="wrapper">
+  <div class="wrapper" (click)="openComponent(part.id)">
 
     <div class="setting-component">
       <div matTooltip="Позиция" class="number-component">{{part.position_on_plan}}</div>
       <div matTooltip="Наименование" class="name-component">
         <p>{{part.equipment_name}}</p>
       </div>
-      <div (click)="serveOn()" *ngIf="!service" class="border" matTooltip="Обслужить">
+      <div (click)="serve()" *ngIf="!service" class="border" matTooltip="Обслужить">
         <img src="../../../../../../../assets/img/setting.png" alt="">
       </div>
-      <div (click)="serveOff()" *ngIf="service" class="border" matTooltip="Свернуть">
+      <div (click)="serve()" *ngIf="service" class="border" matTooltip="Свернуть">
         <img src="../../../../../../../assets/img/setting.png" alt="">
       </div>
     </div>

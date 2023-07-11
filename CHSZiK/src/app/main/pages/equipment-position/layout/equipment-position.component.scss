@@ -236,6 +236,7 @@ input.active {
 //}
 
 .adding-img-model {
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
   width: 650px;
   height: 850px;
   border: 1px solid black;
@@ -371,6 +372,32 @@ input.active {
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
+}
+
+.head__btn {
+  justify-content: end;
+  display: flex;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-maintenance{
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+  justify-self: end;
+  font-size: 16px;
+  height: 50px;
+  width: 140px;
+  border-radius: 25px;
+}
+.btn-maintenance__item {
+  box-shadow: 0 0 5px 2px rgba(221, 221, 221, 1);
+  padding: 5px;
+  margin: 5px;
 }
 
 .save__btn {

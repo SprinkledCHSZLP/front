@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -7,6 +7,7 @@ import {EquipmentPositionService} from "../services/equipment-position.service";
 import {IParentPart, IParentPartFile} from "../../../../models/parent-part-equipment";
 import {IParentEquipmentPosition} from "../../../../models/parent-equipment-position";
 import {IPartEquipmentPosition} from "../../../../models/part-equipment-position";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -14,13 +15,14 @@ import {IPartEquipmentPosition} from "../../../../models/part-equipment-position
   templateUrl: './equipment-position.component.html',
   styleUrls: ['./equipment-position.component.scss'],
 })
-export class EquipmentPositionComponent implements OnInit {
+export class EquipmentPositionComponent implements OnInit, OnDestroy {
 
 
   constructor(private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, private equipmentPositionService: EquipmentPositionService) {
   }
+  sub$: Subscription = new Subscription()
   parent_id: number
-  loading = false
+  loading = true
   parent: IParentEquipmentPosition
   part: IPartEquipmentPosition[] = []
   parentFileArr: IParentPartFile[] = []
@@ -41,6 +43,7 @@ export class EquipmentPositionComponent implements OnInit {
 
   btnBack() {
     window.history.back()
+    this.loading = true
   }
 
   getParent() {
@@ -48,6 +51,7 @@ export class EquipmentPositionComponent implements OnInit {
       if(parent) {
         this.parent = parent.data
         this.parentFileArr = parent.data.list_image
+        this.loading = false
       }
     })
   }
@@ -61,10 +65,16 @@ export class EquipmentPositionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.parent_id = params['id']
-      this.getParent()
-      this.getPart()
-    })
+    this.sub$.add(
+      this.route.params.subscribe(params => {
+        this.parent_id = params['id']
+        this.getParent()
+        this.getPart()
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe()
   }
 }

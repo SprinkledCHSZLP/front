@@ -6,5 +6,6 @@ export interface IPart {
   equipment_name: string,
   have_equipment: boolean,
   service: boolean,
+  service_id?: number,
   parent_equipment_id?: number
 }

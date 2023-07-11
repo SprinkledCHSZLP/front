@@ -18,9 +18,9 @@
         <div class="item-list" *ngFor="let groups of groups">
           <div class="item-list__line" (click)="openGroup(groups.id)">
             <div class="item item__name" matTooltip="Наименование группы">{{groups.name}}</div>
-            <div class="item item-quantity__number" matTooltip="Колличество типов">{{groups.quantity_type_part}}</div>
+            <div class="item item-quantity__number" matTooltip="Количество типов">{{groups.quantity_type_part}}</div>
             <div class="item item-quantity">
-              <div class="item-quantity__number" matTooltip="Колличество всех элементов">{{groups.quantity_part}}</div>
+              <div class="item-quantity__number" matTooltip="Количество всех элементов">{{groups.quantity_part}}</div>
               <div class="item-quantity__measurement" matTooltip="Измерение всех элементов">{{groups.measurement_units}}</div>
             </div>
           </div>

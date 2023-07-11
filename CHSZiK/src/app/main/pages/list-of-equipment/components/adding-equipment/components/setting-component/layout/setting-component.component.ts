@@ -80,7 +80,7 @@ export class SettingComponentComponent implements OnInit {
   }
 
   submitMainTenanceSheetEditing() {
-    this.router.navigate(['maintenance-sheet-editing', this.part.id])
+    this.router.navigate(['maintenance-sheet-editing', this.part.service_id])
   }
 
   ngOnInit(): void {

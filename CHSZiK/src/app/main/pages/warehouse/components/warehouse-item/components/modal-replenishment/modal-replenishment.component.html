@@ -4,8 +4,8 @@
             (click)="btnCloseModal()"><img src="../../../../../../assets/img/close.png" alt=""></button>
     <div class="content__item" [formGroup]="replenishmentForm">
       <mat-form-field class="example-full-width">
-        <mat-label>Колличество</mat-label>
-        <input type="text" formControlName="units" matInput placeholder="Введите колличество">
+        <mat-label>Количество</mat-label>
+        <input type="text" formControlName="units" matInput placeholder="Введите количество">
       </mat-form-field>
 
       <mat-form-field class="unit" *ngIf="data != null">

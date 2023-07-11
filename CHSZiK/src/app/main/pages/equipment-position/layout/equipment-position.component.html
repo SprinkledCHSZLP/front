@@ -10,6 +10,13 @@
         <p class="head__name">{{parent.equipment_name}}</p>
         <p *ngIf="parent.position != null" class="head__position">({{parent.position}})</p>
       </div>
+      <div class="head__btn">
+        <button mat-raised-button color="accent" [matMenuTriggerFor]="menu" class="btn-maintenance">Обслужить</button>
+        <mat-menu class="column" #menu="matMenu">
+          <button mat-raised-button color="accent" class="btn-maintenance__item">Выполнить плановый ремонт</button>
+          <button mat-raised-button color="accent" class="btn-maintenance__item">Выполнить внеплановый ремонт</button>
+        </mat-menu>
+      </div>
     </div>
     <div class="container">
       <div class="model-img">

@@ -22,10 +22,11 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {WarehouseComponent} from "./pages/warehouse/layout/warehouse.component";
 import {EquipmentPositionComponent} from "./pages/equipment-position/layout/equipment-position.component";
 import {EquipmentPositionModule} from "./pages/equipment-position/equipment-position.module";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [WrapperComponent, HeaderComponent, ListOfEquipmentComponent, ListOfLocationComponent, WarehouseComponent, ModalConfirmationComponent, EquipmentPositionComponent],
-  imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule, ListOfEquipmentModule, MatDialogModule, EquipmentPositionModule]
+    imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, ListOfLocationModule, WarehouseModule, MatButtonModule, MatChipsModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule, MatTooltipModule, ListOfEquipmentModule, MatDialogModule, EquipmentPositionModule, MatMenuModule]
 })
 export class MainModule {
 }

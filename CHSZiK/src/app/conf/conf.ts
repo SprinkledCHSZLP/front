@@ -1,8 +1,6 @@
-// export const BASE_URL = 'http://192.168.0.117:8080'
+// export const BASE_URL = 'http://192.168.0.139:8080'
 // export const BASE_URL = 'http://127.0.0.1:8000'
-export const BASE_URL = 'http://127.0.0.1:8000'
-// export const BASE_URL = 'http://172.20.10.6:8080'
-
+export const BASE_URL = 'http://195.161.68.107'
 
 export const CHECKTOKEN_URL = BASE_URL + '/api/check_token'
 export const USER_URL = BASE_URL + '/api/user'
@@ -53,3 +51,21 @@ export const GETMANUFACTURER_URL = BASE_URL + '/api/manufacturers'
 
 export const GETPARTEQUIPMENTPOSITION_URL = BASE_URL + '/api/detail_show?id='
 export const GETPARENTEQUIPMENTPOSITION_URL = BASE_URL + '/api/show_parent_position?id='
+
+export const ADDTOOL_URL = BASE_URL + '/api/create_tool'
+export const DELETETOOL_URL = BASE_URL + '/api/delete_tool?id='
+export const SHOWLISTTOOLS_URL = BASE_URL + '/api/show_list_tools?service_id='
+export const SHOWTOOLSAUTOCOMPLETE_URL = BASE_URL + '/api/show_tools'
+
+export const ADDDETAIL_URL = BASE_URL + '/api/create_detail'
+export const SHOWDETAILSAUTOCOMPLETE_URL = BASE_URL + '/api/show_details'
+export const DELETEDETAIL_URL = BASE_URL + '/api/delete_detail?id='
+export const SHOWLISTDETAILS_URL = BASE_URL + '/api/show_list_details?service_id='
+
+export const ADDCONSUMABLE_URL = BASE_URL + '/api/create_consumable'
+export const SHOWCONSUMABLESAUTOCOMPLETE_URL = BASE_URL + '/api/show_consumables'
+export const DELETECONSUMABLE_URL = BASE_URL + '/api/delete_consumable?id='
+export const SHOWLISTCONSUMABLES_URL = BASE_URL + '/api/show_list_consumables?service_id='
+
+export const SHOWSERVICE_URL = BASE_URL + '/api/show_service?id='
+
