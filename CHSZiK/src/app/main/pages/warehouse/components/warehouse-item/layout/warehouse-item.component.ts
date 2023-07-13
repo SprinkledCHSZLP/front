@@ -66,8 +66,6 @@ export class WarehouseItemComponent implements OnInit{
         })
       }
     }
-
-
   }
 
   getTypeSparePart() {

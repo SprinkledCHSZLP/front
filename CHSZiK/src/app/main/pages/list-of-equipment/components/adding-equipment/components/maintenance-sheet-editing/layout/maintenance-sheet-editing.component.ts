@@ -1,15 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MaintenanceSheetEditingService} from "../services/maintenance-sheet-editing.service";
 import {map, Observable, startWith, Subscription} from "rxjs";
 import {ToastrService} from "ngx-toastr";
-import {IListTools} from "../../../../../../../../../../models/list-tools";
+import {IListTools} from "../../../../../../../../models/list-tools";
 import {MatDialog} from "@angular/material/dialog";
-import {ModalConfirmationComponent} from "../../../../../../../../modal-confirmation/modal-confirmation.component";
-import {IDetails, IListDetails} from "../../../../../../../../../../models/list-details";
-import {IConsumables, IListConsumables} from "../../../../../../../../../../models/list-consumables";
-import {IParentService} from "../../../../../../../../../../models/parent-service";
+import {ModalConfirmationComponent} from "../../../../../../modal-confirmation/modal-confirmation.component";
+import {IDetails, IListDetails} from "../../../../../../../../models/list-details";
+import {IConsumables, IListConsumables} from "../../../../../../../../models/list-consumables";
+import {IParentService, IParentServiceFile} from "../../../../../../../../models/parent-service";
+import {IParentPartFile} from "../../../../../../../../models/parent-part-equipment";
 
 @Component({
   selector: 'app-maintenance-sheet-editing',
@@ -20,13 +21,15 @@ import {IParentService} from "../../../../../../../../../../models/parent-servic
 export class MaintenanceSheetEditingComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private maintenanceSheetEditingService: MaintenanceSheetEditingService, private route: ActivatedRoute, private toastrService: ToastrService, public dialog: MatDialog) {
   }
-  loading: boolean = true
-
   sub$: Subscription = new Subscription()
+
+  loading: boolean = true
   parent_id: number
+
   addToolForm!: FormGroup
   addDetailForm!: FormGroup
   addConsumableForm!: FormGroup
+
   listTools: IListTools[] = []
   listDetails: IListDetails[] = []
   listConsumables: IListConsumables[] = []
@@ -157,7 +160,7 @@ export class MaintenanceSheetEditingComponent implements OnInit, OnDestroy {
     })
   }
 
-  deteleTool(id: number) {
+  deleteTool(id: number) {
     this.dialog.open(ModalConfirmationComponent).componentInstance.sendConfirmation.subscribe((send) => {
         if (send) {
           this.maintenanceSheetEditingService.deleteTool(id).subscribe(() => {
@@ -218,19 +221,65 @@ export class MaintenanceSheetEditingComponent implements OnInit, OnDestroy {
   }
 
   getParentService() {
+    this.maintenanceSheetEditingService.getParentService(this.parent_id).subscribe((parentService) => {
+      if(parentService) {
+        this.parentService = parentService.data
+        this.parentFileArr = parentService.data.list_files
+        this.loading = false
+      }
+    })
+  }
 
+  file: File | undefined
+  @ViewChild('input') inputRef: ElementRef
+
+
+  @ViewChild('listDocumentationLine') listDocumentationLine: ElementRef;
+  @ViewChild('content') content: ElementRef;
+
+  scrollRight() {
+    const wrapper = this.listDocumentationLine.nativeElement;
+    const distance = wrapper.offsetWidth;
+    wrapper.scrollLeft -= distance;
+  }
+  scrollLeft() {
+    const wrapper = this.listDocumentationLine.nativeElement;
+    const distance = -wrapper.offsetWidth;
+    wrapper.scrollLeft -= distance;
+  }
+
+  btnUpdateImage() {
+    this.inputRef.nativeElement.click()
+  }
+
+  parentFileArr: IParentServiceFile[] = []
+
+
+  onFileUpload(event: any) {
+    this.file = event.target.files[0]
+    if (this.file) {
+      if(this.file != undefined) {
+        this.maintenanceSheetEditingService.addFile(this.file, this.parent_id).subscribe(() => {
+          this.getParentService()
+          this.toastrService.success('Схема добавлена')
+          this.inputRef.nativeElement.value = ''
+          this.file = undefined
+        })
+      }
+    }
   }
 
   ngOnInit(): void {
     this.sub$.add(
       this.route.params.subscribe(params => {
         this.parent_id = params['id']
-        this.maintenanceSheetEditingService.getParentService(this.parent_id).subscribe((parentService) => {
-          if(parentService) {
-            this.parentService = parentService.data
-            this.loading = false
-          }
-        })
+        // this.maintenanceSheetEditingService.getParentService(this.parent_id).subscribe((parentService) => {
+        //   if(parentService) {
+        //     this.parentService = parentService.data
+        //     this.loading = false
+        //   }
+        // })
+        this.getParentService()
       })
     )
     this.getListTools()
@@ -256,9 +305,5 @@ export class MaintenanceSheetEditingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe()
-  }
-
-  selectedOption(value: any) {
-    console.log(value)
   }
 }

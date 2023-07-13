@@ -395,11 +395,6 @@ export class AddingEquipmentComponent implements OnInit, OnDestroy {
   onFileUpload(event: any) {
     this.image = event.target.files[0]
     this.toastrService.info('Не забудьте нажать на кнопку "Сохранить"')
-    // if(this.image != undefined)
-    // this.addingComponentService.addFile(this.image, this.parent_equipment_id).subscribe(() => {
-    //   this.getParentPart()
-    //   console.log('удачно')
-    // })
   }
 
   ifNotIsNew() {

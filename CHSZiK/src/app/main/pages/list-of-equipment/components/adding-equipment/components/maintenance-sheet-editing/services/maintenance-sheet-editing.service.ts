@@ -6,9 +6,9 @@ import {Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
   ADDCONSUMABLE_URL,
-  ADDDETAIL_URL,
+  ADDDETAIL_URL, ADDFILEBYTYPESPAREPART_URL, ADDFILEINSERVICE_URL,
   ADDTOOL_URL, DELETECONSUMABLE_URL,
-  DELETEDETAIL_URL,
+  DELETEDETAIL_URL, DELETEFILE_URL, DELETEFILEINSERVICE_URL,
   DELETETOOL_URL,
   SHOWCONSUMABLESAUTOCOMPLETE_URL,
   SHOWDETAILSAUTOCOMPLETE_URL,
@@ -16,14 +16,14 @@ import {
   SHOWLISTDETAILS_URL,
   SHOWLISTTOOLS_URL, SHOWSERVICE_URL,
   SHOWTOOLSAUTOCOMPLETE_URL
-} from "../../../../../../../../../../conf/conf";
+} from "../../../../../../../../conf/conf";
 import {
   ResponseDataListConsumables,
   ResponseDataListDetails,
   ResponseDataListTools, ResponseDataParentService
-} from "../../../../../../../../../../models/response";
-import {IDetails} from "../../../../../../../../../../models/list-details";
-import {IConsumables} from "../../../../../../../../../../models/list-consumables";
+} from "../../../../../../../../models/response";
+import {IDetails} from "../../../../../../../../models/list-details";
+import {IConsumables} from "../../../../../../../../models/list-consumables";
 
 @Injectable({
   providedIn: 'root',
@@ -82,5 +82,19 @@ export class MaintenanceSheetEditingService {
 
   getParentService(id: number): Observable<ResponseDataParentService> {
     return this.http.get<ResponseDataParentService>(SHOWSERVICE_URL + id)
+  }
+
+  addFile(file: File, service_id: number) {
+    const fd = new FormData()
+
+
+    fd.append('file', file)
+
+    fd.append('service_id', service_id.toString())
+
+    return this.http.post(ADDFILEINSERVICE_URL, fd)
+  }
+  deleteFile(id: any) {
+    return this.http.delete(DELETEFILEINSERVICE_URL + id)
   }
 }

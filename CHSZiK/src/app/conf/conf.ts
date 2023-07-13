@@ -1,6 +1,6 @@
 // export const BASE_URL = 'http://192.168.0.139:8080'
-// export const BASE_URL = 'http://127.0.0.1:8000'
-export const BASE_URL = 'http://195.161.68.107'
+export const BASE_URL = 'http://127.0.0.1:8000'
+// export const BASE_URL = 'http://195.161.68.107'
 
 export const CHECKTOKEN_URL = BASE_URL + '/api/check_token'
 export const USER_URL = BASE_URL + '/api/user'
@@ -68,4 +68,6 @@ export const DELETECONSUMABLE_URL = BASE_URL + '/api/delete_consumable?id='
 export const SHOWLISTCONSUMABLES_URL = BASE_URL + '/api/show_list_consumables?service_id='
 
 export const SHOWSERVICE_URL = BASE_URL + '/api/show_service?id='
+export const ADDFILEINSERVICE_URL = BASE_URL + '/api/add_file_in_service'
+export const DELETEFILEINSERVICE_URL = BASE_URL + '/api/delete_file_in_service?id='
 

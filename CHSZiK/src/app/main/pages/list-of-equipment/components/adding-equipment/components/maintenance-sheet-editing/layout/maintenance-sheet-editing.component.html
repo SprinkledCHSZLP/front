@@ -12,6 +12,21 @@
       </div>
     </div>
     <div class="container">
+      <div class="list-documentation">
+        <input class="add-file" #input (change)="onFileUpload($event)" type="file">
+        <div class="list-documentation__item">
+          <div class="list-documentation__line" #listDocumentationLine>
+            <app-viewing-files-in-maintenance class="content" #content *ngFor="let parentFileArr of parentFileArr" [parentFileArr]="parentFileArr"></app-viewing-files-in-maintenance>
+          </div>
+        </div>
+        <div class="btn-controll">
+          <button mat-fab color="accent" matTooltip="Влево" (click)="scrollRight()"><</button>
+          <button mat-fab color="accent" matTooltip="Вправо" (click)="scrollLeft()">></button>
+        </div>
+        <button mat-raised-button color="accent" (click)="btnUpdateImage()" class="btn__img-change">
+          Добавить
+        </button>
+      </div>
       <div class="list">
         <div class="list-vertical">
           <div class="list__item">
@@ -51,7 +66,7 @@
             <div class="item" *ngFor="let tool of listTools">
               <p class="item-component item-name">{{tool.tool_name}}</p>
               <p class="item-component item-quantity">{{tool.quantity}}</p>
-              <div class="border-delete" matTooltip="Удалить" (click)="deteleTool(tool.id)">
+              <div class="border-delete" matTooltip="Удалить" (click)="deleteTool(tool.id)">
                 <img src="../../../../../../../../../../../assets/img/delete.png" alt="">
               </div>
             </div>
@@ -104,39 +119,23 @@
               <button matTooltip="Добавить" (click)="addConsumable()" [disabled]="addConsumableForm.invalid || consumableControl.invalid" class="btn-save-component" mat-fab color="accent">
                 <img src="../../../../../../../../../../../assets/img/done.png" alt="">
               </button>
-<!--              <mat-form-field class="example-full-width item__input-name">-->
-<!--                <mat-label>Наименование материала</mat-label>-->
-<!--                <input type="text" matInput placeholder="Введите наименование материала">-->
-<!--              </mat-form-field>-->
-<!--              <mat-form-field class="example-full-width item__input-quantity">-->
-<!--                <mat-label>Количество</mat-label>-->
-<!--                <input type="text" matInput placeholder="Количество">-->
-<!--              </mat-form-field>-->
-<!--              <button matTooltip="Добавить" class="btn-save-component" mat-fab color="accent">-->
-<!--                <img src="../../../../../../../../../../../assets/img/done.png" alt="">-->
-<!--              </button>-->
             </form>
           </div>
         </div>
 
-        <div class="list-documentation">
-          <div class="list-documentation__item">
-            <div class="list-documentation__header">Документация по обслуживанию</div>
-            <div class="list-documentation__content">
-              <div class="item__content">Файл-1.формат</div>
-              <div class="item__content">
-                <input type="file">
-                <button class="btn__save-item">Y</button>
-              </div>
-            </div>
-          </div>
-        </div>
+<!--        <div class="list-documentation">-->
+<!--          <div class="list-documentation__item">-->
+<!--            <div class="list-documentation__header">Документация по обслуживанию</div>-->
+<!--            <div class="list-documentation__content">-->
+<!--              <div class="item__content">Файл-1.формат</div>-->
+<!--              <div class="item__content">-->
+<!--                <input type="file">-->
+<!--                <button class="btn__save-item">Y</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
-<!--    <div class="save">-->
-<!--      <button mat-raised-button color="accent"-->
-<!--              class="save__btn">Сохранить-->
-<!--      </button>-->
-<!--    </div>-->
   </div>
 </div>

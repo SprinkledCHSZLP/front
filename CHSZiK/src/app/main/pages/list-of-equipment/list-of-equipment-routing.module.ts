@@ -4,7 +4,7 @@ import {ListOfEquipmentComponent} from "./layout/list-of-equipment.component";
 import {AddingEquipmentComponent} from "./components/adding-equipment/layout/adding-equipment.component";
 import {
   MaintenanceSheetEditingComponent
-} from "./components/adding-equipment/components/setting-component/components/maintenance-sheet-editing/layout/maintenance-sheet-editing.component";
+} from "./components/adding-equipment/components/maintenance-sheet-editing/layout/maintenance-sheet-editing.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/list-of-equipment', pathMatch: 'full'},
